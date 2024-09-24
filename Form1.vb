@@ -12,21 +12,45 @@ Public Class Form1
         ListView1.Columns.Add("HSN", 110, HorizontalAlignment.Center)
         ListView1.Columns.Add("DIS", 100, HorizontalAlignment.Center)
         ListView1.Columns.Add("IVT_DATE", 150, HorizontalAlignment.Center)
+        Label1.Text = "PRODUCT ID"
+        Label2.Text = "PRODUCT NAME"
+        Label3.Text = "BRAND"
+        Label4.Text = "CATEGORY ID"
+        Label5.Text = "PRUCHASE PRICE"
+        Label6.Text = "MRP"
+        Label7.Text = "STOCK QUANTITY"
+        Label8.Text = "HSN"
+        Label9.Text = "DISCOUNT"
+        Label10.Text = "INVENTORY DATE"
         Button1.Text = "NEW"
     End Sub
     Private Sub IVY_DATE_KeyUp(sender As Object, e As KeyEventArgs) Handles IVY_DATE.KeyUp
         Dim PRO As ListViewItem
+        Dim cntr As Integer
+        Dim i As Integer
         If e.KeyValue = Keys.Enter Then
-            PRO = ListView1.Items.Add(P_ID.Text)
-            PRO.SubItems.Add(P_NAME.Text)
-            PRO.SubItems.Add(Brand.Text)
-            PRO.SubItems.Add(C_ID.Text)
-            PRO.SubItems.Add(PUR_PRICE.Text)
-            PRO.SubItems.Add(MRP.Text)
-            PRO.SubItems.Add(STK_QTY.Text)
-            PRO.SubItems.Add(HSN.Text)
-            PRO.SubItems.Add(DIS.Text)
-            PRO.SubItems.Add(IVY_DATE.Text)
+            If ListView1.Items.Count > 0 Then
+                For i = 0 To ListView1.Items.Count - 1
+                    If ListView1.Items(i).SubItems(0).Text = P_ID.Text Then
+                        ListView1.Items(i).SubItems(6).Text = Val(ListView1.Items(i).SubItems(6).Text) + Val(STK_QTY.Text)
+                        cntr = 1
+                        Exit For
+                    End If
+                Next
+            End If
+            If (cntr = 0) Then
+
+                PRO = ListView1.Items.Add(P_ID.Text)
+                PRO.SubItems.Add(P_NAME.Text)
+                PRO.SubItems.Add(Brand.Text)
+                PRO.SubItems.Add(C_ID.Text)
+                PRO.SubItems.Add(PUR_PRICE.Text)
+                PRO.SubItems.Add(MRP.Text)
+                PRO.SubItems.Add(STK_QTY.Text)
+                PRO.SubItems.Add(HSN.Text)
+                PRO.SubItems.Add(DIS.Text)
+                PRO.SubItems.Add(IVY_DATE.Text)
+            End If
             P_ID.Text = ""
             P_NAME.Text = ""
             Brand.Text = ""
