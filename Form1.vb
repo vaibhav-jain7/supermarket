@@ -27,20 +27,21 @@ Public Class Form1
             PRO.SubItems.Add(HSN.Text)
             PRO.SubItems.Add(DIS.Text)
             PRO.SubItems.Add(IVY_DATE.Text)
+            P_ID.Text = ""
+            P_NAME.Text = ""
+            Brand.Text = ""
+            C_ID.Text = ""
+            PUR_PRICE.Text = ""
+            MRP.Text = ""
+            STK_QTY.Text = ""
+            HSN.Text = ""
+            DIS.Text = ""
+            IVY_DATE.Text = ""
+            P_ID.Focus()
         End If
-        P_ID.Focus()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        P_ID.Text = ""
-        P_NAME.Text = ""
-        Brand.Text = ""
-        C_ID.Text = ""
-        PUR_PRICE.Text = ""
-        MRP.Text = ""
-        STK_QTY.Text = ""
-        HSN.Text = ""
-        DIS.Text = ""
-        IVY_DATE.Text = ""
+
     End Sub
 End Class
