@@ -34,6 +34,8 @@ Partial Class Form1
         Me.HSN = New System.Windows.Forms.TextBox()
         Me.DIS = New System.Windows.Forms.TextBox()
         Me.IVY_DATE = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ListView1
@@ -127,11 +129,31 @@ Partial Class Form1
         Me.IVY_DATE.Size = New System.Drawing.Size(147, 20)
         Me.IVY_DATE.TabIndex = 11
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(379, 32)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(39, 13)
+        Me.Label1.TabIndex = 12
+        Me.Label1.Text = "Label1"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(594, 41)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(39, 13)
+        Me.Label2.TabIndex = 13
+        Me.Label2.Text = "Label2"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1188, 537)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.IVY_DATE)
         Me.Controls.Add(Me.DIS)
         Me.Controls.Add(Me.HSN)
@@ -163,4 +185,6 @@ Partial Class Form1
     Friend WithEvents HSN As TextBox
     Friend WithEvents DIS As TextBox
     Friend WithEvents IVY_DATE As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
 End Class
