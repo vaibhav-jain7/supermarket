@@ -2,6 +2,7 @@
 
 Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.BackColor = Color.Cyan
         ListView1.Columns.Add("P_ID", 90, HorizontalAlignment.Center)
         ListView1.Columns.Add("P_NAME", 180, HorizontalAlignment.Center)
         ListView1.Columns.Add("BRAND", 90, HorizontalAlignment.Center)
