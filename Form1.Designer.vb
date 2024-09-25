@@ -27,8 +27,8 @@ Partial Class Form1
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader9 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -36,7 +36,6 @@ Partial Class Form1
         Me.P_ID = New System.Windows.Forms.TextBox()
         Me.P_NAME = New System.Windows.Forms.TextBox()
         Me.Brand = New System.Windows.Forms.TextBox()
-        Me.C_ID = New System.Windows.Forms.TextBox()
         Me.PUR_PRICE = New System.Windows.Forms.TextBox()
         Me.MRP = New System.Windows.Forms.TextBox()
         Me.STK_QTY = New System.Windows.Forms.TextBox()
@@ -55,6 +54,8 @@ Partial Class Form1
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.IVY_DATE = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.C_NAME = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'ListView1
@@ -95,17 +96,17 @@ Partial Class Form1
         Me.ColumnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ColumnHeader4.Width = 184
         '
-        'ColumnHeader6
-        '
-        Me.ColumnHeader6.Text = "PUR_PRICE"
-        Me.ColumnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ColumnHeader6.Width = 128
-        '
         'ColumnHeader5
         '
         Me.ColumnHeader5.Text = "STK_QTY"
         Me.ColumnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ColumnHeader5.Width = 91
+        '
+        'ColumnHeader6
+        '
+        Me.ColumnHeader6.Text = "PUR_PRICE"
+        Me.ColumnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ColumnHeader6.Width = 128
         '
         'ColumnHeader7
         '
@@ -136,7 +137,7 @@ Partial Class Form1
         Me.P_ID.Location = New System.Drawing.Point(207, 130)
         Me.P_ID.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.P_ID.Name = "P_ID"
-        Me.P_ID.Size = New System.Drawing.Size(148, 30)
+        Me.P_ID.Size = New System.Drawing.Size(254, 30)
         Me.P_ID.TabIndex = 2
         '
         'P_NAME
@@ -152,23 +153,15 @@ Partial Class Form1
         Me.Brand.Location = New System.Drawing.Point(207, 220)
         Me.Brand.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Brand.Name = "Brand"
-        Me.Brand.Size = New System.Drawing.Size(127, 30)
+        Me.Brand.Size = New System.Drawing.Size(254, 30)
         Me.Brand.TabIndex = 4
-        '
-        'C_ID
-        '
-        Me.C_ID.Location = New System.Drawing.Point(779, 130)
-        Me.C_ID.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.C_ID.Name = "C_ID"
-        Me.C_ID.Size = New System.Drawing.Size(218, 30)
-        Me.C_ID.TabIndex = 7
         '
         'PUR_PRICE
         '
         Me.PUR_PRICE.Location = New System.Drawing.Point(207, 267)
         Me.PUR_PRICE.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.PUR_PRICE.Name = "PUR_PRICE"
-        Me.PUR_PRICE.Size = New System.Drawing.Size(121, 30)
+        Me.PUR_PRICE.Size = New System.Drawing.Size(254, 30)
         Me.PUR_PRICE.TabIndex = 5
         '
         'MRP
@@ -176,7 +169,7 @@ Partial Class Form1
         Me.MRP.Location = New System.Drawing.Point(779, 175)
         Me.MRP.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MRP.Name = "MRP"
-        Me.MRP.Size = New System.Drawing.Size(116, 30)
+        Me.MRP.Size = New System.Drawing.Size(191, 30)
         Me.MRP.TabIndex = 8
         '
         'STK_QTY
@@ -192,7 +185,7 @@ Partial Class Form1
         Me.HSN.Location = New System.Drawing.Point(779, 220)
         Me.HSN.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.HSN.Name = "HSN"
-        Me.HSN.Size = New System.Drawing.Size(146, 30)
+        Me.HSN.Size = New System.Drawing.Size(191, 30)
         Me.HSN.TabIndex = 9
         '
         'DIS
@@ -200,7 +193,7 @@ Partial Class Form1
         Me.DIS.Location = New System.Drawing.Point(779, 267)
         Me.DIS.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DIS.Name = "DIS"
-        Me.DIS.Size = New System.Drawing.Size(151, 30)
+        Me.DIS.Size = New System.Drawing.Size(191, 30)
         Me.DIS.TabIndex = 10
         '
         'Label1
@@ -350,12 +343,31 @@ Partial Class Form1
         Me.IVY_DATE.TabIndex = 24
         Me.IVY_DATE.Text = "Date"
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(40, 36)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(173, 54)
+        Me.Button2.TabIndex = 25
+        Me.Button2.Text = "Test Connection"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'C_NAME
+        '
+        Me.C_NAME.FormattingEnabled = True
+        Me.C_NAME.Location = New System.Drawing.Point(779, 134)
+        Me.C_NAME.Name = "C_NAME"
+        Me.C_NAME.Size = New System.Drawing.Size(191, 31)
+        Me.C_NAME.TabIndex = 26
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1256, 830)
+        Me.Controls.Add(Me.C_NAME)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.IVY_DATE)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label11)
@@ -374,7 +386,6 @@ Partial Class Form1
         Me.Controls.Add(Me.STK_QTY)
         Me.Controls.Add(Me.MRP)
         Me.Controls.Add(Me.PUR_PRICE)
-        Me.Controls.Add(Me.C_ID)
         Me.Controls.Add(Me.Brand)
         Me.Controls.Add(Me.P_NAME)
         Me.Controls.Add(Me.P_ID)
@@ -392,7 +403,6 @@ Partial Class Form1
     Friend WithEvents P_ID As TextBox
     Friend WithEvents P_NAME As TextBox
     Friend WithEvents Brand As TextBox
-    Friend WithEvents C_ID As TextBox
     Friend WithEvents PUR_PRICE As TextBox
     Friend WithEvents MRP As TextBox
     Friend WithEvents STK_QTY As TextBox
@@ -421,4 +431,6 @@ Partial Class Form1
     Friend WithEvents ColumnHeader8 As ColumnHeader
     Friend WithEvents ColumnHeader9 As ColumnHeader
     Friend WithEvents ColumnHeader10 As ColumnHeader
+    Friend WithEvents Button2 As Button
+    Friend WithEvents C_NAME As ComboBox
 End Class
