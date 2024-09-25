@@ -2,28 +2,17 @@
 
 Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.BackColor = Color.Cyan
+        Me.BackColor = Color.FromArgb(135, 162, 255)
         ListView1.Columns.Add("P_ID", 90, HorizontalAlignment.Center)
         ListView1.Columns.Add("P_NAME", 180, HorizontalAlignment.Center)
         ListView1.Columns.Add("BRAND", 90, HorizontalAlignment.Center)
         ListView1.Columns.Add("C_ID", 80, HorizontalAlignment.Center)
         ListView1.Columns.Add("PUR_PRICE", 90, HorizontalAlignment.Center)
         ListView1.Columns.Add("MRP", 90, HorizontalAlignment.Center)
-        ListView1.Columns.Add("STK_QNT", 180, HorizontalAlignment.Center)
+        ListView1.Columns.Add("STK_QNT", 90, HorizontalAlignment.Center)
         ListView1.Columns.Add("HSN", 110, HorizontalAlignment.Center)
         ListView1.Columns.Add("DIS", 100, HorizontalAlignment.Center)
         ListView1.Columns.Add("IVT_DATE", 150, HorizontalAlignment.Center)
-        Label1.Text = "PRODUCT ID"
-        Label2.Text = "PRODUCT NAME"
-        Label3.Text = "BRAND"
-        Label4.Text = "CATEGORY ID"
-        Label5.Text = "PRUCHASE PRICE"
-        Label6.Text = "MRP"
-        Label7.Text = "STOCK QUANTITY"
-        Label8.Text = "HSN"
-        Label9.Text = "DISCOUNT"
-        Label10.Text = "INVENTORY DATE"
-        Button1.Text = "NEW"
     End Sub
     Private Sub IVY_DATE_KeyUp(sender As Object, e As KeyEventArgs) Handles IVY_DATE.KeyUp
         Dim PRO As ListViewItem
@@ -66,11 +55,11 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
 
     End Sub
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
     End Sub
 End Class
