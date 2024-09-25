@@ -102,7 +102,7 @@ Partial Class Form1
         Me.C_ID.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.C_ID.Name = "C_ID"
         Me.C_ID.Size = New System.Drawing.Size(218, 30)
-        Me.C_ID.TabIndex = 5
+        Me.C_ID.TabIndex = 7
         '
         'PUR_PRICE
         '
@@ -110,7 +110,7 @@ Partial Class Form1
         Me.PUR_PRICE.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.PUR_PRICE.Name = "PUR_PRICE"
         Me.PUR_PRICE.Size = New System.Drawing.Size(121, 30)
-        Me.PUR_PRICE.TabIndex = 6
+        Me.PUR_PRICE.TabIndex = 5
         '
         'MRP
         '
@@ -118,7 +118,7 @@ Partial Class Form1
         Me.MRP.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MRP.Name = "MRP"
         Me.MRP.Size = New System.Drawing.Size(116, 30)
-        Me.MRP.TabIndex = 7
+        Me.MRP.TabIndex = 8
         '
         'STK_QTY
         '
@@ -126,7 +126,7 @@ Partial Class Form1
         Me.STK_QTY.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.STK_QTY.Name = "STK_QTY"
         Me.STK_QTY.Size = New System.Drawing.Size(254, 30)
-        Me.STK_QTY.TabIndex = 8
+        Me.STK_QTY.TabIndex = 6
         '
         'HSN
         '
