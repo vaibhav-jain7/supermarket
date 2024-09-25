@@ -15,7 +15,6 @@ Public Class Form1
         'ListView1.Columns.Add("IVT_DATE", 150, HorizontalAlignment.Center)
         IVY_DATE.Text = Today
 
-
     End Sub
     Private Sub IVY_DATE_KeyUp(sender As Object, e As KeyEventArgs)
         Dim PRO As ListViewItem
