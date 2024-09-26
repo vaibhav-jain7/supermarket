@@ -1,4 +1,5 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports MySql.Data.MySqlClient
 
 Public Class Form1
 
@@ -24,6 +25,18 @@ Public Class Form1
 
         'SET INVENTORY LABEL TO TODAY'S DATE
         IVY_DATE.Text = Today
+    End Sub
+    Public Sub cleartextboxes()
+        P_ID.Clear()
+        P_NAME.Clear()
+        Brand.Clear()
+        PUR_PRICE.Clear()
+        STK_QTY.Clear()
+        C_NAME.Text = ""
+        MRP.Clear()
+        HSN.Clear()
+        DIS.Clear()
+        P_ID.Focus()
     End Sub
 
     Public Sub ShowProductTable()
@@ -56,16 +69,19 @@ Public Class Form1
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If Len(P_NAME.Text) <> 0 And Len(Brand.Text) <> 0 And Len(C_NAME.Text) <> 0 And Len(STK_QTY.Text) <> 0 And Len(PUR_PRICE.Text) <> 0 And Len(MRP.Text) <> 0 And Len(HSN.Text) <> 0 And Len(DIS.Text) <> 0 Then
-            Call connect()
-            query = "insert into products values ('" & P_ID.Text & "','" & P_NAME.Text & "','" & Brand.Text & "', '" & C_NAME.Text & "','" & STK_QTY.Text & "','" & PUR_PRICE.Text & "','" & MRP.Text & "'," & Val(HSN.Text) & "," & Val(DIS.Text) & ",curdate())"
-            CMD = New MySqlCommand(query, conn)
-            READER = CMD.ExecuteReader
-            ShowProductTable()
-            conn.Close()
-        Else
-            MessageBox.Show("Fill All Fields")
+        If ListView1.Items.Count > 0 Then
+            If Len(P_NAME.Text) <> 0 And Len(Brand.Text) <> 0 And Len(C_NAME.Text) <> 0 And Len(STK_QTY.Text) <> 0 And Len(PUR_PRICE.Text) <> 0 And Len(MRP.Text) <> 0 And Len(HSN.Text) <> 0 And Len(DIS.Text) <> 0 Then
+                Call connect()
+                query = "insert into products values ('" & P_ID.Text & "','" & P_NAME.Text & "','" & Brand.Text & "', '" & C_NAME.Text & "','" & STK_QTY.Text & "','" & PUR_PRICE.Text & "','" & MRP.Text & "'," & Val(HSN.Text) & "," & Val(DIS.Text) & ",curdate())"
+                CMD = New MySqlCommand(query, conn)
+                READER = CMD.ExecuteReader
+                ShowProductTable()
+                conn.Close()
+            Else
+                MessageBox.Show("Fill All Fields")
+            End If
         End If
+        cleartextboxes()
     End Sub
 
     Private Sub DIS_KeyUp(sender As Object, e As KeyEventArgs) Handles DIS.KeyUp
@@ -81,5 +97,6 @@ Public Class Form1
                 MessageBox.Show("Fill All Fields")
             End If
         End If
+        cleartextboxes()
     End Sub
 End Class
