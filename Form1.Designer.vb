@@ -54,8 +54,8 @@ Partial Class Form1
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.IVY_DATE = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.C_NAME = New System.Windows.Forms.ComboBox()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ListView1
@@ -134,6 +134,7 @@ Partial Class Form1
         '
         'P_ID
         '
+        Me.P_ID.Enabled = False
         Me.P_ID.Location = New System.Drawing.Point(207, 130)
         Me.P_ID.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.P_ID.Name = "P_ID"
@@ -291,9 +292,9 @@ Partial Class Form1
         Me.Label9.Location = New System.Drawing.Point(551, 271)
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(91, 23)
+        Me.Label9.Size = New System.Drawing.Size(115, 23)
         Me.Label9.TabIndex = 20
-        Me.Label9.Text = "DISCOUNT"
+        Me.Label9.Text = "DISCOUNT(%)"
         '
         'Label10
         '
@@ -323,13 +324,13 @@ Partial Class Form1
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(1063, 313)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Button1.Location = New System.Drawing.Point(1111, 294)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(0)
         Me.Button1.Name = "Button1"
-        Me.Button1.Padding = New System.Windows.Forms.Padding(15)
-        Me.Button1.Size = New System.Drawing.Size(168, 70)
+        Me.Button1.Padding = New System.Windows.Forms.Padding(10, 0, 10, 0)
+        Me.Button1.Size = New System.Drawing.Size(136, 46)
         Me.Button1.TabIndex = 23
-        Me.Button1.Text = "Add Product"
+        Me.Button1.Text = "Add"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'IVY_DATE
@@ -343,15 +344,6 @@ Partial Class Form1
         Me.IVY_DATE.TabIndex = 24
         Me.IVY_DATE.Text = "Date"
         '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(40, 36)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(173, 54)
-        Me.Button2.TabIndex = 25
-        Me.Button2.Text = "Test Connection"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
         'C_NAME
         '
         Me.C_NAME.FormattingEnabled = True
@@ -360,14 +352,26 @@ Partial Class Form1
         Me.C_NAME.Size = New System.Drawing.Size(191, 31)
         Me.C_NAME.TabIndex = 26
         '
+        'Button2
+        '
+        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Location = New System.Drawing.Point(1111, 351)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(0)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Padding = New System.Windows.Forms.Padding(10, 0, 10, 0)
+        Me.Button2.Size = New System.Drawing.Size(136, 46)
+        Me.Button2.TabIndex = 27
+        Me.Button2.Text = "Cancel"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1256, 830)
-        Me.Controls.Add(Me.C_NAME)
         Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.C_NAME)
         Me.Controls.Add(Me.IVY_DATE)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label11)
@@ -431,6 +435,6 @@ Partial Class Form1
     Friend WithEvents ColumnHeader8 As ColumnHeader
     Friend WithEvents ColumnHeader9 As ColumnHeader
     Friend WithEvents ColumnHeader10 As ColumnHeader
-    Friend WithEvents Button2 As Button
     Friend WithEvents C_NAME As ComboBox
+    Friend WithEvents Button2 As Button
 End Class
