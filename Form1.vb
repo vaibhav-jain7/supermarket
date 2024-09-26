@@ -118,7 +118,6 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        P_ID.Text = ""
         P_NAME.Text = ""
         Brand.Text = ""
         C_NAME.Text = ""
