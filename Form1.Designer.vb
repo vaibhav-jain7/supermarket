@@ -54,9 +54,7 @@ Partial Class Form1
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.IVY_DATE = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.C_NAME = New System.Windows.Forms.ComboBox()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ListView1
@@ -344,15 +342,6 @@ Partial Class Form1
         Me.IVY_DATE.TabIndex = 24
         Me.IVY_DATE.Text = "Date"
         '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(64, 97)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(173, 54)
-        Me.Button2.TabIndex = 25
-        Me.Button2.Text = "Test Connection"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
         'C_NAME
         '
         Me.C_NAME.FormattingEnabled = True
@@ -361,27 +350,13 @@ Partial Class Form1
         Me.C_NAME.Size = New System.Drawing.Size(191, 32)
         Me.C_NAME.TabIndex = 26
         '
-        'Button3
-        '
-        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.Location = New System.Drawing.Point(1071, 314)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Padding = New System.Windows.Forms.Padding(15)
-        Me.Button3.Size = New System.Drawing.Size(168, 66)
-        Me.Button3.TabIndex = 27
-        Me.Button3.Text = "Delete"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1256, 749)
-        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.C_NAME)
-        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.IVY_DATE)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label11)
@@ -445,7 +420,5 @@ Partial Class Form1
     Friend WithEvents ColumnHeader8 As ColumnHeader
     Friend WithEvents ColumnHeader9 As ColumnHeader
     Friend WithEvents ColumnHeader10 As ColumnHeader
-    Friend WithEvents Button2 As Button
     Friend WithEvents C_NAME As ComboBox
-    Friend WithEvents Button3 As Button
 End Class
