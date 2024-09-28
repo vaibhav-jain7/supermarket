@@ -1,4 +1,5 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Data.SqlClient
+Imports MySql.Data.MySqlClient
 
 Public Class Form1
 
@@ -53,24 +54,20 @@ Public Class Form1
 
     Public Sub ShowProductTable()
         Call connect()
-        ListView1.Items.Clear()
+
+        Dim SDA As New MySqlDataAdapter
+        Dim dbDataSet As New DataTable
+        Dim bSource As New BindingSource
+
         ' QUERY TO FETCH PRODUCT TABLE AND DISPLAY ON FORM LOAD
         query = "select * from products"
         CMD = New MySqlCommand(query, conn)
-        READER = CMD.ExecuteReader
-        While READER.Read
-            Dim PRO As ListViewItem
-            PRO = ListView1.Items.Add(READER(0))
-            PRO.SubItems.Add(READER(1))
-            PRO.SubItems.Add(READER(2))
-            PRO.SubItems.Add(READER(3))
-            PRO.SubItems.Add(READER(4))
-            PRO.SubItems.Add(READER(5))
-            PRO.SubItems.Add(READER(6))
-            PRO.SubItems.Add(READER(7))
-            PRO.SubItems.Add(READER(8))
-            PRO.SubItems.Add(READER(9))
-        End While
+        SDA.SelectCommand = CMD
+        SDA.Fill(dbDataSet)
+        bSource.DataSource = dbDataSet
+        DataGridView1.DataSource = bSource
+        SDA.Update(dbDataSet)
+
         conn.Close()
     End Sub
 
@@ -120,4 +117,6 @@ Public Class Form1
         Form2.Show()
         Me.Show()
     End Sub
+
+
 End Class
