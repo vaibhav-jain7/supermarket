@@ -29,6 +29,17 @@ Public Class Form1
         'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID WHEN FORM LOAD
         AutoIncrementId()
     End Sub
+    Public Sub cleartextboxes()
+        P_NAME.Clear()
+        Brand.Clear()
+        PUR_PRICE.Clear()
+        STK_QTY.Clear()
+        C_NAME.Text = ""
+        MRP.Clear()
+        HSN.Clear()
+        DIS.Clear()
+        P_NAME.Focus()
+    End Sub
 
     Public Sub AutoIncrementId()
         Call connect()
@@ -71,15 +82,7 @@ Public Class Form1
             'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
             AutoIncrementId()
             'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
-            P_NAME.Text = ""
-            Brand.Text = ""
-            C_NAME.Text = ""
-            STK_QTY.Text = ""
-            PUR_PRICE.Text = ""
-            MRP.Text = ""
-            HSN.Text = ""
-            DIS.Text = ""
-            P_NAME.Focus()
+            cleartextboxes()
             conn.Close()
         Else
             MessageBox.Show("Fill All Fields")
@@ -98,15 +101,7 @@ Public Class Form1
                 'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
                 AutoIncrementId()
                 'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
-                P_NAME.Text = ""
-                Brand.Text = ""
-                C_NAME.Text = ""
-                STK_QTY.Text = ""
-                PUR_PRICE.Text = ""
-                MRP.Text = ""
-                HSN.Text = ""
-                DIS.Text = ""
-                P_NAME.Focus()
+                cleartextboxes()
                 conn.Close()
             Else
                 MessageBox.Show("Fill All Fields")
@@ -115,15 +110,12 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        P_NAME.Text = ""
-        Brand.Text = ""
-        C_NAME.Text = ""
-        STK_QTY.Text = ""
-        PUR_PRICE.Text = ""
-        MRP.Text = ""
-        HSN.Text = ""
-        DIS.Text = ""
-        P_NAME.Focus()
+        cleartextboxes()
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs)
+        Form2.Show()
+        Me.Show()
     End Sub
 
 
