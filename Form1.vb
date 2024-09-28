@@ -29,6 +29,17 @@ Public Class Form1
         'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID WHEN FORM LOAD
         AutoIncrementId()
     End Sub
+    Public Sub cleartextboxes()
+        P_NAME.Clear()
+        Brand.Clear()
+        PUR_PRICE.Clear()
+        STK_QTY.Clear()
+        C_NAME.Text = ""
+        MRP.Clear()
+        HSN.Clear()
+        DIS.Clear()
+        P_NAME.Focus()
+    End Sub
 
     Public Sub AutoIncrementId()
         Call connect()
@@ -71,15 +82,7 @@ Public Class Form1
             'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
             AutoIncrementId()
             'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
-            P_NAME.Text = ""
-            Brand.Text = ""
-            C_NAME.Text = ""
-            STK_QTY.Text = ""
-            PUR_PRICE.Text = ""
-            MRP.Text = ""
-            HSN.Text = ""
-            DIS.Text = ""
-            P_NAME.Focus()
+            cleartextboxes()
             conn.Close()
         Else
             MessageBox.Show("Fill All Fields")
@@ -98,15 +101,7 @@ Public Class Form1
                 'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
                 AutoIncrementId()
                 'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
-                P_NAME.Text = ""
-                Brand.Text = ""
-                C_NAME.Text = ""
-                STK_QTY.Text = ""
-                PUR_PRICE.Text = ""
-                MRP.Text = ""
-                HSN.Text = ""
-                DIS.Text = ""
-                P_NAME.Focus()
+                cleartextboxes()
                 conn.Close()
             Else
                 MessageBox.Show("Fill All Fields")
@@ -115,16 +110,51 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        P_NAME.Text = ""
-        Brand.Text = ""
-        C_NAME.Text = ""
-        STK_QTY.Text = ""
-        PUR_PRICE.Text = ""
-        MRP.Text = ""
-        HSN.Text = ""
-        DIS.Text = ""
-        P_NAME.Focus()
+        cleartextboxes()
     End Sub
 
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+        If e.RowIndex >= 0 Then
+            Dim r As DataGridViewRow
+            r = Me.DataGridView1.Rows(e.RowIndex)
+            P_ID.Text = r.Cells("product_id").Value.ToString
+            P_NAME.Text = r.Cells("product_name").Value.ToString
+            Brand.Text = r.Cells("product_brand").Value.ToString
+            C_NAME.Text = r.Cells("category_name").Value.ToString
+            STK_QTY.Text = r.Cells("stock_qty").Value.ToString
+            PUR_PRICE.Text = r.Cells("purchase_p").Value.ToString
+            MRP.Text = r.Cells("mrp").Value.ToString
+            HSN.Text = r.Cells("hsn_code").Value.ToString
+            DIS.Text = r.Cells("discount").Value.ToString
+            Button3.Enabled = True
+            Button4.Enabled = True
+        End If
+    End Sub
 
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Call connect()
+        query = "update super_market.products set product_name='" & P_NAME.Text & "',product_brand='" & Brand.Text & "',category_name= '" & C_NAME.Text & "',stock_qty='" & STK_QTY.Text & "',purchase_p='" & PUR_PRICE.Text & "',mrp='" & MRP.Text & "',hsn_code=" & Val(HSN.Text) & ",discount=" & Val(DIS.Text) & " where product_id='" & P_ID.Text & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+        'SHOW PRODUCT TABLE AFTER ADDING NEW PRODUCT
+        ShowProductTable()
+        'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
+        AutoIncrementId()
+        'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
+        cleartextboxes()
+        conn.Close()
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Call connect()
+        query = "delete from super_market.products where product_id='" & P_ID.Text & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+        'SHOW PRODUCT TABLE AFTER ADDING NEW PRODUCT
+        ShowProductTable()
+        'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
+        AutoIncrementId()
+        'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
+        cleartextboxes()
+    End Sub
 End Class
