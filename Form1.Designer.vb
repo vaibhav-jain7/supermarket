@@ -22,17 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.ListView1 = New System.Windows.Forms.ListView()
-        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader9 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader10 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.P_ID = New System.Windows.Forms.TextBox()
         Me.P_NAME = New System.Windows.Forms.TextBox()
         Me.Brand = New System.Windows.Forms.TextBox()
@@ -56,84 +46,13 @@ Partial Class Form1
         Me.IVY_DATE = New System.Windows.Forms.Label()
         Me.C_NAME = New System.Windows.Forms.ComboBox()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'ListView1
-        '
-        Me.ListView1.AllowColumnReorder = True
-        Me.ListView1.BackColor = System.Drawing.SystemColors.Window
-        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8, Me.ColumnHeader9, Me.ColumnHeader10})
-        Me.ListView1.HideSelection = False
-        Me.ListView1.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.ListView1.Location = New System.Drawing.Point(1, 404)
-        Me.ListView1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(1255, 425)
-        Me.ListView1.TabIndex = 0
-        Me.ListView1.UseCompatibleStateImageBehavior = False
-        Me.ListView1.View = System.Windows.Forms.View.Details
-        '
-        'ColumnHeader1
-        '
-        Me.ColumnHeader1.Text = "P_ID"
-        Me.ColumnHeader1.Width = 91
-        '
-        'ColumnHeader2
-        '
-        Me.ColumnHeader2.Text = "P_NAME"
-        Me.ColumnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ColumnHeader2.Width = 208
-        '
-        'ColumnHeader3
-        '
-        Me.ColumnHeader3.Text = "BRAND"
-        Me.ColumnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ColumnHeader3.Width = 140
-        '
-        'ColumnHeader4
-        '
-        Me.ColumnHeader4.Text = "C_NAME"
-        Me.ColumnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ColumnHeader4.Width = 184
-        '
-        'ColumnHeader5
-        '
-        Me.ColumnHeader5.Text = "STK_QTY"
-        Me.ColumnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ColumnHeader5.Width = 91
-        '
-        'ColumnHeader6
-        '
-        Me.ColumnHeader6.Text = "PUR_PRICE"
-        Me.ColumnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ColumnHeader6.Width = 128
-        '
-        'ColumnHeader7
-        '
-        Me.ColumnHeader7.Text = "MRP"
-        Me.ColumnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ColumnHeader7.Width = 110
-        '
-        'ColumnHeader8
-        '
-        Me.ColumnHeader8.Text = "HSN"
-        Me.ColumnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ColumnHeader8.Width = 95
-        '
-        'ColumnHeader9
-        '
-        Me.ColumnHeader9.Text = "DIS"
-        Me.ColumnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ColumnHeader9.Width = 76
-        '
-        'ColumnHeader10
-        '
-        Me.ColumnHeader10.Text = "INY_DATE"
-        Me.ColumnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ColumnHeader10.Width = 127
         '
         'P_ID
         '
+        Me.P_ID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.P_ID.Enabled = False
         Me.P_ID.Location = New System.Drawing.Point(207, 130)
         Me.P_ID.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
@@ -312,19 +231,20 @@ Partial Class Form1
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Minion Pro", 27.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label11.Location = New System.Drawing.Point(506, 19)
+        Me.Label11.Location = New System.Drawing.Point(494, 20)
         Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
         Me.Label11.Padding = New System.Windows.Forms.Padding(5)
-        Me.Label11.Size = New System.Drawing.Size(245, 61)
+        Me.Label11.Size = New System.Drawing.Size(228, 61)
         Me.Label11.TabIndex = 22
-        Me.Label11.Text = "Add Products"
+        Me.Label11.Text = "PRODUCTS"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'Button1
         '
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(1111, 294)
+        Me.Button1.Location = New System.Drawing.Point(1111, 241)
         Me.Button1.Margin = New System.Windows.Forms.Padding(0)
         Me.Button1.Name = "Button1"
         Me.Button1.Padding = New System.Windows.Forms.Padding(10, 0, 10, 0)
@@ -336,16 +256,19 @@ Partial Class Form1
         'IVY_DATE
         '
         Me.IVY_DATE.AutoSize = True
+        Me.IVY_DATE.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.IVY_DATE.Font = New System.Drawing.Font("Calibri", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.IVY_DATE.Location = New System.Drawing.Point(779, 317)
         Me.IVY_DATE.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.IVY_DATE.Name = "IVY_DATE"
-        Me.IVY_DATE.Size = New System.Drawing.Size(46, 23)
+        Me.IVY_DATE.Size = New System.Drawing.Size(48, 25)
         Me.IVY_DATE.TabIndex = 24
         Me.IVY_DATE.Text = "Date"
         '
         'C_NAME
         '
+        Me.C_NAME.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.C_NAME.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.C_NAME.FormattingEnabled = True
         Me.C_NAME.Location = New System.Drawing.Point(779, 134)
         Me.C_NAME.Name = "C_NAME"
@@ -354,8 +277,9 @@ Partial Class Form1
         '
         'Button2
         '
+        Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(1111, 351)
+        Me.Button2.Location = New System.Drawing.Point(1111, 298)
         Me.Button2.Margin = New System.Windows.Forms.Padding(0)
         Me.Button2.Name = "Button2"
         Me.Button2.Padding = New System.Windows.Forms.Padding(10, 0, 10, 0)
@@ -364,12 +288,34 @@ Partial Class Form1
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Roboto", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.Padding = New System.Windows.Forms.Padding(10, 0, 10, 0)
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(3, 380)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.RowHeadersWidth = 20
+        Me.DataGridView1.RowTemplate.ReadOnly = True
+        Me.DataGridView1.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.Size = New System.Drawing.Size(1249, 447)
+        Me.DataGridView1.TabIndex = 28
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1256, 830)
+        Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.C_NAME)
         Me.Controls.Add(Me.IVY_DATE)
@@ -393,17 +339,15 @@ Partial Class Form1
         Me.Controls.Add(Me.Brand)
         Me.Controls.Add(Me.P_NAME)
         Me.Controls.Add(Me.P_ID)
-        Me.Controls.Add(Me.ListView1)
         Me.Font = New System.Drawing.Font("Roboto Condensed", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Text = "ADD PRODUCT"
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents ListView1 As ListView
     Friend WithEvents P_ID As TextBox
     Friend WithEvents P_NAME As TextBox
     Friend WithEvents Brand As TextBox
@@ -425,16 +369,7 @@ Partial Class Form1
     Friend WithEvents Label11 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents IVY_DATE As Label
-    Friend WithEvents ColumnHeader1 As ColumnHeader
-    Friend WithEvents ColumnHeader2 As ColumnHeader
-    Friend WithEvents ColumnHeader3 As ColumnHeader
-    Friend WithEvents ColumnHeader6 As ColumnHeader
-    Friend WithEvents ColumnHeader5 As ColumnHeader
-    Friend WithEvents ColumnHeader4 As ColumnHeader
-    Friend WithEvents ColumnHeader7 As ColumnHeader
-    Friend WithEvents ColumnHeader8 As ColumnHeader
-    Friend WithEvents ColumnHeader9 As ColumnHeader
-    Friend WithEvents ColumnHeader10 As ColumnHeader
     Friend WithEvents C_NAME As ComboBox
     Friend WithEvents Button2 As Button
+    Friend WithEvents DataGridView1 As DataGridView
 End Class
