@@ -1,6 +1,10 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Module Database_Connection
+
+    'FROM CONTROLS
+    Public User As String
+
     Public conn As MySqlConnection
     Public Sub connect()
         conn = New MySqlConnection
