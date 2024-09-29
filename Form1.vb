@@ -28,8 +28,12 @@ Public Class Form1
 
         'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID WHEN FORM LOAD
         AutoIncrementId()
+
+        'Modify And Delete Buttons Will Be False on Start
+        Button3.Enabled = False
+        Button4.Enabled = False
     End Sub
-    Public Sub cleartextboxes()
+    Public Sub ClearTextBoxes()
         P_NAME.Clear()
         Brand.Clear()
         PUR_PRICE.Clear()
@@ -82,7 +86,7 @@ Public Class Form1
             'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
             AutoIncrementId()
             'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
-            cleartextboxes()
+            ClearTextBoxes()
             conn.Close()
         Else
             MessageBox.Show("Fill All Fields")
@@ -101,7 +105,7 @@ Public Class Form1
                 'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
                 AutoIncrementId()
                 'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
-                cleartextboxes()
+                ClearTextBoxes()
                 conn.Close()
             Else
                 MessageBox.Show("Fill All Fields")
@@ -110,7 +114,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        cleartextboxes()
+        ClearTextBoxes()
     End Sub
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
@@ -141,7 +145,10 @@ Public Class Form1
         'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
         AutoIncrementId()
         'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
-        cleartextboxes()
+        ClearTextBoxes()
+        'Modify And Delete Buttons
+        Button3.Enabled = False
+        Button4.Enabled = False
         conn.Close()
     End Sub
 
@@ -155,6 +162,9 @@ Public Class Form1
         'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
         AutoIncrementId()
         'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
-        cleartextboxes()
+        ClearTextBoxes()
+        'Modify And Delete Buttons
+        Button3.Enabled = False
+        Button4.Enabled = False
     End Sub
 End Class

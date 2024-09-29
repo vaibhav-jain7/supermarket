@@ -247,7 +247,7 @@ Partial Class Form1
         '
         Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(1111, 113)
+        Me.Button1.Location = New System.Drawing.Point(1116, 171)
         Me.Button1.Margin = New System.Windows.Forms.Padding(0)
         Me.Button1.Name = "Button1"
         Me.Button1.Padding = New System.Windows.Forms.Padding(10, 0, 10, 0)
@@ -282,7 +282,7 @@ Partial Class Form1
         '
         Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(1111, 298)
+        Me.Button2.Location = New System.Drawing.Point(1116, 318)
         Me.Button2.Margin = New System.Windows.Forms.Padding(0)
         Me.Button2.Name = "Button2"
         Me.Button2.Padding = New System.Windows.Forms.Padding(10, 0, 10, 0)
@@ -331,7 +331,7 @@ Partial Class Form1
         Me.Button3.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button3.Enabled = False
         Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.Location = New System.Drawing.Point(1111, 235)
+        Me.Button3.Location = New System.Drawing.Point(1116, 269)
         Me.Button3.Margin = New System.Windows.Forms.Padding(0)
         Me.Button3.Name = "Button3"
         Me.Button3.Padding = New System.Windows.Forms.Padding(10, 0, 10, 0)
@@ -345,7 +345,7 @@ Partial Class Form1
         Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button4.Enabled = False
         Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.Location = New System.Drawing.Point(1111, 172)
+        Me.Button4.Location = New System.Drawing.Point(1116, 220)
         Me.Button4.Margin = New System.Windows.Forms.Padding(0)
         Me.Button4.Name = "Button4"
         Me.Button4.Padding = New System.Windows.Forms.Padding(10, 0, 10, 0)
