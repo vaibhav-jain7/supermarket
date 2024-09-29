@@ -1,52 +1,60 @@
-﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+﻿'Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports MySql.Data.MySqlClient
-Imports Org.BouncyCastle.Crypto.Agreement
-Imports Org.BouncyCastle.Pqc.Crypto.Lms
+'Imports ZstdSharp.Unsafe
+'Imports Org.BouncyCastle.Crypto.Agreement
+'Imports Org.BouncyCastle.Pqc.Crypto.Lms
 
 Public Class Form2
 
     Dim CMD As MySqlCommand
     Dim READER As MySqlDataReader
     Dim query As String
+    Dim Gender As String
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Call connect()
-        ' QUERY TO ADD CATEGORY NAME TO COMBBOX1(C_NAME)
-        C_NAME.Items.Clear()
-        query = "select * from pro_categories"
-        CMD = New MySqlCommand(query, conn)
-        READER = CMD.ExecuteReader
+        'AutoIncrementId()
         ShowProductTable()
         conn.Close()
+        DOJ.Text = Today
     End Sub
     Public Sub ShowProductTable()
         Call connect()
-        'DataGridView1.DataSource.cl= READER(0)
+
+        Dim SDA As New MySqlDataAdapter
+        Dim dbDataSet As New DataTable
+        Dim bSource As New BindingSource
+
         ' QUERY TO FETCH PRODUCT TABLE AND DISPLAY ON FORM LOAD
-        query = "select * from products"
+        query = "select * from employee"
         CMD = New MySqlCommand(query, conn)
-        READER = CMD.ExecuteReader
-        While READER.Read
-            Dim PRO As DataGridView
-            PRO = DataGridView1.DataSource.Add(READER(0))
-            PRO.DataSource.Add(READER(1))
-            PRO.DataSource.Add(READER(2))
-            PRO.DataSource.Add(READER(3))
-            PRO.DataSource.Add(READER(4))
-            PRO.DataSource.Add(READER(5))
-            PRO.DataSource.Add(READER(6))
-            PRO.DataSource.Add(READER(7))
-            PRO.DataSource.Add(READER(8))
-            PRO.DataSource.Add(READER(9))
-        End While
+        SDA.SelectCommand = CMD
+        SDA.Fill(dbDataSet)
+        bSource.DataSource = dbDataSet
+        DataGridView1.DataSource = bSource
+        SDA.Update(dbDataSet)
+
         conn.Close()
     End Sub
-    Private Sub DIS_KeyUp(sender As Object, e As KeyEventArgs) Handles DIS.KeyUp
+    Public Sub ClearTextBoxes()
+        E_NAME.Clear()
+        E_ADDHAR.Clear()
+        E_PHONO.Clear()
+        E_ADD.Clear()
+        E_EMAIL.Clear()
+        Gender = ""
+        STATE.Clear()
+        CITY.Clear()
+        PIN.Clear()
+        PASS.Clear()
+        E_NAME.Focus()
+    End Sub
+    Private Sub PASS_KeyUp(sender As Object, e As KeyEventArgs) Handles PASS.KeyUp
         If e.KeyValue = Keys.Enter Then
-            If Len(P_NAME.Text) <> 0 And Len(Brand.Text) <> 0 And Len(C_NAME.Text) <> 0 And Len(STK_QTY.Text) <> 0 And Len(PUR_PRICE.Text) <> 0 And Len(MRP.Text) <> 0 And Len(HSN.Text) <> 0 And Len(DIS.Text) <> 0 Then
+            If Len(E_NAME.Text) <> 0 And Len(E_ADDHAR.Text) <> 0 And Len(E_PHONO.Text) <> 0 And Len(E_ADD.Text) <> 0 And Len(Gender) <> 0 And Len(E_EMAIL.Text) <> 0 And Len(STATE.Text) <> 0 And Len(CITY.Text) <> 0 And Len(PIN.Text) <> 0 And Len(PASS.Text) <> 0 Then
                 Call connect()
-                query = "insert into products values ('" & P_ID.Text & "','" & P_NAME.Text & "','" & Brand.Text & "', '" & C_NAME.Text & "','" & STK_QTY.Text & "','" & PUR_PRICE.Text & "','" & MRP.Text & "'," & Val(HSN.Text) & "," & Val(DIS.Text) & ",curdate())"
+                query = "insert into employee values ('" & E_ID.Text & "','" & E_NAME.Text & "','" & E_ADDHAR.Text & "','" & Gender & "', '" & E_PHONO.Text & "','" & E_ADD.Text & "','" & E_EMAIL.Text & "','" & STATE.Text & "','" & CITY.Text & "'," & Val(PIN.Text) & "," & Val(PASS.Text) & ",curdate())"
                 CMD = New MySqlCommand(query, conn)
                 READER = CMD.ExecuteReader
                 'SHOW PRODUCT TABLE AFTER ADDING NEW PRODUCT
@@ -54,7 +62,7 @@ Public Class Form2
                 'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
                 'AutoIncrementId()
                 'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
-                'cleartextboxes()
+                ClearTextBoxes()
                 conn.Close()
             Else
                 MessageBox.Show("Fill All Fields")
@@ -62,11 +70,87 @@ Public Class Form2
         End If
     End Sub
 
-    Private Sub TextBox6_TextChanged(sender As Object, e As EventArgs) Handles P_NAME.TextChanged
-
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+        If e.RowIndex >= 0 Then
+            Dim r As DataGridViewRow
+            r = Me.DataGridView1.Rows(e.RowIndex)
+            E_ID.Text = r.Cells("emp_id").Value.ToString
+            E_NAME.Text = r.Cells("emp_name").Value.ToString
+            E_ADDHAR.Text = r.Cells("emp_aadhar").Value.ToString
+            Gender = r.Cells("emp_gender").Value.ToString
+            E_PHONO.Text = r.Cells("emp_phone").Value.ToString
+            E_ADD.Text = r.Cells("emp_address").Value.ToString
+            E_EMAIL.Text = r.Cells("emp_email").Value.ToString
+            STATE.Text = r.Cells("emp_state").Value.ToString
+            CITY.Text = r.Cells("emp_city").Value.ToString
+            PIN.Text = r.Cells("Pincode").Value.ToString
+            PASS.Text = r.Cells("emp_pass").Value.ToString
+            Button2.Enabled = True
+            Button3.Enabled = True
+        End If
     End Sub
 
-    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles Brand.TextChanged
 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Call connect()
+        query = "update super_market.employee set emp_name='" & E_NAME.Text & "',emp_aadhar='" & E_ADDHAR.Text & "',emp_gender= '" & Gender & "',emp_phone='" & E_PHONO.Text & "',emp_address='" & E_ADD.Text & "',emp_email='" & E_EMAIL.Text & "',emp_state='" & STATE.Text & "',emp_city='" & CITY.Text & "', Pincode=" & Val(PIN.Text) & ",emp_pass=" & Val(PASS.Text) & " where emp_id='" & E_ID.Text & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+        'SHOW PRODUCT TABLE AFTER ADDING NEW PRODUCT
+        ShowProductTable()
+        'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
+        'AutoIncrementId()
+        'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
+        ClearTextBoxes()
+        'Modify And Delete Buttons
+        Button2.Enabled = False
+        Button3.Enabled = False
+        conn.Close()
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Call connect()
+        query = "delete from super_market.employee where emp_id='" & E_ID.Text & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+        'SHOW PRODUCT TABLE AFTER ADDING NEW PRODUCT
+        ShowProductTable()
+        'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
+        'AutoIncrementId()
+        'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
+        ClearTextBoxes()
+        'Modify And Delete Buttons
+        Button2.Enabled = False
+        Button3.Enabled = False
+    End Sub
+
+    Private Sub GENDER1_CheckedChanged(sender As Object, e As EventArgs) Handles GENDER1.CheckedChanged
+        Gender = "Male"
+    End Sub
+
+    Private Sub GENDER2_CheckedChanged(sender As Object, e As EventArgs) Handles GENDER2.CheckedChanged
+        Gender = "Female"
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If Len(E_NAME.Text) <> 0 And Len(E_ADDHAR.Text) <> 0 And Len(E_PHONO.Text) <> 0 And Len(E_ADD.Text) <> 0 And Len(Gender) <> 0 And Len(E_EMAIL.Text) <> 0 And Len(STATE.Text) <> 0 And Len(CITY.Text) <> 0 And Len(PIN.Text) <> 0 And Len(PASS.Text) <> 0 Then
+            Call connect()
+            query = "insert into employee values ('" & E_ID.Text & "','" & E_NAME.Text & "','" & E_ADDHAR.Text & "','" & Gender & "', '" & E_PHONO.Text & "','" & E_ADD.Text & "','" & E_EMAIL.Text & "','" & STATE.Text & "','" & CITY.Text & "'," & Val(PIN.Text) & "," & Val(PASS.Text) & ",curdate())"
+            CMD = New MySqlCommand(query, conn)
+            READER = CMD.ExecuteReader
+            'SHOW PRODUCT TABLE AFTER ADDING NEW PRODUCT
+            ShowProductTable()
+            'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
+            'AutoIncrementId()
+            'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
+            ClearTextBoxes()
+            conn.Close()
+        Else
+            MessageBox.Show("Fill All Fields")
+        End If
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        ClearTextBoxes()
     End Sub
 End Class
