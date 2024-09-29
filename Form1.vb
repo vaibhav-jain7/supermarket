@@ -10,11 +10,13 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Call connect()
+
         ' QUERY TO ADD CATEGORY NAME TO COMBBOX1(C_NAME)
         C_NAME.Items.Clear()
         query = "select * from pro_categories"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
+
         While READER.Read
             C_NAME.Items.Add(READER.GetString("category_name"))
         End While
@@ -33,6 +35,7 @@ Public Class Form1
         Button3.Enabled = False
         Button4.Enabled = False
     End Sub
+
     Public Sub ClearTextBoxes()
         P_NAME.Clear()
         Brand.Clear()
