@@ -170,4 +170,9 @@ Public Class Form1
         Button3.Enabled = False
         Button4.Enabled = False
     End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Me.Hide()
+        Form2.Show()
+    End Sub
 End Class
