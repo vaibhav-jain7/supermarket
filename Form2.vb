@@ -1,10 +1,4 @@
-﻿'Imports System.Windows.Forms.VisualStyles.VisualStyleElement
-Imports MySql.Data.MySqlClient
-Imports Org.BouncyCastle.Crypto.Agreement
-Imports Org.BouncyCastle.Pqc.Crypto.Lms
-'Imports ZstdSharp.Unsafe
-'Imports Org.BouncyCastle.Crypto.Agreement
-'Imports Org.BouncyCastle.Pqc.Crypto.Lms
+﻿Imports MySql.Data.MySqlClient
 
 Public Class Form2
 

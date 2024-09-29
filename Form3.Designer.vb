@@ -26,12 +26,12 @@ Partial Class Form3
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.userid = New System.Windows.Forms.TextBox()
-        Me.pass = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'Label1
@@ -75,20 +75,6 @@ Partial Class Form3
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "Password"
         '
-        'userid
-        '
-        Me.userid.Location = New System.Drawing.Point(466, 224)
-        Me.userid.Name = "userid"
-        Me.userid.Size = New System.Drawing.Size(214, 20)
-        Me.userid.TabIndex = 4
-        '
-        'pass
-        '
-        Me.pass.Location = New System.Drawing.Point(466, 272)
-        Me.pass.Name = "pass"
-        Me.pass.Size = New System.Drawing.Size(214, 20)
-        Me.pass.TabIndex = 5
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
@@ -131,18 +117,32 @@ Partial Class Form3
         Me.Button2.Text = "Login"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(472, 224)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(197, 20)
+        Me.TextBox1.TabIndex = 10
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(472, 272)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(197, 20)
+        Me.TextBox2.TabIndex = 11
+        '
         'Form3
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1044, 485)
+        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.pass)
-        Me.Controls.Add(Me.userid)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -158,10 +158,10 @@ Partial Class Form3
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents userid As TextBox
-    Friend WithEvents pass As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TextBox2 As TextBox
 End Class

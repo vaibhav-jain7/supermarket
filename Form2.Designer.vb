@@ -312,13 +312,13 @@ Partial Class Form2
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 25.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label14.Location = New System.Drawing.Point(519, 80)
+        Me.Label14.Location = New System.Drawing.Point(456, 70)
         Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
         Me.Label14.Padding = New System.Windows.Forms.Padding(5)
-        Me.Label14.Size = New System.Drawing.Size(214, 49)
+        Me.Label14.Size = New System.Drawing.Size(336, 49)
         Me.Label14.TabIndex = 30
-        Me.Label14.Text = "EMPLOYEE"
+        Me.Label14.Text = "EMPLOYEE PANEL"
         Me.Label14.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'Button1
