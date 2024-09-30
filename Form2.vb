@@ -1,8 +1,4 @@
-﻿'Imports System.Windows.Forms.VisualStyles.VisualStyleElement
-Imports MySql.Data.MySqlClient
-'Imports ZstdSharp.Unsafe
-'Imports Org.BouncyCastle.Crypto.Agreement
-'Imports Org.BouncyCastle.Pqc.Crypto.Lms
+﻿Imports MySql.Data.MySqlClient
 
 Public Class Form2
 
@@ -14,11 +10,27 @@ Public Class Form2
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Call connect()
-        'AutoIncrementId()
+
+        AutoIncrementId()
+
         ShowProductTable()
+
         conn.Close()
+
         DOJ.Text = Today
     End Sub
+
+    Public Sub AutoIncrementId()
+        Call connect()
+        query = "select max(emp_id) from employee"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+        While READER.Read
+            E_ID.Text = Val(READER(0) + 1)
+        End While
+        conn.Close()
+    End Sub
+
     Public Sub ShowProductTable()
         Call connect()
 
@@ -50,19 +62,24 @@ Public Class Form2
         PASS.Clear()
         E_NAME.Focus()
     End Sub
+
     Private Sub PASS_KeyUp(sender As Object, e As KeyEventArgs) Handles PASS.KeyUp
         If e.KeyValue = Keys.Enter Then
             If Len(E_NAME.Text) <> 0 And Len(E_ADDHAR.Text) <> 0 And Len(E_PHONO.Text) <> 0 And Len(E_ADD.Text) <> 0 And Len(Gender) <> 0 And Len(E_EMAIL.Text) <> 0 And Len(STATE.Text) <> 0 And Len(CITY.Text) <> 0 And Len(PIN.Text) <> 0 And Len(PASS.Text) <> 0 Then
                 Call connect()
-                query = "insert into employee values ('" & E_ID.Text & "','" & E_NAME.Text & "','" & E_ADDHAR.Text & "','" & Gender & "', '" & E_PHONO.Text & "','" & E_ADD.Text & "','" & E_EMAIL.Text & "','" & STATE.Text & "','" & CITY.Text & "'," & Val(PIN.Text) & "," & Val(PASS.Text) & ",curdate())"
+                query = "insert into employee values ('" & E_ID.Text & "','" & E_NAME.Text & "','" & E_ADDHAR.Text & "', '" & Gender & "','" & PIN.Text & "','" & E_PHONO.Text & "','" & E_EMAIL.Text & "','" & E_ADD.Text & "','" & STATE.Text & "','" & CITY.Text & "','" & PASS.Text & "',curdate())"
                 CMD = New MySqlCommand(query, conn)
                 READER = CMD.ExecuteReader
                 'SHOW PRODUCT TABLE AFTER ADDING NEW PRODUCT
                 ShowProductTable()
                 'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
-                'AutoIncrementId()
+                AutoIncrementId()
                 'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
                 ClearTextBoxes()
+                'GENDER UNCHECK
+                GENDER1.Checked = False
+                GENDER2.Checked = False
+
                 conn.Close()
             Else
                 MessageBox.Show("Fill All Fields")
@@ -99,12 +116,16 @@ Public Class Form2
         'SHOW PRODUCT TABLE AFTER ADDING NEW PRODUCT
         ShowProductTable()
         'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
-        'AutoIncrementId()
+        AutoIncrementId()
         'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
         ClearTextBoxes()
         'Modify And Delete Buttons
         Button2.Enabled = False
         Button3.Enabled = False
+        'GENDER UNCHECK
+        GENDER1.Checked = False
+        GENDER2.Checked = False
+
         conn.Close()
     End Sub
 
@@ -116,12 +137,16 @@ Public Class Form2
         'SHOW PRODUCT TABLE AFTER ADDING NEW PRODUCT
         ShowProductTable()
         'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
-        'AutoIncrementId()
+        AutoIncrementId()
         'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
         ClearTextBoxes()
         'Modify And Delete Buttons
         Button2.Enabled = False
         Button3.Enabled = False
+        'GENDER UNCHECK
+        GENDER1.Checked = False
+        GENDER2.Checked = False
+
     End Sub
 
     Private Sub GENDER1_CheckedChanged(sender As Object, e As EventArgs) Handles GENDER1.CheckedChanged
@@ -135,15 +160,19 @@ Public Class Form2
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If Len(E_NAME.Text) <> 0 And Len(E_ADDHAR.Text) <> 0 And Len(E_PHONO.Text) <> 0 And Len(E_ADD.Text) <> 0 And Len(Gender) <> 0 And Len(E_EMAIL.Text) <> 0 And Len(STATE.Text) <> 0 And Len(CITY.Text) <> 0 And Len(PIN.Text) <> 0 And Len(PASS.Text) <> 0 Then
             Call connect()
-            query = "insert into employee values ('" & E_ID.Text & "','" & E_NAME.Text & "','" & E_ADDHAR.Text & "','" & Gender & "', '" & E_PHONO.Text & "','" & E_ADD.Text & "','" & E_EMAIL.Text & "','" & STATE.Text & "','" & CITY.Text & "'," & Val(PIN.Text) & "," & Val(PASS.Text) & ",curdate())"
+            query = "insert into employee values ('" & E_ID.Text & "','" & E_NAME.Text & "','" & E_ADDHAR.Text & "', '" & Gender & "','" & PIN.Text & "','" & E_PHONO.Text & "','" & E_EMAIL.Text & "','" & E_ADD.Text & "','" & STATE.Text & "','" & CITY.Text & "','" & PASS.Text & "',curdate())"
             CMD = New MySqlCommand(query, conn)
             READER = CMD.ExecuteReader
             'SHOW PRODUCT TABLE AFTER ADDING NEW PRODUCT
             ShowProductTable()
             'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
-            'AutoIncrementId()
+            AutoIncrementId()
             'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
             ClearTextBoxes()
+            'GENDER UNCHECK
+            GENDER1.Checked = False
+            GENDER2.Checked = False
+
             conn.Close()
         Else
             MessageBox.Show("Fill All Fields")
@@ -152,5 +181,9 @@ Public Class Form2
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         ClearTextBoxes()
+    End Sub
+
+    Private Sub E_ID_TextChanged(sender As Object, e As EventArgs) Handles E_ID.TextChanged
+
     End Sub
 End Class
