@@ -50,7 +50,6 @@ Partial Class Form1
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -355,22 +354,12 @@ Partial Class Form1
         Me.Button4.Text = "Modify"
         Me.Button4.UseVisualStyleBackColor = True
         '
-        'Button5
-        '
-        Me.Button5.Location = New System.Drawing.Point(45, 81)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(110, 37)
-        Me.Button5.TabIndex = 32
-        Me.Button5.Text = "Button5"
-        Me.Button5.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1256, 749)
-        Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label12)
@@ -434,5 +423,4 @@ Partial Class Form1
     Friend WithEvents Label12 As Label
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
-    Friend WithEvents Button5 As Button
 End Class
