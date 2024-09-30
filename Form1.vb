@@ -46,6 +46,9 @@ Public Class Form1
         HSN.Clear()
         DIS.Clear()
         P_NAME.Focus()
+
+        'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID WHEN FORM LOAD
+        AutoIncrementId()
     End Sub
 
     Public Sub AutoIncrementId()

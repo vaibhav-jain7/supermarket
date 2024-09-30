@@ -181,6 +181,9 @@ Public Class Form2
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         ClearTextBoxes()
+
+        'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID WHEN FORM LOAD
+        AutoIncrementId()
     End Sub
 
     Private Sub E_ID_TextChanged(sender As Object, e As EventArgs) Handles E_ID.TextChanged
