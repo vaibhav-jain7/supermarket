@@ -35,4 +35,7 @@ Public Class Form5
 
     End Sub
 
+    Private Sub AD_NAME_Click(sender As Object, e As EventArgs) Handles AD_NAME.Click
+
+    End Sub
 End Class

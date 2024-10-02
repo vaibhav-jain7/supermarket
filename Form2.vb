@@ -182,6 +182,10 @@ Public Class Form2
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         ClearTextBoxes()
 
+        'Modify And Delete Buttons
+        Button2.Enabled = False
+        Button3.Enabled = False
+
         'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID WHEN FORM LOAD
         AutoIncrementId()
     End Sub

@@ -121,6 +121,13 @@ Public Class Form1
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         ClearTextBoxes()
+
+        'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID WHEN FORM LOAD
+        AutoIncrementId()
+
+        'Modify And Delete Buttons Will Be False on Start
+        Button3.Enabled = False
+        Button4.Enabled = False
     End Sub
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
