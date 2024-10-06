@@ -29,7 +29,6 @@ Partial Class Form1
         Me.PUR_PRICE = New System.Windows.Forms.TextBox()
         Me.MRP = New System.Windows.Forms.TextBox()
         Me.STK_QTY = New System.Windows.Forms.TextBox()
-        Me.HSN = New System.Windows.Forms.TextBox()
         Me.DIS = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -50,6 +49,7 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Label15 = New System.Windows.Forms.Label()
+        Me.GST = New System.Windows.Forms.TextBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -102,14 +102,6 @@ Partial Class Form1
         Me.STK_QTY.Name = "STK_QTY"
         Me.STK_QTY.Size = New System.Drawing.Size(254, 29)
         Me.STK_QTY.TabIndex = 6
-        '
-        'HSN
-        '
-        Me.HSN.Location = New System.Drawing.Point(823, 243)
-        Me.HSN.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.HSN.Name = "HSN"
-        Me.HSN.Size = New System.Drawing.Size(191, 29)
-        Me.HSN.TabIndex = 9
         '
         'DIS
         '
@@ -203,9 +195,9 @@ Partial Class Form1
         Me.Label8.Location = New System.Drawing.Point(595, 247)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(109, 24)
+        Me.Label8.Size = New System.Drawing.Size(48, 24)
         Me.Label8.TabIndex = 19
-        Me.Label8.Text = "HSN CODE"
+        Me.Label8.Text = "GST"
         '
         'Label9
         '
@@ -353,6 +345,14 @@ Partial Class Form1
         Me.Label15.TabIndex = 33
         Me.Label15.Text = "Supermarket"
         '
+        'GST
+        '
+        Me.GST.Location = New System.Drawing.Point(823, 243)
+        Me.GST.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GST.Name = "GST"
+        Me.GST.Size = New System.Drawing.Size(191, 29)
+        Me.GST.TabIndex = 9
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
@@ -379,7 +379,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.DIS)
-        Me.Controls.Add(Me.HSN)
+        Me.Controls.Add(Me.GST)
         Me.Controls.Add(Me.STK_QTY)
         Me.Controls.Add(Me.MRP)
         Me.Controls.Add(Me.PUR_PRICE)
@@ -401,7 +401,6 @@ Partial Class Form1
     Friend WithEvents PUR_PRICE As TextBox
     Friend WithEvents MRP As TextBox
     Friend WithEvents STK_QTY As TextBox
-    Friend WithEvents HSN As TextBox
     Friend WithEvents DIS As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
@@ -422,4 +421,5 @@ Partial Class Form1
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents Label15 As Label
+    Friend WithEvents GST As TextBox
 End Class
