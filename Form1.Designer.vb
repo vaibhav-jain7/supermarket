@@ -22,14 +22,13 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.P_ID = New System.Windows.Forms.TextBox()
         Me.P_NAME = New System.Windows.Forms.TextBox()
         Me.Brand = New System.Windows.Forms.TextBox()
         Me.PUR_PRICE = New System.Windows.Forms.TextBox()
         Me.MRP = New System.Windows.Forms.TextBox()
         Me.STK_QTY = New System.Windows.Forms.TextBox()
-        Me.HSN = New System.Windows.Forms.TextBox()
         Me.DIS = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -50,6 +49,7 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Label15 = New System.Windows.Forms.Label()
+        Me.GST = New System.Windows.Forms.TextBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -102,14 +102,6 @@ Partial Class Form1
         Me.STK_QTY.Name = "STK_QTY"
         Me.STK_QTY.Size = New System.Drawing.Size(254, 29)
         Me.STK_QTY.TabIndex = 6
-        '
-        'HSN
-        '
-        Me.HSN.Location = New System.Drawing.Point(823, 243)
-        Me.HSN.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.HSN.Name = "HSN"
-        Me.HSN.Size = New System.Drawing.Size(191, 29)
-        Me.HSN.TabIndex = 9
         '
         'DIS
         '
@@ -203,9 +195,9 @@ Partial Class Form1
         Me.Label8.Location = New System.Drawing.Point(595, 247)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(109, 24)
+        Me.Label8.Size = New System.Drawing.Size(48, 24)
         Me.Label8.TabIndex = 19
-        Me.Label8.Text = "HSN CODE"
+        Me.Label8.Text = "GST"
         '
         'Label9
         '
@@ -295,15 +287,15 @@ Partial Class Form1
         '
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.Padding = New System.Windows.Forms.Padding(10, 0, 10, 0)
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.Padding = New System.Windows.Forms.Padding(10, 0, 10, 0)
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Location = New System.Drawing.Point(3, 380)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(0)
@@ -353,12 +345,20 @@ Partial Class Form1
         Me.Label15.TabIndex = 33
         Me.Label15.Text = "Supermarket"
         '
+        'GST
+        '
+        Me.GST.Location = New System.Drawing.Point(823, 243)
+        Me.GST.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GST.Name = "GST"
+        Me.GST.Size = New System.Drawing.Size(191, 29)
+        Me.GST.TabIndex = 9
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(247, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1256, 749)
+        Me.ClientSize = New System.Drawing.Size(1256, 751)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
@@ -379,7 +379,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.DIS)
-        Me.Controls.Add(Me.HSN)
+        Me.Controls.Add(Me.GST)
         Me.Controls.Add(Me.STK_QTY)
         Me.Controls.Add(Me.MRP)
         Me.Controls.Add(Me.PUR_PRICE)
@@ -401,7 +401,6 @@ Partial Class Form1
     Friend WithEvents PUR_PRICE As TextBox
     Friend WithEvents MRP As TextBox
     Friend WithEvents STK_QTY As TextBox
-    Friend WithEvents HSN As TextBox
     Friend WithEvents DIS As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
@@ -422,4 +421,5 @@ Partial Class Form1
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents Label15 As Label
+    Friend WithEvents GST As TextBox
 End Class

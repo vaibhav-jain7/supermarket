@@ -1,5 +1,5 @@
-﻿Imports System.Data.SqlClient
-Imports MySql.Data.MySqlClient
+﻿Imports MySql.Data.MySqlClient
+
 
 Public Class Form1
 
@@ -43,9 +43,12 @@ Public Class Form1
         STK_QTY.Clear()
         C_NAME.Text = ""
         MRP.Clear()
-        HSN.Clear()
+        GST.Clear()
         DIS.Clear()
         P_NAME.Focus()
+
+        'SET INVENTORY LABEL TO TODAY'S DATE
+        IVY_DATE.Text = Today
 
         'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID WHEN FORM LOAD
         AutoIncrementId()
@@ -82,9 +85,9 @@ Public Class Form1
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If Len(P_NAME.Text) <> 0 And Len(Brand.Text) <> 0 And Len(C_NAME.Text) <> 0 And Len(STK_QTY.Text) <> 0 And Len(PUR_PRICE.Text) <> 0 And Len(MRP.Text) <> 0 And Len(HSN.Text) <> 0 And Len(DIS.Text) <> 0 Then
+        If Len(P_NAME.Text) <> 0 And Len(Brand.Text) <> 0 And Len(C_NAME.Text) <> 0 And Len(STK_QTY.Text) <> 0 And Len(PUR_PRICE.Text) <> 0 And Len(MRP.Text) <> 0 And Len(GST.Text) <> 0 And Len(DIS.Text) <> 0 Then
             Call connect()
-            query = "insert into products values ('" & P_ID.Text & "','" & P_NAME.Text & "','" & Brand.Text & "', '" & C_NAME.Text & "','" & STK_QTY.Text & "','" & PUR_PRICE.Text & "','" & MRP.Text & "'," & Val(HSN.Text) & "," & Val(DIS.Text) & ",curdate())"
+            query = "insert into products values ('" & P_ID.Text & "','" & P_NAME.Text & "','" & Brand.Text & "', '" & C_NAME.Text & "','" & STK_QTY.Text & "','" & PUR_PRICE.Text & "','" & MRP.Text & "'," & Val(GST.Text) & "," & Val(DIS.Text) & ",curdate())"
             CMD = New MySqlCommand(query, conn)
             READER = CMD.ExecuteReader
             'SHOW PRODUCT TABLE AFTER ADDING NEW PRODUCT
@@ -101,9 +104,9 @@ Public Class Form1
 
     Private Sub DIS_KeyUp(sender As Object, e As KeyEventArgs) Handles DIS.KeyUp
         If e.KeyValue = Keys.Enter Then
-            If Len(P_NAME.Text) <> 0 And Len(Brand.Text) <> 0 And Len(C_NAME.Text) <> 0 And Len(STK_QTY.Text) <> 0 And Len(PUR_PRICE.Text) <> 0 And Len(MRP.Text) <> 0 And Len(HSN.Text) <> 0 And Len(DIS.Text) <> 0 Then
+            If Len(P_NAME.Text) <> 0 And Len(Brand.Text) <> 0 And Len(C_NAME.Text) <> 0 And Len(STK_QTY.Text) <> 0 And Len(PUR_PRICE.Text) <> 0 And Len(MRP.Text) <> 0 And Len(GST.Text) <> 0 And Len(DIS.Text) <> 0 Then
                 Call connect()
-                query = "insert into products values ('" & P_ID.Text & "','" & P_NAME.Text & "','" & Brand.Text & "', '" & C_NAME.Text & "','" & STK_QTY.Text & "','" & PUR_PRICE.Text & "','" & MRP.Text & "'," & Val(HSN.Text) & "," & Val(DIS.Text) & ",curdate())"
+                query = "insert into products values ('" & P_ID.Text & "','" & P_NAME.Text & "','" & Brand.Text & "', '" & C_NAME.Text & "','" & STK_QTY.Text & "','" & PUR_PRICE.Text & "','" & MRP.Text & "'," & Val(GST.Text) & "," & Val(DIS.Text) & ",current_date())"
                 CMD = New MySqlCommand(query, conn)
                 READER = CMD.ExecuteReader
                 'SHOW PRODUCT TABLE AFTER ADDING NEW PRODUCT
@@ -141,7 +144,7 @@ Public Class Form1
             STK_QTY.Text = r.Cells("stock_qty").Value.ToString
             PUR_PRICE.Text = r.Cells("purchase_p").Value.ToString
             MRP.Text = r.Cells("mrp").Value.ToString
-            HSN.Text = r.Cells("hsn_code").Value.ToString
+            GST.Text = r.Cells("gst").Value.ToString
             DIS.Text = r.Cells("discount").Value.ToString
             Button3.Enabled = True
             Button4.Enabled = True
@@ -150,7 +153,7 @@ Public Class Form1
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Call connect()
-        query = "update super_market.products set product_name='" & P_NAME.Text & "',product_brand='" & Brand.Text & "',category_name= '" & C_NAME.Text & "',stock_qty='" & STK_QTY.Text & "',purchase_p='" & PUR_PRICE.Text & "',mrp='" & MRP.Text & "',hsn_code=" & Val(HSN.Text) & ",discount=" & Val(DIS.Text) & " where product_id='" & P_ID.Text & "'"
+        query = "update super_market.products set product_name='" & P_NAME.Text & "',product_brand='" & Brand.Text & "',category_name= '" & C_NAME.Text & "',stock_qty='" & STK_QTY.Text & "',purchase_p='" & PUR_PRICE.Text & "',mrp='" & MRP.Text & "',gst=" & Val(GST.Text) & ",discount=" & Val(DIS.Text) & " where product_id='" & P_ID.Text & "'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
         'SHOW PRODUCT TABLE AFTER ADDING NEW PRODUCT
@@ -184,5 +187,20 @@ Public Class Form1
     Private Sub Button5_Click(sender As Object, e As EventArgs)
         Me.Hide()
         Form2.Show()
+    End Sub
+
+    Private Sub C_NAME_SelectedIndexChanged(sender As Object, e As EventArgs) Handles C_NAME.SelectedIndexChanged
+        Call connect()
+
+        ' QUERY TO ADD CATEGORY GST TO COMBBOX2(GST)
+        query = "select gst from pro_categories where category_name = '" & C_NAME.Text & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+
+        While READER.Read
+            GST.Text = READER(0)
+        End While
+
+        conn.Close()
     End Sub
 End Class
