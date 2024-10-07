@@ -30,7 +30,6 @@ Partial Class Form7
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.IVY_DATE = New System.Windows.Forms.Label()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -74,6 +73,7 @@ Partial Class Form7
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -161,14 +161,6 @@ Partial Class Form7
         Me.IVY_DATE.Size = New System.Drawing.Size(48, 25)
         Me.IVY_DATE.TabIndex = 42
         Me.IVY_DATE.Text = "Date"
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(2, 349)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(1245, 291)
-        Me.DataGridView1.TabIndex = 43
         '
         'Label4
         '
@@ -576,6 +568,14 @@ Partial Class Form7
         Me.Button8.Text = "RECOVER DRAFT"
         Me.Button8.UseVisualStyleBackColor = True
         '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(2, 349)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(1245, 291)
+        Me.DataGridView1.TabIndex = 43
+        '
         'Form7
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -649,7 +649,6 @@ Partial Class Form7
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents IVY_DATE As Label
-    Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents Label4 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
@@ -693,4 +692,5 @@ Partial Class Form7
     Friend WithEvents Button6 As Button
     Friend WithEvents Button7 As Button
     Friend WithEvents Button8 As Button
+    Friend WithEvents DataGridView1 As DataGridView
 End Class
