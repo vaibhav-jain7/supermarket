@@ -292,7 +292,6 @@ Partial Class Form7
         'DIS
         '
         Me.DIS.AutoSize = True
-        Me.DIS.Enabled = False
         Me.DIS.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DIS.Location = New System.Drawing.Point(551, 395)
         Me.DIS.Name = "DIS"
@@ -584,7 +583,6 @@ Partial Class Form7
         'Label32
         '
         Me.Label32.AutoSize = True
-        Me.Label32.Enabled = False
         Me.Label32.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label32.Location = New System.Drawing.Point(555, 368)
         Me.Label32.Name = "Label32"
@@ -640,7 +638,7 @@ Partial Class Form7
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1249, 829)
+        Me.ClientSize = New System.Drawing.Size(1249, 749)
         Me.Controls.Add(Me.ListView1)
         Me.Controls.Add(Me.CATEGORY)
         Me.Controls.Add(Me.GST)
