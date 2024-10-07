@@ -24,16 +24,16 @@ Public Class Form7
         conn.Close()
     End Sub
 
-    Public Sub AutoProductIncrementId()
-        Call connect()
-        query = "select max(product_id) from products"
-        CMD = New MySqlCommand(query, conn)
-        READER = CMD.ExecuteReader
-        While READER.Read
-            P_ID.Text = Val(READER(0) + 1)
-        End While
-        conn.Close()
-    End Sub
+    'Public Sub AutoProductIncrementId()
+    '    Call connect()
+    '    query = "select max(product_id) from products"
+    '    CMD = New MySqlCommand(query, conn)
+    '    READER = CMD.ExecuteReader
+    '    While READER.Read
+    '        P_ID.Text = Val(READER(0) + 1)
+    '    End While
+    '    conn.Close()
+    'End Sub
 
     Public Sub AutoCustomerIncrementId()
         Call connect()
@@ -56,4 +56,19 @@ Public Class Form7
         AutoCustomerIncrementId()
     End Sub
 
+    Private Sub P_NAME_TextChanged(sender As Object, e As EventArgs) Handles P_NAME.TextChanged
+        Call connect()
+        query = "select * from products where product_name = '" & P_NAME.Text & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+
+        While READER.Read
+            CATEGORY.Text = READER.GetString("category_name")
+            MRP.Text = READER.GetString("mrp")
+            GST.Text = READER.GetString("gst")
+            DISCOUNT.Text = READER.GetString("discount")
+        End While
+
+        conn.Close()
+    End Sub
 End Class
