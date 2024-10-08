@@ -88,7 +88,7 @@ Public Class Form7
                 'amt = (amt + (amt * (Val(GST.Text) / 100)))
                 PRO.SubItems.Add(DISCOUNT.Text)
                 PRO.SubItems.Add(GST.Text)
-                PRO.SubItems.Add(Val(MRP.Text) )
+                PRO.SubItems.Add(Val(MRP.Text))
                 PRO.SubItems.Add(amt)
 
                 'CLEAR AFTER EACH PRODUCT ENTRY
