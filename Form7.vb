@@ -1,4 +1,5 @@
-﻿Imports System.IO.Pipelines
+Imports System.IO.Pipelines
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports MySql.Data.MySqlClient
 
 Public Class Form7
@@ -7,6 +8,9 @@ Public Class Form7
     Dim READER As MySqlDataReader
     Dim query As String
     Dim one As Integer = 0
+
+    'GLOBAL VARIABLES 
+    Dim ITM_CNT, QTY_CNT, TOT_AMT, ITM_DIS, ITM_SGST, ITM_CGST, ITM_GST As Double
 
     Private Sub Form7_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'INCREMENT CUSTOMER ID
@@ -37,6 +41,8 @@ Public Class Form7
 
         conn.Close()
 
+
+
         Dim PRO As ListViewItem
         PRO = ListView1.Items.Add("Tata Salt")
         PRO.SubItems.Add(CATEGORY.Text)
@@ -51,6 +57,7 @@ Public Class Form7
         PRO.SubItems.Add(50)
         PRO.SubItems.Add(20)
         PRO.SubItems.Add(1)
+
 
     End Sub
 
@@ -74,20 +81,46 @@ Public Class Form7
                 Dim PRO As ListViewItem
                 PRO = ListView1.Items.Add(P_NAME.Text.ToUpper)
                 PRO.SubItems.Add(CATEGORY.Text)
-                PRO.SubItems.Add(MRP.Text)
-                PRO.SubItems.Add(GST.Text)
-                PRO.SubItems.Add(DISCOUNT.Text)
                 PRO.SubItems.Add(QTY.Text)
+
+                Dim amt As Double = Val(MRP.Text) * Val(QTY.Text)
+                amt = amt - (amt * Val((DISCOUNT.Text) / 100))
+                'amt = (amt + (amt * (Val(GST.Text) / 100)))
+                PRO.SubItems.Add(DISCOUNT.Text)
+                PRO.SubItems.Add(GST.Text)
+                PRO.SubItems.Add(Val(MRP.Text) )
+                PRO.SubItems.Add(amt)
 
                 'CLEAR AFTER EACH PRODUCT ENTRY
                 ClearProducts()
 
                 P_NAME.Focus()
+                countdata()
+
             End If
         Else
             MessageBox.Show("Fill All Fields")
             QTY.Focus()
         End If
+
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        MessageBox.Show("Under Develop.")
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        MessageBox.Show("Under Develop.")
+
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        MessageBox.Show("Under Develop.")
+
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        MessageBox.Show("Under Develop.")
 
     End Sub
 
@@ -135,6 +168,42 @@ Public Class Form7
         End While
 
         conn.Close()
+
+    End Sub
+
+    Public Sub countdata()
+        Label33.Text = ListView1.Items.Count
+        Dim i As Integer
+        Dim itm As ListViewItem
+        QTY_CNT = 0
+        ITM_DIS = 0
+        TOT_AMT = 0
+        ITM_CGST = 0
+        ITM_SGST = 0
+        ITM_GST = 0
+        Dim total_mrp As Double = 0
+
+        For i = 0 To ListView1.Items.Count - 1
+            itm = ListView1.Items(i)
+            QTY_CNT = QTY_CNT + Val(itm.SubItems(2).Text)
+            Dim tot_dis As Double = (Val(itm.SubItems(5).Text) * (Val(itm.SubItems(3).Text) / 100)) * Val(itm.SubItems(2).Text)
+            ITM_DIS = ITM_DIS + tot_dis
+            total_mrp += Val(itm.SubItems(5).Text) * Val(itm.SubItems(2).Text)
+            TOT_AMT = TOT_AMT + Val(itm.SubItems(6).Text)
+            ITM_GST = ITM_GST + (Val(itm.SubItems(5).Text) * (Val(itm.SubItems(4).Text) / 100)) * Val(itm.SubItems(2).Text)
+            'ITM_SGST = ITM_SGST + Val(itm.SubItems(6).Text)
+            'ITM_CGST = ITM_CGST + Val(itm.SubItems(7).Text)
+        Next
+        Label23.Text = QTY_CNT
+        Label24.Text = "Rs. " & ITM_DIS.ToString()
+        'TextBox5.Text = TOT_AMT - (ITM_CGST + ITM_SGST)
+        'TextBox6.Text = ITM_SGST
+        'TextBox7.Text = ITM_CGST
+        Label25.Text = "Rs. " & total_mrp
+        Label26.Text = "Rs. " & ITM_GST
+        Label22.Text = "Rs. " & TOT_AMT.ToString()
+        Label28.Text = "Rs. " & ITM_GST / 2
+        Label30.Text = "Rs. " & ITM_GST / 2
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
