@@ -52,8 +52,6 @@ Public Class Form7
         PRO.SubItems.Add(20)
         PRO.SubItems.Add(1)
 
-        For 
-
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -141,5 +139,10 @@ Public Class Form7
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         TIME.Text = TimeString
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        ClearProducts()
+        ClearTextBoxes()
     End Sub
 End Class
