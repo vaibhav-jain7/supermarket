@@ -1,4 +1,4 @@
-﻿Imports System.IO.Pipelines
+Imports System.IO.Pipelines
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports MySql.Data.MySqlClient
 
@@ -40,6 +40,24 @@ Public Class Form7
         End While
 
         conn.Close()
+
+
+
+        Dim PRO As ListViewItem
+        PRO = ListView1.Items.Add("Tata Salt")
+        PRO.SubItems.Add(CATEGORY.Text)
+        PRO.SubItems.Add(10)
+        PRO.SubItems.Add(50)
+        PRO.SubItems.Add(20)
+        PRO.SubItems.Add(10)
+
+        PRO = ListView1.Items.Add("Tata Salt")
+        PRO.SubItems.Add(CATEGORY.Text)
+        PRO.SubItems.Add(5)
+        PRO.SubItems.Add(50)
+        PRO.SubItems.Add(20)
+        PRO.SubItems.Add(1)
+
 
     End Sub
 
@@ -190,5 +208,10 @@ Public Class Form7
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         TIME.Text = TimeString
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        ClearProducts()
+        ClearTextBoxes()
     End Sub
 End Class

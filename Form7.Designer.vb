@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form7
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form7
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -181,7 +181,11 @@ Partial Class Form7
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+
         Me.Label4.Location = New System.Drawing.Point(24, 272)
+
+        Me.Label4.Location = New System.Drawing.Point(32, 253)
+
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(66, 24)
         Me.Label4.TabIndex = 44
@@ -201,7 +205,11 @@ Partial Class Form7
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+
         Me.Label8.Location = New System.Drawing.Point(24, 366)
+
+        Me.Label8.Location = New System.Drawing.Point(32, 365)
+
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(117, 24)
         Me.Label8.TabIndex = 46
@@ -211,7 +219,11 @@ Partial Class Form7
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+
         Me.Label9.Location = New System.Drawing.Point(24, 333)
+
+        Me.Label9.Location = New System.Drawing.Point(32, 328)
+
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(66, 24)
         Me.Label9.TabIndex = 47
@@ -221,7 +233,11 @@ Partial Class Form7
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+
         Me.Label10.Location = New System.Drawing.Point(24, 239)
+
+        Me.Label10.Location = New System.Drawing.Point(32, 214)
+
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(139, 24)
         Me.Label10.TabIndex = 48
@@ -231,7 +247,11 @@ Partial Class Form7
         '
         Me.C_ID.Enabled = False
         Me.C_ID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+
         Me.C_ID.Location = New System.Drawing.Point(186, 228)
+
+        Me.C_ID.Location = New System.Drawing.Point(204, 213)
+
         Me.C_ID.Name = "C_ID"
         Me.C_ID.Size = New System.Drawing.Size(208, 26)
         Me.C_ID.TabIndex = 50
@@ -239,7 +259,11 @@ Partial Class Form7
         'C_NAME
         '
         Me.C_NAME.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+
         Me.C_NAME.Location = New System.Drawing.Point(186, 261)
+
+        Me.C_NAME.Location = New System.Drawing.Point(204, 252)
+
         Me.C_NAME.Name = "C_NAME"
         Me.C_NAME.Size = New System.Drawing.Size(208, 26)
         Me.C_NAME.TabIndex = 51
@@ -255,7 +279,11 @@ Partial Class Form7
         'C_EMAIL
         '
         Me.C_EMAIL.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+
         Me.C_EMAIL.Location = New System.Drawing.Point(186, 322)
+
+        Me.C_EMAIL.Location = New System.Drawing.Point(204, 327)
+
         Me.C_EMAIL.Name = "C_EMAIL"
         Me.C_EMAIL.Size = New System.Drawing.Size(208, 26)
         Me.C_EMAIL.TabIndex = 53
@@ -263,7 +291,11 @@ Partial Class Form7
         'C_PH
         '
         Me.C_PH.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+
         Me.C_PH.Location = New System.Drawing.Point(186, 355)
+
+        Me.C_PH.Location = New System.Drawing.Point(204, 364)
+
         Me.C_PH.Name = "C_PH"
         Me.C_PH.Size = New System.Drawing.Size(208, 26)
         Me.C_PH.TabIndex = 54
@@ -607,7 +639,7 @@ Partial Class Form7
         Me.CATEGORY.FormattingEnabled = True
         Me.CATEGORY.Location = New System.Drawing.Point(801, 265)
         Me.CATEGORY.Name = "CATEGORY"
-        Me.CATEGORY.Size = New System.Drawing.Size(314, 28)
+        Me.CATEGORY.Size = New System.Drawing.Size(208, 28)
         Me.CATEGORY.TabIndex = 91
         '
         'ListView1
@@ -694,9 +726,13 @@ Partial Class Form7
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+
         Me.ClientSize = New System.Drawing.Size(1249, 829)
         Me.Controls.Add(Me.Label33)
         Me.Controls.Add(Me.Label2)
+
+        Me.ClientSize = New System.Drawing.Size(1249, 749)
+
         Me.Controls.Add(Me.TIME)
         Me.Controls.Add(Me.ListView1)
         Me.Controls.Add(Me.CATEGORY)
