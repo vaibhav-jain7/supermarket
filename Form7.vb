@@ -1,6 +1,8 @@
-﻿Imports System.IO.Pipelines
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+'Imports System.IO.Pipelines
+'Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports MySql.Data.MySqlClient
+'Imports Mysqlx.Crud
+'Imports Mysqlx.Prepare
 
 Public Class Form7
 
@@ -41,6 +43,13 @@ Public Class Form7
 
         conn.Close()
 
+        ListView1.Columns.Add("Name", 190, HorizontalAlignment.Center)
+        ListView1.Columns.Add("Category", 190, HorizontalAlignment.Center)
+        ListView1.Columns.Add("Quantity", 190, HorizontalAlignment.Center)
+        ListView1.Columns.Add("Discount", 190, HorizontalAlignment.Center)
+        ListView1.Columns.Add("GST", 180, HorizontalAlignment.Center)
+        ListView1.Columns.Add("MRP", 180, HorizontalAlignment.Center)
+        ListView1.Columns.Add("Total Amount", 190, HorizontalAlignment.Center)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -70,8 +79,17 @@ Public Class Form7
                 'amt = (amt + (amt * (Val(GST.Text) / 100)))
                 PRO.SubItems.Add(DISCOUNT.Text)
                 PRO.SubItems.Add(GST.Text)
-                PRO.SubItems.Add(Val(MRP.Text) )
+                PRO.SubItems.Add(Val(MRP.Text))
                 PRO.SubItems.Add(amt)
+
+                Call connect()
+                'ADDING PRODUCT INTO BILL DATA TABLE
+                query = "insert into bill_data_details values ( '" & BILL_NO.Text & "','" & C_ID.Text & "','" & Label6.Text & "','" & P_NAME.Text & "','" & QTY.Text & "','" & MRP.Text & "'," & Val(GST.Text) & "," & Val(GST.Text) & "," & Val(DIS.Text) & ",curdate(),curdate())"
+                CMD = New MySqlCommand(query, conn)
+                READER = CMD.ExecuteReader
+                'INCREMENT CUSTOMER ID
+                AutoCustomerIncrementId()
+                conn.Close()
 
                 'CLEAR AFTER EACH PRODUCT ENTRY
                 ClearProducts()
@@ -115,6 +133,52 @@ Public Class Form7
         DISCOUNT.Clear()
     End Sub
 
+    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
+        If ListView1.SelectedItems.Count > 0 Then
+            P_NAME.Text = ListView1.SelectedItems(0).SubItems(0).Text
+            QTY.Text = ListView1.SelectedItems(0).SubItems(2).Text
+            CATEGORY.Text = ListView1.SelectedItems(0).SubItems(1).Text
+            MRP.Text = ListView1.SelectedItems(0).SubItems(5).Text
+            GST.Text = ListView1.SelectedItems(0).SubItems(4).Text
+            DISCOUNT.Text = ListView1.SelectedItems(0).SubItems(3).Text
+        End If
+        MODIFY.Enabled = True
+        DELETE.Enabled = True
+    End Sub
+
+    Private Sub MODIFY_Click(sender As Object, e As EventArgs) Handles MODIFY.Click
+        Call connect()
+        query = "update super_market.bill_data_details set bill_id ='" & BILL_NO.Text & "',c_id='" & C_ID.Text & "',emp_id= '" & Label6.Text & "',p_name='" & P_NAME.Text & "',p_qty='" & QTY.Text & "',mrp='" & MRP.Text & "',p_gst=" & Val(GST.Text) & ",p_amt=" & Val(GST.Text) & ",p_dis=" & Val(DIS.Text) & " where p_name='" & P_NAME.Text & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+        'Modify And Delete Buttons
+        MODIFY.Enabled = False
+        DELETE.Enabled = False
+        conn.Close()
+        ListView1.FocusedItem.SubItems(2).Text = QTY.Text
+        ListView1.Refresh()
+        ClearProducts()
+        P_NAME.Focus()
+    End Sub
+
+    Private Sub DELETE_Click(sender As Object, e As EventArgs) Handles DELETE.Click
+        Call connect()
+        query = "delete from super_market.bill_data_details where p_name='" & P_NAME.Text & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+
+        Dim m As Integer
+        m = MsgBox("Do you want to Delete item..", MsgBoxStyle.YesNo)
+        If m = 6 Then
+            ListView1.FocusedItem.Remove()
+        End If
+        MODIFY.Enabled = False
+        DELETE.Enabled = False
+        conn.Close()
+        ClearProducts()
+        P_NAME.Focus()
+    End Sub
+
     Public Sub AutoCustomerIncrementId()
         Call connect()
         query = "select max(customer_id) from customers"
@@ -124,6 +188,7 @@ Public Class Form7
             C_ID.Text = Val(READER(0) + 1)
         End While
         conn.Close()
+        ListView1.Refresh()
     End Sub
 
     Public Sub ClearTextBoxes()
@@ -171,7 +236,7 @@ Public Class Form7
             Dim tot_dis As Double = (Val(itm.SubItems(5).Text) * (Val(itm.SubItems(3).Text) / 100)) * Val(itm.SubItems(2).Text)
             ITM_DIS = ITM_DIS + tot_dis
             total_mrp += Val(itm.SubItems(5).Text) * Val(itm.SubItems(2).Text)
-            TOT_AMT = TOT_AMT + Val(itm.SubItems(6).Text)
+            'TOT_AMT = TOT_AMT + Val(itm.SubItems(6).Text)
             ITM_GST = ITM_GST + (Val(itm.SubItems(5).Text) * (Val(itm.SubItems(4).Text) / 100)) * Val(itm.SubItems(2).Text)
             'ITM_SGST = ITM_SGST + Val(itm.SubItems(6).Text)
             'ITM_CGST = ITM_CGST + Val(itm.SubItems(7).Text)
@@ -190,5 +255,12 @@ Public Class Form7
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         TIME.Text = TimeString
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        ClearProducts()
+        ClearTextBoxes()
+        MODIFY.Enabled = False
+        DELETE.Enabled = False
     End Sub
 End Class
