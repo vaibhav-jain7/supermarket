@@ -158,6 +158,7 @@ Public Class Form7
         ListView1.FocusedItem.SubItems(2).Text = QTY.Text
         ListView1.Refresh()
         ClearProducts()
+        countdata()
         P_NAME.Focus()
     End Sub
 
@@ -176,6 +177,7 @@ Public Class Form7
         DELETE.Enabled = False
         conn.Close()
         ClearProducts()
+        countdata()
         P_NAME.Focus()
     End Sub
 
@@ -228,6 +230,7 @@ Public Class Form7
         ITM_CGST = 0
         ITM_SGST = 0
         ITM_GST = 0
+
         Dim total_mrp As Double = 0
 
         For i = 0 To ListView1.Items.Count - 1
@@ -236,16 +239,13 @@ Public Class Form7
             Dim tot_dis As Double = (Val(itm.SubItems(5).Text) * (Val(itm.SubItems(3).Text) / 100)) * Val(itm.SubItems(2).Text)
             ITM_DIS = ITM_DIS + tot_dis
             total_mrp += Val(itm.SubItems(5).Text) * Val(itm.SubItems(2).Text)
-            'TOT_AMT = TOT_AMT + Val(itm.SubItems(6).Text)
+            TOT_AMT = (TOT_AMT * Val(itm.SubItems(2).Text)) + Val(itm.SubItems(6).Text)
             ITM_GST = ITM_GST + (Val(itm.SubItems(5).Text) * (Val(itm.SubItems(4).Text) / 100)) * Val(itm.SubItems(2).Text)
-            'ITM_SGST = ITM_SGST + Val(itm.SubItems(6).Text)
-            'ITM_CGST = ITM_CGST + Val(itm.SubItems(7).Text)
         Next
+
         Label23.Text = QTY_CNT
         Label24.Text = "Rs. " & ITM_DIS.ToString()
-        'TextBox5.Text = TOT_AMT - (ITM_CGST + ITM_SGST)
-        'TextBox6.Text = ITM_SGST
-        'TextBox7.Text = ITM_CGST
+        Label22.Text = "Rs. " & TOT_AMT
         Label25.Text = "Rs. " & total_mrp
         Label26.Text = "Rs. " & ITM_GST
         Label22.Text = "Rs. " & TOT_AMT.ToString()
