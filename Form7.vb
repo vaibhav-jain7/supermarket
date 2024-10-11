@@ -1,8 +1,8 @@
-Imports System.IO.Pipelines
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+'Imports System.IO.Pipelines
+'Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports MySql.Data.MySqlClient
-Imports Mysqlx.Crud
-Imports Mysqlx.Prepare
+'Imports Mysqlx.Crud
+'Imports Mysqlx.Prepare
 
 Public Class Form7
 
@@ -151,12 +151,32 @@ Public Class Form7
         query = "update super_market.bill_data_details set bill_id ='" & BILL_NO.Text & "',c_id='" & C_ID.Text & "',emp_id= '" & Label6.Text & "',p_name='" & P_NAME.Text & "',p_qty='" & QTY.Text & "',mrp='" & MRP.Text & "',p_gst=" & Val(GST.Text) & ",p_amt=" & Val(GST.Text) & ",p_dis=" & Val(DIS.Text) & " where p_name='" & P_NAME.Text & "'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
-        'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
-        ClearTextBoxes()
         'Modify And Delete Buttons
         MODIFY.Enabled = False
         DELETE.Enabled = False
         conn.Close()
+        ListView1.FocusedItem.SubItems(2).Text = QTY.Text
+        ListView1.Refresh()
+        ClearProducts()
+        P_NAME.Focus()
+    End Sub
+
+    Private Sub DELETE_Click(sender As Object, e As EventArgs) Handles DELETE.Click
+        Call connect()
+        query = "delete from super_market.bill_data_details where p_name='" & P_NAME.Text & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+
+        Dim m As Integer
+        m = MsgBox("Do you want to Delete item..", MsgBoxStyle.YesNo)
+        If m = 6 Then
+            ListView1.FocusedItem.Remove()
+        End If
+        MODIFY.Enabled = False
+        DELETE.Enabled = False
+        conn.Close()
+        ClearProducts()
+        P_NAME.Focus()
     End Sub
 
     Public Sub AutoCustomerIncrementId()
@@ -240,5 +260,7 @@ Public Class Form7
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         ClearProducts()
         ClearTextBoxes()
+        MODIFY.Enabled = False
+        DELETE.Enabled = False
     End Sub
 End Class
