@@ -40,6 +40,16 @@ Public Class Form7
             End If
 
         End While
+        conn.Close()
+        Call connect()
+        P_NAME.Items.Clear()
+        query = "select * from products"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+
+        While READER.Read
+            P_NAME.Items.Add(READER.GetString("product_name"))
+        End While
 
         conn.Close()
 
@@ -69,17 +79,20 @@ Public Class Form7
             If Val(QTY.Text) = 0 Or Val(MRP.Text) = 0 Or Val(GST.Text) = 0 Or Val(DISCOUNT.Text) = 0 Then
                 MessageBox.Show("Value Can't be Zero")
             Else
+                Dim j As Double = 0
                 Dim PRO As ListViewItem
                 PRO = ListView1.Items.Add(P_NAME.Text.ToUpper)
                 PRO.SubItems.Add(CATEGORY.Text)
                 PRO.SubItems.Add(QTY.Text)
 
-                Dim amt As Double = Val(MRP.Text) * Val(QTY.Text)
-                amt = amt - (amt * Val((DISCOUNT.Text) / 100))
+                Dim amt As Double '= Val(MRP.Text) * Val(QTY.Text)
+                'amt = amt - (amt * Val((DISCOUNT.Text) / 100))
                 'amt = (amt + (amt * (Val(GST.Text) / 100)))
                 PRO.SubItems.Add(DISCOUNT.Text)
                 PRO.SubItems.Add(GST.Text)
                 PRO.SubItems.Add(Val(MRP.Text))
+                j = Val(PRO.SubItems(5).Text) - ((Val(PRO.SubItems(5).Text) * (Val(PRO.SubItems(3).Text) / 100)))
+                amt = j * Val(PRO.SubItems(2).Text)
                 PRO.SubItems.Add(amt)
 
                 Call connect()
@@ -125,7 +138,7 @@ Public Class Form7
     End Sub
 
     Public Sub ClearProducts()
-        P_NAME.Clear()
+        P_NAME.Text = ""
         QTY.Clear()
         CATEGORY.Text = ""
         MRP.Clear()
@@ -203,7 +216,7 @@ Public Class Form7
         AutoCustomerIncrementId()
     End Sub
 
-    Private Sub P_NAME_TextChanged(sender As Object, e As EventArgs) Handles P_NAME.TextChanged
+    Private Sub P_NAME_TextChanged(sender As Object, e As EventArgs)
         Call connect()
         query = "select * from products where product_name = '" & P_NAME.Text & "'"
         CMD = New MySqlCommand(query, conn)
@@ -232,15 +245,21 @@ Public Class Form7
         ITM_GST = 0
 
         Dim total_mrp As Double = 0
+        Dim j As Double = 0
+
 
         For i = 0 To ListView1.Items.Count - 1
             itm = ListView1.Items(i)
             QTY_CNT = QTY_CNT + Val(itm.SubItems(2).Text)
             Dim tot_dis As Double = (Val(itm.SubItems(5).Text) * (Val(itm.SubItems(3).Text) / 100)) * Val(itm.SubItems(2).Text)
             ITM_DIS = ITM_DIS + tot_dis
+            'GST CALCULATION START
+            j = Val(itm.SubItems(5).Text) - ((Val(itm.SubItems(5).Text) * (Val(itm.SubItems(3).Text) / 100)))
+            'itm.SubItems(5).Text = j
+
             total_mrp += Val(itm.SubItems(5).Text) * Val(itm.SubItems(2).Text)
-            TOT_AMT = (TOT_AMT * Val(itm.SubItems(2).Text)) + Val(itm.SubItems(6).Text)
-            ITM_GST = ITM_GST + (Val(itm.SubItems(5).Text) * (Val(itm.SubItems(4).Text) / 100)) * Val(itm.SubItems(2).Text)
+            TOT_AMT = (TOT_AMT + (j * Val(itm.SubItems(2).Text)))
+            ITM_GST = ITM_GST + (j * (Val(itm.SubItems(4).Text) / 100)) * Val(itm.SubItems(2).Text)
         Next
 
         Label23.Text = QTY_CNT
@@ -248,7 +267,7 @@ Public Class Form7
         Label22.Text = "Rs. " & TOT_AMT
         Label25.Text = "Rs. " & total_mrp
         Label26.Text = "Rs. " & ITM_GST
-        Label22.Text = "Rs. " & TOT_AMT.ToString()
+        'Label22.Text = "Rs. " & TOT_AMT
         Label28.Text = "Rs. " & ITM_GST / 2
         Label30.Text = "Rs. " & ITM_GST / 2
     End Sub
