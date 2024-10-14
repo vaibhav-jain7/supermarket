@@ -80,7 +80,7 @@ Partial Class Form7
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.ListView1 = New System.Windows.Forms.ListView()
-        Me.P_NAME = New System.Windows.Forms.ComboBox()
+        Me.P_NAME = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'Label15
@@ -646,17 +646,16 @@ Partial Class Form7
         'P_NAME
         '
         Me.P_NAME.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.P_NAME.FormattingEnabled = True
         Me.P_NAME.Location = New System.Drawing.Point(801, 124)
         Me.P_NAME.Name = "P_NAME"
-        Me.P_NAME.Size = New System.Drawing.Size(208, 28)
+        Me.P_NAME.Size = New System.Drawing.Size(208, 26)
         Me.P_NAME.TabIndex = 97
         '
         'Form7
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1280, 715)
+        Me.ClientSize = New System.Drawing.Size(1279, 716)
         Me.Controls.Add(Me.P_NAME)
         Me.Controls.Add(Me.ListView1)
         Me.Controls.Add(Me.Label33)
@@ -717,7 +716,7 @@ Partial Class Form7
         Me.Name = "Form7"
         Me.Padding = New System.Windows.Forms.Padding(10)
         Me.Text = "Form7"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.WindowState = System.Windows.Forms.FormWindowState.Normal
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -780,5 +779,5 @@ Partial Class Form7
     Friend WithEvents Label2 As Label
     Friend WithEvents Label33 As Label
     Friend WithEvents ListView1 As ListView
-    Friend WithEvents P_NAME As ComboBox
+    Friend WithEvents P_NAME As TextBox
 End Class

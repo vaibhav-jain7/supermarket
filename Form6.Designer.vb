@@ -25,13 +25,15 @@ Partial Class Form6
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.E_NAME = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(296, 37)
+        Me.Label1.Location = New System.Drawing.Point(295, 36)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(210, 31)
         Me.Label1.TabIndex = 1
@@ -57,11 +59,33 @@ Partial Class Form6
         Me.E_NAME.TabIndex = 3
         Me.E_NAME.Text = "Emp_name"
         '
+        'Button1
+        '
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(131, 210)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(184, 63)
+        Me.Button1.TabIndex = 4
+        Me.Button1.Text = "Bill Generation"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Location = New System.Drawing.Point(485, 210)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(184, 63)
+        Me.Button2.TabIndex = 5
+        Me.Button2.Text = "Today's Sale"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'Form6
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.E_NAME)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -75,4 +99,6 @@ Partial Class Form6
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents E_NAME As Label
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
 End Class
