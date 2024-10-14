@@ -174,7 +174,7 @@ Public Class Form7
 
     Private Sub DELETE_Click(sender As Object, e As EventArgs) Handles DELETE.Click
         Call connect()
-        query = "delete from super_market.bill_data_details where p_name='" & P_NAME.Text & "'"
+        query = "delete from super_market.bill_data_details where p_name= '" & P_NAME.Text & "'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
@@ -189,6 +189,10 @@ Public Class Form7
         ClearProducts()
         countdata()
         P_NAME.Focus()
+    End Sub
+
+    Private Sub QTY_TextChanged(sender As Object, e As EventArgs) Handles QTY.TextChanged
+
     End Sub
 
     Public Sub AutoCustomerIncrementId()
@@ -225,26 +229,12 @@ Public Class Form7
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
-        'If READER.Read = True Then
         While READER.Read
             CATEGORY.Text = READER.GetString("category_name")
             MRP.Text = READER.GetDouble("mrp")
             GST.Text = READER.GetDouble("gst")
             DISCOUNT.Text = READER.GetDouble("discount").ToString
         End While
-        'Else
-        'CATEGORY.Text = ""
-        'MRP.Text = ""
-        'GST.Text = ""
-        'DISCOUNT.Text = ""
-        ' End If
-
-        'While READER.Read
-        'CATEGORY.Text = READER.GetString("category_name")
-        'MRP.Text = READER.GetDouble("mrp")
-        'GST.Text = READER.GetDouble("gst")
-        '    DISCOUNT.Text = READER.GetDouble("discount").ToString
-        'End While
 
         conn.Close()
 
@@ -298,5 +288,62 @@ Public Class Form7
         ClearTextBoxes()
         MODIFY.Enabled = False
         DELETE.Enabled = False
+    End Sub
+
+    Private Sub QTY_KeyUp(sender As Object, e As KeyEventArgs) Handles QTY.KeyUp
+        If e.KeyValue = Keys.Enter Then
+            If one = 0 Then
+                Call connect()
+                'ADDING CUSTOMER INTO CUSTOMER TABLE
+                query = "insert into customers values ('" & C_ID.Text & "','" & C_NAME.Text & "','" & C_EMAIL.Text & "','" & C_PH.Text & "','" & C_ADD.Text & "',current_date())"
+                CMD = New MySqlCommand(query, conn)
+                READER = CMD.ExecuteReader
+                'INCREMENT CUSTOMER ID
+                AutoCustomerIncrementId()
+                conn.Close()
+            End If
+            one += 1
+
+            If QTY.Text <> "" Then
+                If Val(QTY.Text) = 0 Or Val(MRP.Text) = 0 Or Val(GST.Text) = 0 Or Val(DISCOUNT.Text) = 0 Then
+                    MessageBox.Show("Value Can't be Zero")
+                Else
+                    Dim j As Double = 0
+                    Dim PRO As ListViewItem
+                    PRO = ListView1.Items.Add(P_NAME.Text.ToUpper)
+                    PRO.SubItems.Add(CATEGORY.Text)
+                    PRO.SubItems.Add(QTY.Text)
+
+                    Dim amt As Double '= Val(MRP.Text) * Val(QTY.Text)
+                    'amt = amt - (amt * Val((DISCOUNT.Text) / 100))
+                    'amt = (amt + (amt * (Val(GST.Text) / 100)))
+                    PRO.SubItems.Add(DISCOUNT.Text)
+                    PRO.SubItems.Add(GST.Text)
+                    PRO.SubItems.Add(Val(MRP.Text))
+                    j = Val(PRO.SubItems(5).Text) - ((Val(PRO.SubItems(5).Text) * (Val(PRO.SubItems(3).Text) / 100)))
+                    amt = j * Val(PRO.SubItems(2).Text)
+                    PRO.SubItems.Add(amt)
+
+                    Call connect()
+                    'ADDING PRODUCT INTO BILL DATA TABLE
+                    query = "insert into bill_data_details values ( '" & BILL_NO.Text & "','" & C_ID.Text & "','" & Label6.Text & "','" & P_NAME.Text & "','" & QTY.Text & "','" & MRP.Text & "'," & Val(GST.Text) & "," & Val(GST.Text) & "," & Val(DIS.Text) & ",curdate(),curdate())"
+                    CMD = New MySqlCommand(query, conn)
+                    READER = CMD.ExecuteReader
+                    'INCREMENT CUSTOMER ID
+                    AutoCustomerIncrementId()
+                    conn.Close()
+
+                    'CLEAR AFTER EACH PRODUCT ENTRY
+                    ClearProducts()
+
+                    P_NAME.Focus()
+                    countdata()
+
+                End If
+            Else
+                MessageBox.Show("Fill All Fields")
+                QTY.Focus()
+            End If
+        End If
     End Sub
 End Class
