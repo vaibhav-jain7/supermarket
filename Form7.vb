@@ -20,7 +20,7 @@ Public Class Form7
         Label6.Text = emp
 
         'INCREMENT CUSTOMER ID
-        AutoCustomerIncrementId()
+        'AutoCustomerIncrementId()
 
         'FORM CREATION DATE & TIME
         TODY_DATE.Text = Today
@@ -45,6 +45,8 @@ Public Class Form7
 
         End While
         conn.Close()
+        'FOCUS ON PHONE NUMBER
+        C_PH.Focus()
 
         ListView1.Columns.Add("Name", 185, HorizontalAlignment.Center)
         ListView1.Columns.Add("Category", 181, HorizontalAlignment.Center)
@@ -56,17 +58,17 @@ Public Class Form7
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If one = 0 Then
-            Call connect()
-            'ADDING CUSTOMER INTO CUSTOMER TABLE
-            query = "insert into customers values ('" & C_ID.Text & "','" & C_NAME.Text & "','" & C_EMAIL.Text & "','" & C_PH.Text & "','" & C_ADD.Text & "',current_date())"
-            CMD = New MySqlCommand(query, conn)
-            READER = CMD.ExecuteReader
-            'INCREMENT CUSTOMER ID
-            AutoCustomerIncrementId()
-            conn.Close()
-        End If
-        one += 1
+        'If one = 0 Then
+        '    Call connect()
+        '    'ADDING CUSTOMER INTO CUSTOMER TABLE
+        '    query = "insert into customers values ('" & C_ID.Text & "','" & C_NAME.Text & "','" & C_EMAIL.Text & "','" & C_PH.Text & "','" & C_ADD.Text & "',current_date())"
+        '    CMD = New MySqlCommand(query, conn)
+        '    READER = CMD.ExecuteReader
+        '    'INCREMENT CUSTOMER ID
+        '    AutoCustomerIncrementId()
+        '    conn.Close()
+        'End If
+        'one += 1
 
         If QTY.Text <> "" Then
             If Val(QTY.Text) = 0 Or Val(MRP.Text) = 0 Or Val(GST.Text) = 0 Or Val(DISCOUNT.Text) = 0 Then
@@ -219,6 +221,24 @@ Public Class Form7
 
         'CALL AUTOINCREMENT FUNCTION TO INCREMENT C_ID 
         AutoCustomerIncrementId()
+    End Sub
+    Private Sub C_PH_TextChanged(sender As Object, e As EventArgs) Handles C_PH.TextChanged
+
+        Call connect()
+
+        query = "select * from customers where ph_no = '" & C_PH.Text & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+
+        While READER.Read
+            C_ID.Text = READER.GetInt32("customer_id")
+            C_NAME.Text = READER.GetString("customer_name")
+            C_ADD.Text = READER.GetString("address")
+            C_EMAIL.Text = READER.GetString("email").ToString
+        End While
+
+        conn.Close()
+
     End Sub
 
     Private Sub P_NAME_TextChanged(sender As Object, e As EventArgs) Handles P_NAME.TextChanged
