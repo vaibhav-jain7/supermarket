@@ -19,4 +19,8 @@ Public Class Form6
         conn.Close()
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Hide()
+        Form7.Show()
+    End Sub
 End Class
