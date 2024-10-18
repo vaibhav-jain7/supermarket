@@ -32,13 +32,11 @@ Partial Class Form7
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TODY_DATE = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.C_ID = New System.Windows.Forms.TextBox()
         Me.C_NAME = New System.Windows.Forms.TextBox()
-        Me.C_ADD = New System.Windows.Forms.TextBox()
         Me.C_EMAIL = New System.Windows.Forms.TextBox()
         Me.C_PH = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -81,6 +79,13 @@ Partial Class Form7
         Me.Label33 = New System.Windows.Forms.Label()
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.P_NAME = New System.Windows.Forms.TextBox()
+        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.SuspendLayout()
         '
         'Label15
@@ -132,7 +137,7 @@ Partial Class Form7
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label3.Location = New System.Drawing.Point(1088, 86)
+        Me.Label3.Location = New System.Drawing.Point(1107, 71)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(55, 20)
         Me.Label3.TabIndex = 38
@@ -142,7 +147,7 @@ Partial Class Form7
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(1088, 112)
+        Me.Label5.Location = New System.Drawing.Point(1107, 97)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(72, 20)
         Me.Label5.TabIndex = 40
@@ -152,7 +157,7 @@ Partial Class Form7
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(1178, 112)
+        Me.Label6.Location = New System.Drawing.Point(1197, 97)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(57, 20)
         Me.Label6.TabIndex = 41
@@ -174,27 +179,17 @@ Partial Class Form7
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(32, 173)
+        Me.Label4.Location = New System.Drawing.Point(38, 185)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(66, 24)
         Me.Label4.TabIndex = 44
         Me.Label4.Text = "NAME"
         '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(32, 211)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(99, 24)
-        Me.Label7.TabIndex = 45
-        Me.Label7.Text = "ADDRESS"
-        '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(32, 285)
+        Me.Label8.Location = New System.Drawing.Point(38, 262)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(117, 24)
         Me.Label8.TabIndex = 46
@@ -204,7 +199,7 @@ Partial Class Form7
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(32, 248)
+        Me.Label9.Location = New System.Drawing.Point(38, 225)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(66, 24)
         Me.Label9.TabIndex = 47
@@ -214,7 +209,7 @@ Partial Class Form7
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(32, 134)
+        Me.Label10.Location = New System.Drawing.Point(38, 146)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(139, 24)
         Me.Label10.TabIndex = 48
@@ -224,39 +219,34 @@ Partial Class Form7
         '
         Me.C_ID.Enabled = False
         Me.C_ID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.C_ID.Location = New System.Drawing.Point(204, 133)
+        Me.C_ID.Location = New System.Drawing.Point(210, 145)
         Me.C_ID.Name = "C_ID"
         Me.C_ID.Size = New System.Drawing.Size(208, 26)
         Me.C_ID.TabIndex = 50
         '
         'C_NAME
         '
+        Me.C_NAME.Enabled = False
         Me.C_NAME.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.C_NAME.Location = New System.Drawing.Point(204, 172)
+        Me.C_NAME.Location = New System.Drawing.Point(210, 184)
         Me.C_NAME.Name = "C_NAME"
         Me.C_NAME.Size = New System.Drawing.Size(208, 26)
         Me.C_NAME.TabIndex = 51
         '
-        'C_ADD
-        '
-        Me.C_ADD.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.C_ADD.Location = New System.Drawing.Point(203, 209)
-        Me.C_ADD.Name = "C_ADD"
-        Me.C_ADD.Size = New System.Drawing.Size(208, 26)
-        Me.C_ADD.TabIndex = 52
-        '
         'C_EMAIL
         '
+        Me.C_EMAIL.Enabled = False
         Me.C_EMAIL.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.C_EMAIL.Location = New System.Drawing.Point(204, 247)
+        Me.C_EMAIL.Location = New System.Drawing.Point(210, 224)
         Me.C_EMAIL.Name = "C_EMAIL"
         Me.C_EMAIL.Size = New System.Drawing.Size(208, 26)
         Me.C_EMAIL.TabIndex = 53
         '
         'C_PH
         '
+        Me.C_PH.Enabled = False
         Me.C_PH.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.C_PH.Location = New System.Drawing.Point(204, 284)
+        Me.C_PH.Location = New System.Drawing.Point(210, 261)
         Me.C_PH.Name = "C_PH"
         Me.C_PH.Size = New System.Drawing.Size(208, 26)
         Me.C_PH.TabIndex = 54
@@ -601,7 +591,7 @@ Partial Class Form7
         '
         Me.TIME.AutoSize = True
         Me.TIME.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TIME.Location = New System.Drawing.Point(1172, 86)
+        Me.TIME.Location = New System.Drawing.Point(1191, 71)
         Me.TIME.Name = "TIME"
         Me.TIME.Size = New System.Drawing.Size(60, 20)
         Me.TIME.TabIndex = 93
@@ -633,6 +623,7 @@ Partial Class Form7
         '
         'ListView1
         '
+        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7})
         Me.ListView1.FullRowSelect = True
         Me.ListView1.GridLines = True
         Me.ListView1.HideSelection = False
@@ -650,6 +641,47 @@ Partial Class Form7
         Me.P_NAME.Name = "P_NAME"
         Me.P_NAME.Size = New System.Drawing.Size(208, 26)
         Me.P_NAME.TabIndex = 55
+        '
+        'ColumnHeader1
+        '
+        Me.ColumnHeader1.Text = "NAME"
+        Me.ColumnHeader1.Width = 185
+        '
+        'ColumnHeader2
+        '
+        Me.ColumnHeader2.Text = "CATEGORY"
+        Me.ColumnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ColumnHeader2.Width = 181
+        '
+        'ColumnHeader3
+        '
+        Me.ColumnHeader3.Text = "QUANTITY"
+        Me.ColumnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ColumnHeader3.Width = 181
+        '
+        'ColumnHeader4
+        '
+        Me.ColumnHeader4.Text = "DISCOUNT"
+        Me.ColumnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ColumnHeader4.Width = 181
+        '
+        'ColumnHeader5
+        '
+        Me.ColumnHeader5.Text = "GST"
+        Me.ColumnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ColumnHeader5.Width = 180
+        '
+        'ColumnHeader6
+        '
+        Me.ColumnHeader6.Text = "MRP"
+        Me.ColumnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ColumnHeader6.Width = 180
+        '
+        'ColumnHeader7
+        '
+        Me.ColumnHeader7.Text = "TOTAL AMT"
+        Me.ColumnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ColumnHeader7.Width = 180
         '
         'Form7
         '
@@ -697,13 +729,11 @@ Partial Class Form7
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.C_PH)
         Me.Controls.Add(Me.C_EMAIL)
-        Me.Controls.Add(Me.C_ADD)
         Me.Controls.Add(Me.C_NAME)
         Me.Controls.Add(Me.C_ID)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.TODY_DATE)
         Me.Controls.Add(Me.Label6)
@@ -730,13 +760,11 @@ Partial Class Form7
     Friend WithEvents Label6 As Label
     Friend WithEvents TODY_DATE As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents C_ID As TextBox
     Friend WithEvents C_NAME As TextBox
-    Friend WithEvents C_ADD As TextBox
     Friend WithEvents C_EMAIL As TextBox
     Friend WithEvents C_PH As TextBox
     Friend WithEvents Label13 As Label
@@ -779,4 +807,11 @@ Partial Class Form7
     Friend WithEvents Label33 As Label
     Friend WithEvents ListView1 As ListView
     Friend WithEvents P_NAME As TextBox
+    Friend WithEvents ColumnHeader1 As ColumnHeader
+    Friend WithEvents ColumnHeader2 As ColumnHeader
+    Friend WithEvents ColumnHeader3 As ColumnHeader
+    Friend WithEvents ColumnHeader4 As ColumnHeader
+    Friend WithEvents ColumnHeader5 As ColumnHeader
+    Friend WithEvents ColumnHeader6 As ColumnHeader
+    Friend WithEvents ColumnHeader7 As ColumnHeader
 End Class

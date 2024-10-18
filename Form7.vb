@@ -1,5 +1,6 @@
 'Imports System.IO.Pipelines
 'Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports Google.Protobuf.Collections
 Imports MySql.Data.MySqlClient
 'Imports Mysqlx.Crud
 'Imports Mysqlx.Prepare
@@ -32,43 +33,30 @@ Public Class Form7
         'GENERATE BILL NUMBER
         Call connect()
 
-        query = "select max(bill_id) from bill_data_details"
+        'LOAD CUSTOMER INFO
+        LoadCustomer()
+
+    End Sub
+
+    Public Sub LoadCustomer()
+        Call connect()
+
+        query = "select * from customers where customer_id = '" & cust_id & "'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
         While READER.Read
-            If READER(0).ToString = "" Then
-                BILL_NO.Text = 25010001
-            Else
-                BILL_NO.Text = READER(0) + 1
-            End If
-
+            C_ID.Text = READER.GetString("customer_id")
+            C_NAME.Text = READER.GetString("customer_name")
+            C_EMAIL.Text = READER.GetString("email")
+            C_PH.Text = READER.GetString("ph_no")
         End While
-        conn.Close()
-        'FOCUS ON PHONE NUMBER
-        C_PH.Focus()
 
-        ListView1.Columns.Add("Name", 185, HorizontalAlignment.Center)
-        ListView1.Columns.Add("Category", 181, HorizontalAlignment.Center)
-        ListView1.Columns.Add("Quantity", 181, HorizontalAlignment.Center)
-        ListView1.Columns.Add("Discount", 181, HorizontalAlignment.Center)
-        ListView1.Columns.Add("GST", 180, HorizontalAlignment.Center)
-        ListView1.Columns.Add("MRP", 180, HorizontalAlignment.Center)
-        ListView1.Columns.Add("TOTAL AMT", 180, HorizontalAlignment.Center)
+
+        conn.Close()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        'If one = 0 Then
-        '    Call connect()
-        '    'ADDING CUSTOMER INTO CUSTOMER TABLE
-        '    query = "insert into customers values ('" & C_ID.Text & "','" & C_NAME.Text & "','" & C_EMAIL.Text & "','" & C_PH.Text & "','" & C_ADD.Text & "',current_date())"
-        '    CMD = New MySqlCommand(query, conn)
-        '    READER = CMD.ExecuteReader
-        '    'INCREMENT CUSTOMER ID
-        '    AutoCustomerIncrementId()
-        '    conn.Close()
-        'End If
-        'one += 1
 
         If QTY.Text <> "" Then
             If Val(QTY.Text) = 0 Or Val(MRP.Text) = 0 Or Val(GST.Text) = 0 Or Val(DISCOUNT.Text) = 0 Then
@@ -216,29 +204,11 @@ Public Class Form7
     Public Sub ClearTextBoxes()
         C_NAME.Clear()
         C_EMAIL.Clear()
-        C_ADD.Clear()
+        'C_ADD.Clear()
         C_PH.Clear()
 
         'CALL AUTOINCREMENT FUNCTION TO INCREMENT C_ID 
         AutoCustomerIncrementId()
-    End Sub
-    Private Sub C_PH_TextChanged(sender As Object, e As EventArgs) Handles C_PH.TextChanged
-
-        Call connect()
-
-        query = "select * from customers where ph_no = '" & C_PH.Text & "'"
-        CMD = New MySqlCommand(query, conn)
-        READER = CMD.ExecuteReader
-
-        While READER.Read
-            C_ID.Text = READER.GetInt32("customer_id")
-            C_NAME.Text = READER.GetString("customer_name")
-            C_ADD.Text = READER.GetString("address")
-            C_EMAIL.Text = READER.GetString("email").ToString
-        End While
-
-        conn.Close()
-
     End Sub
 
     Private Sub P_NAME_TextChanged(sender As Object, e As EventArgs) Handles P_NAME.TextChanged
@@ -312,17 +282,6 @@ Public Class Form7
 
     Private Sub QTY_KeyUp(sender As Object, e As KeyEventArgs) Handles QTY.KeyUp
         If e.KeyValue = Keys.Enter Then
-            If one = 0 Then
-                Call connect()
-                'ADDING CUSTOMER INTO CUSTOMER TABLE
-                query = "insert into customers values ('" & C_ID.Text & "','" & C_NAME.Text & "','" & C_EMAIL.Text & "','" & C_PH.Text & "','" & C_ADD.Text & "',current_date())"
-                CMD = New MySqlCommand(query, conn)
-                READER = CMD.ExecuteReader
-                'INCREMENT CUSTOMER ID
-                AutoCustomerIncrementId()
-                conn.Close()
-            End If
-            one += 1
 
             If QTY.Text <> "" Then
                 If Val(QTY.Text) = 0 Or Val(MRP.Text) = 0 Or Val(GST.Text) = 0 Or Val(DISCOUNT.Text) = 0 Then
