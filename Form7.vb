@@ -30,9 +30,6 @@ Public Class Form7
         MODIFY.Enabled = False
         DELETE.Enabled = False
 
-        'GENERATE BILL NUMBER
-        Call connect()
-
         'LOAD CUSTOMER INFO
         LoadCustomer()
 
@@ -201,6 +198,25 @@ Public Class Form7
         ListView1.Refresh()
     End Sub
 
+    Private Sub P_ID_TextChanged(sender As Object, e As EventArgs) Handles P_ID.TextChanged
+        Call connect()
+
+        query = "select * from products where product_id = " & P_ID.Text
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+
+        While READER.Read
+            P_NAME.Text = READER.GetString("product_name")
+            MsgBox(P_NAME.Text)
+            CATEGORY.Text = READER.GetString("category_name")
+            MRP.Text = READER.GetDouble("mrp")
+            GST.Text = READER.GetDouble("gst")
+            DISCOUNT.Text = READER.GetDouble("discount").ToString
+        End While
+
+        conn.Close()
+    End Sub
+
     Public Sub ClearTextBoxes()
         C_NAME.Clear()
         C_EMAIL.Clear()
@@ -220,6 +236,7 @@ Public Class Form7
         READER = CMD.ExecuteReader
 
         While READER.Read
+            P_ID.Text = READER.GetInt32("product_id")
             CATEGORY.Text = READER.GetString("category_name")
             MRP.Text = READER.GetDouble("mrp")
             GST.Text = READER.GetDouble("gst")
