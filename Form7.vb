@@ -43,10 +43,12 @@ Public Class Form7
         READER = CMD.ExecuteReader
 
         While READER.Read
+
             C_ID.Text = READER.GetString("customer_id")
             C_NAME.Text = READER.GetString("customer_name")
             C_EMAIL.Text = READER.GetString("email")
             C_PH.Text = READER.GetString("ph_no")
+
         End While
 
 
@@ -182,6 +184,11 @@ Public Class Form7
 
     End Sub
 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Me.Hide()
+        Form6.Show()
+    End Sub
+
     Public Sub AutoCustomerIncrementId()
         Call connect()
         query = "select max(customer_id) from customers"
@@ -201,7 +208,7 @@ Public Class Form7
     Private Sub P_ID_TextChanged(sender As Object, e As EventArgs) Handles P_ID.TextChanged
         Call connect()
 
-        query = "select * from products where product_id = " & P_ID.Text
+        query = "select * from products where product_id = " & Val(P_ID.Text) & ""
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
@@ -217,35 +224,25 @@ Public Class Form7
         conn.Close()
     End Sub
 
-    Public Sub ClearTextBoxes()
-        C_NAME.Clear()
-        C_EMAIL.Clear()
-        'C_ADD.Clear()
-        C_PH.Clear()
-
-        'CALL AUTOINCREMENT FUNCTION TO INCREMENT C_ID 
-        AutoCustomerIncrementId()
-    End Sub
-
-    Private Sub P_NAME_TextChanged(sender As Object, e As EventArgs) Handles P_NAME.TextChanged
-
-        Call connect()
-
-        query = "select * from products where product_name = '" & P_NAME.Text & "'"
-        CMD = New MySqlCommand(query, conn)
-        READER = CMD.ExecuteReader
-
-        While READER.Read
-            P_ID.Text = READER.GetInt32("product_id")
-            CATEGORY.Text = READER.GetString("category_name")
-            MRP.Text = READER.GetDouble("mrp")
-            GST.Text = READER.GetDouble("gst")
-            DISCOUNT.Text = READER.GetDouble("discount").ToString
-        End While
-
-        conn.Close()
-
-    End Sub
+    'Private Sub P_NAME_TextChanged(sender As Object, e As EventArgs) Handles P_NAME.TextChanged
+    '
+    '    Call connect()
+    '
+    '    query = "select * from products where product_name = '" & P_NAME.Text & "'"
+    '    CMD = New MySqlCommand(query, conn)
+    '    READER = CMD.ExecuteReader
+    '
+    '    While READER.Read
+    '        P_ID.Text = READER.GetInt32("product_id")
+    '        CATEGORY.Text = READER.GetString("category_name")
+    '        MRP.Text = READER.GetDouble("mrp")
+    '        GST.Text = READER.GetDouble("gst")
+    '        DISCOUNT.Text = READER.GetDouble("discount").ToString
+    '    End While
+    '
+    '    conn.Close()
+    '
+    'End Sub
 
     Public Sub countdata()
         Label33.Text = ListView1.Items.Count
@@ -292,7 +289,6 @@ Public Class Form7
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         ClearProducts()
-        ClearTextBoxes()
         MODIFY.Enabled = False
         DELETE.Enabled = False
     End Sub

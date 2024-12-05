@@ -88,6 +88,7 @@ Partial Class Form7
         Me.P_NAME = New System.Windows.Forms.TextBox()
         Me.P_ID = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label15
@@ -703,11 +704,22 @@ Partial Class Form7
         Me.Label7.TabIndex = 98
         Me.Label7.Text = "PRODUCT ID"
         '
+        'Button2
+        '
+        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Location = New System.Drawing.Point(1165, 8)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(106, 43)
+        Me.Button2.TabIndex = 99
+        Me.Button2.Text = "< BACK"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'Form7
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1279, 716)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.P_ID)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.P_NAME)
@@ -838,4 +850,5 @@ Partial Class Form7
     Friend WithEvents ColumnHeader7 As ColumnHeader
     Friend WithEvents P_ID As TextBox
     Friend WithEvents Label7 As Label
+    Friend WithEvents Button2 As Button
 End Class

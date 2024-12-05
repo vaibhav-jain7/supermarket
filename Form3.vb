@@ -7,6 +7,7 @@ Public Class Form3
     Dim query As String
 
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         If User = "ADMIN" Then
             Label1.Text = "ADMINISTRATOR LOGIN"
         ElseIf User = "MANAGER" Then
