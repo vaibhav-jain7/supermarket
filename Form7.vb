@@ -33,6 +33,21 @@ Public Class Form7
         'LOAD CUSTOMER INFO
         LoadCustomer()
 
+        Call connect()
+
+        query = "select max(bill_id) from bill_data_details"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+        While READER.Read
+            If READER(0).ToString = "" Then
+                BILL_NO.Text = 20250001
+            Else
+                BILL_NO.Text = Val(READER(0) + 1)
+            End If
+        End While
+        conn.Close()
+
+
     End Sub
 
     Public Sub LoadCustomer()
@@ -79,11 +94,12 @@ Public Class Form7
 
                 Call connect()
                 'ADDING PRODUCT INTO BILL DATA TABLE
-                query = "insert into bill_data_details values ( '" & BILL_NO.Text & "','" & C_ID.Text & "','" & Label6.Text & "','" & P_NAME.Text & "','" & QTY.Text & "','" & MRP.Text & "'," & Val(GST.Text) & "," & Val(GST.Text) & "," & Val(DIS.Text) & ",curdate(),curdate())"
+                query = "insert into bill_data values ( '" & BILL_NO.Text & "','" & P_ID.Text & "','" & P_NAME.Text & "','" & QTY.Text & "','" & MRP.Text & "'," & Val(DISCOUNT.Text) & "," & amt & "," & Val(GST.Text) & ")"
                 CMD = New MySqlCommand(query, conn)
                 READER = CMD.ExecuteReader
+
                 'INCREMENT CUSTOMER ID
-                AutoCustomerIncrementId()
+                'AutoCustomerIncrementId()
                 conn.Close()
 
                 'CLEAR AFTER EACH PRODUCT ENTRY
@@ -105,11 +121,6 @@ Public Class Form7
     End Sub
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        MessageBox.Show("Under Develop.")
-
-    End Sub
-
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         MessageBox.Show("Under Develop.")
 
     End Sub
@@ -137,6 +148,7 @@ Public Class Form7
             GST.Text = ListView1.SelectedItems(0).SubItems(4).Text
             DISCOUNT.Text = ListView1.SelectedItems(0).SubItems(3).Text
         End If
+        MessageBox.Show("Something is Selected")
         MODIFY.Enabled = True
         DELETE.Enabled = True
     End Sub
@@ -180,30 +192,39 @@ Public Class Form7
         P_NAME.Focus()
     End Sub
 
-    Private Sub QTY_TextChanged(sender As Object, e As EventArgs) Handles QTY.TextChanged
-
-    End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.Hide()
         Form6.Show()
     End Sub
 
-    Public Sub AutoCustomerIncrementId()
+    Private Sub BILL_Click(sender As Object, e As EventArgs) Handles BILL.Click
+
         Call connect()
-        query = "select max(customer_id) from customers"
+
+        query = "insert into bill_data_details values ('" & BILL_NO.Text & "','" & C_ID.Text & "','" & emp & "','" & Label22.Text & "','" & Label26.Text & "','" & Label24.Text & "',current_date(), TIME_FORMAT(current_time(), '%h %i %s %p'))"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
-        While READER.Read
-            If READER(0).ToString = "" Then
-                C_ID.Text = 20251
-            Else
-                C_ID.Text = Val(READER(0) + 1)
-            End If
-        End While
+
         conn.Close()
-        ListView1.Refresh()
+
     End Sub
+
+    'Public Sub AutoCustomerIncrementId()
+    '    Call connect()
+    '    query = "select max(customer_id) from customers"
+    '    CMD = New MySqlCommand(query, conn)
+    '    READER = CMD.ExecuteReader
+    '    While READER.Read
+    '        If READER(0).ToString = "" Then
+    '            C_ID.Text = 20251
+    '        Else
+    '            C_ID.Text = Val(READER(0) + 1)
+    '        End If
+    '    End While
+    '    conn.Close()
+    '    ListView1.Refresh()
+    'End Sub
 
     Private Sub P_ID_TextChanged(sender As Object, e As EventArgs) Handles P_ID.TextChanged
         Call connect()
@@ -214,7 +235,7 @@ Public Class Form7
 
         While READER.Read
             P_NAME.Text = READER.GetString("product_name")
-            MsgBox(P_NAME.Text)
+            'MessageBox.Show(P_NAME.Text)
             CATEGORY.Text = READER.GetString("category_name")
             MRP.Text = READER.GetDouble("mrp")
             GST.Text = READER.GetDouble("gst")
@@ -275,10 +296,10 @@ Public Class Form7
         Next
 
         Label23.Text = QTY_CNT
-        Label24.Text = "Rs. " & ITM_DIS.ToString()
-        Label22.Text = "Rs. " & TOT_AMT
+        Label24.Text = ITM_DIS.ToString()
+        Label22.Text = TOT_AMT
         Label25.Text = "Rs. " & total_mrp
-        Label26.Text = "Rs. " & ITM_GST
+        Label26.Text = ITM_GST
         Label28.Text = "Rs. " & ITM_GST / 2
         Label30.Text = "Rs. " & ITM_GST / 2
     End Sub
@@ -307,8 +328,10 @@ Public Class Form7
                     PRO.SubItems.Add(QTY.Text)
 
                     Dim amt As Double '= Val(MRP.Text) * Val(QTY.Text)
+
                     'amt = amt - (amt * Val((DISCOUNT.Text) / 100))
                     'amt = (amt + (amt * (Val(GST.Text) / 100)))
+
                     PRO.SubItems.Add(DISCOUNT.Text)
                     PRO.SubItems.Add(GST.Text)
                     PRO.SubItems.Add(Val(MRP.Text))
@@ -321,8 +344,10 @@ Public Class Form7
                     query = "insert into bill_data_details values ( '" & BILL_NO.Text & "','" & C_ID.Text & "','" & Label6.Text & "','" & P_NAME.Text & "','" & QTY.Text & "','" & MRP.Text & "'," & Val(GST.Text) & "," & Val(GST.Text) & "," & Val(DIS.Text) & ",curdate(),curdate())"
                     CMD = New MySqlCommand(query, conn)
                     READER = CMD.ExecuteReader
+
                     'INCREMENT CUSTOMER ID
-                    AutoCustomerIncrementId()
+                    'AutoCustomerIncrementId()
+
                     conn.Close()
 
                     'CLEAR AFTER EACH PRODUCT ENTRY

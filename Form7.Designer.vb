@@ -67,7 +67,7 @@ Partial Class Form7
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
+        Me.BILL = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.GST = New System.Windows.Forms.TextBox()
@@ -89,6 +89,9 @@ Partial Class Form7
         Me.P_ID = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.Label36 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label15
@@ -132,9 +135,9 @@ Partial Class Form7
         Me.BILL_NO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BILL_NO.Location = New System.Drawing.Point(91, 61)
         Me.BILL_NO.Name = "BILL_NO"
-        Me.BILL_NO.Size = New System.Drawing.Size(81, 20)
+        Me.BILL_NO.Size = New System.Drawing.Size(65, 20)
         Me.BILL_NO.TabIndex = 37
-        Me.BILL_NO.Text = "20250001"
+        Me.BILL_NO.Text = "Bill_NO."
         '
         'Label3
         '
@@ -375,11 +378,11 @@ Partial Class Form7
         '
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.Location = New System.Drawing.Point(1123, 679)
+        Me.Label22.Location = New System.Drawing.Point(1141, 677)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(52, 22)
+        Me.Label22.Size = New System.Drawing.Size(20, 22)
         Me.Label22.TabIndex = 69
-        Me.Label22.Text = "Rs. 0"
+        Me.Label22.Text = "0"
         '
         'Label23
         '
@@ -395,31 +398,31 @@ Partial Class Form7
         '
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label24.Location = New System.Drawing.Point(1208, 646)
+        Me.Label24.Location = New System.Drawing.Point(1232, 646)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(41, 17)
+        Me.Label24.Size = New System.Drawing.Size(16, 17)
         Me.Label24.TabIndex = 71
-        Me.Label24.Text = "Rs. 0"
+        Me.Label24.Text = "0"
         '
         'Label25
         '
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.Location = New System.Drawing.Point(1208, 622)
+        Me.Label25.Location = New System.Drawing.Point(1204, 622)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(41, 17)
+        Me.Label25.Size = New System.Drawing.Size(45, 17)
         Me.Label25.TabIndex = 72
-        Me.Label25.Text = "Rs. 0"
+        Me.Label25.Text = " Rs. 0"
         '
         'Label26
         '
         Me.Label26.AutoSize = True
         Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.Location = New System.Drawing.Point(120, 657)
+        Me.Label26.Location = New System.Drawing.Point(145, 657)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(41, 17)
+        Me.Label26.Size = New System.Drawing.Size(16, 17)
         Me.Label26.TabIndex = 73
-        Me.Label26.Text = "Rs. 0"
+        Me.Label26.Text = "0"
         '
         'Label27
         '
@@ -531,15 +534,15 @@ Partial Class Form7
         Me.Button6.Text = "DRAFT"
         Me.Button6.UseVisualStyleBackColor = True
         '
-        'Button7
+        'BILL
         '
-        Me.Button7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button7.Location = New System.Drawing.Point(633, 682)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(101, 29)
-        Me.Button7.TabIndex = 85
-        Me.Button7.Text = "BILL"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.BILL.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BILL.Location = New System.Drawing.Point(633, 682)
+        Me.BILL.Name = "BILL"
+        Me.BILL.Size = New System.Drawing.Size(101, 29)
+        Me.BILL.TabIndex = 85
+        Me.BILL.Text = "BILL"
+        Me.BILL.UseVisualStyleBackColor = True
         '
         'Button8
         '
@@ -692,7 +695,7 @@ Partial Class Form7
         Me.P_ID.Location = New System.Drawing.Point(801, 97)
         Me.P_ID.Name = "P_ID"
         Me.P_ID.Size = New System.Drawing.Size(208, 24)
-        Me.P_ID.TabIndex = 97
+        Me.P_ID.TabIndex = 54
         '
         'Label7
         '
@@ -714,6 +717,36 @@ Partial Class Form7
         Me.Button2.Text = "< BACK"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label34.Location = New System.Drawing.Point(120, 657)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(33, 17)
+        Me.Label34.TabIndex = 100
+        Me.Label34.Text = "Rs. "
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label35.Location = New System.Drawing.Point(1107, 677)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(42, 22)
+        Me.Label35.TabIndex = 101
+        Me.Label35.Text = "Rs. "
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label36.Location = New System.Drawing.Point(1204, 646)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(37, 17)
+        Me.Label36.TabIndex = 102
+        Me.Label36.Text = " Rs. "
+        '
         'Form7
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -732,7 +765,7 @@ Partial Class Form7
         Me.Controls.Add(Me.Label32)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.Button8)
-        Me.Controls.Add(Me.Button7)
+        Me.Controls.Add(Me.BILL)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button4)
@@ -777,6 +810,9 @@ Partial Class Form7
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.Label34)
+        Me.Controls.Add(Me.Label35)
+        Me.Controls.Add(Me.Label36)
         Me.Name = "Form7"
         Me.Padding = New System.Windows.Forms.Padding(10)
         Me.Text = "Form7"
@@ -829,7 +865,7 @@ Partial Class Form7
     Friend WithEvents Button4 As Button
     Friend WithEvents Button5 As Button
     Friend WithEvents Button6 As Button
-    Friend WithEvents Button7 As Button
+    Friend WithEvents BILL As Button
     Friend WithEvents Button8 As Button
     Friend WithEvents Label12 As Label
     Friend WithEvents GST As TextBox
@@ -851,4 +887,7 @@ Partial Class Form7
     Friend WithEvents P_ID As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Button2 As Button
+    Friend WithEvents Label34 As Label
+    Friend WithEvents Label35 As Label
+    Friend WithEvents Label36 As Label
 End Class

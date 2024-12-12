@@ -16,6 +16,9 @@ Public Class Form3
             Label1.Text = "EMPLOYEE LOGIN"
         End If
 
+        TextBox1.Text = ""
+        TextBox2.Text = ""
+
         'Center Label According to the User
         Label1.Left = (Me.ClientSize.Width - Label1.Width) / 2
 
