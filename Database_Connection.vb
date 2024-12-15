@@ -6,11 +6,12 @@ Module Database_Connection
     Public User As String
     Public admin As String
     Public emp As String
+    Public cust_id As String
 
     Public conn As MySqlConnection
     Public Sub connect()
         conn = New MySqlConnection
-        conn.ConnectionString = "server=localhost;user=root;password='qwerty123';database=super_market"
+        conn.ConnectionString = "server=localhost;user=root;password='rohitdev';database=super_market"
         conn.Open()
         If conn.State <> ConnectionState.Open Then
             MessageBox.Show("No Connection")

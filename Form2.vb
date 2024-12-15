@@ -193,4 +193,9 @@ Public Class Form2
     Private Sub E_ID_TextChanged(sender As Object, e As EventArgs) Handles E_ID.TextChanged
 
     End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Me.Hide()
+        Form5.Show()
+    End Sub
 End Class

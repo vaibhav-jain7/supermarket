@@ -90,13 +90,14 @@ Public Class Form1
             query = "insert into products values ('" & P_ID.Text & "','" & P_NAME.Text & "','" & Brand.Text & "', '" & C_NAME.Text & "','" & STK_QTY.Text & "','" & PUR_PRICE.Text & "','" & MRP.Text & "'," & Val(GST.Text) & "," & Val(DIS.Text) & ",curdate())"
             CMD = New MySqlCommand(query, conn)
             READER = CMD.ExecuteReader
+            conn.Close()
+
             'SHOW PRODUCT TABLE AFTER ADDING NEW PRODUCT
             ShowProductTable()
             'CALL AUTOINCREMENT FUNCTION TO SET PRODUCT_ID 
             AutoIncrementId()
             'CLEAR ALL FORM FEILDS AFTER ADDINF PRODUCT
             ClearTextBoxes()
-            conn.Close()
         Else
             MessageBox.Show("Fill All Fields")
         End If
@@ -204,4 +205,8 @@ Public Class Form1
         conn.Close()
     End Sub
 
+    Private Sub Button5_Click_1(sender As Object, e As EventArgs) Handles Button5.Click
+        Me.Hide()
+        Form5.Show()
+    End Sub
 End Class

@@ -7,6 +7,7 @@ Public Class Form3
     Dim query As String
 
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         If User = "ADMIN" Then
             Label1.Text = "ADMINISTRATOR LOGIN"
         ElseIf User = "MANAGER" Then
@@ -14,6 +15,9 @@ Public Class Form3
         ElseIf User = "EMPLOYEE" Then
             Label1.Text = "EMPLOYEE LOGIN"
         End If
+
+        TextBox1.Text = ""
+        TextBox2.Text = ""
 
         'Center Label According to the User
         Label1.Left = (Me.ClientSize.Width - Label1.Width) / 2

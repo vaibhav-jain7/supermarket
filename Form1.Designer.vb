@@ -50,6 +50,7 @@ Partial Class Form1
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.GST = New System.Windows.Forms.TextBox()
+        Me.Button5 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -353,12 +354,22 @@ Partial Class Form1
         Me.GST.Size = New System.Drawing.Size(191, 29)
         Me.GST.TabIndex = 9
         '
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(23, 17)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(101, 40)
+        Me.Button5.TabIndex = 34
+        Me.Button5.Text = "< BACK"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1256, 751)
+        Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
@@ -422,4 +433,5 @@ Partial Class Form1
     Friend WithEvents Button4 As Button
     Friend WithEvents Label15 As Label
     Friend WithEvents GST As TextBox
+    Friend WithEvents Button5 As Button
 End Class
