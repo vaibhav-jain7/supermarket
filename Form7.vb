@@ -1,9 +1,4 @@
-'Imports System.IO.Pipelines
-'Imports System.Windows.Forms.VisualStyles.VisualStyleElement
-Imports Google.Protobuf.Collections
 Imports MySql.Data.MySqlClient
-'Imports Mysqlx.Crud
-'Imports Mysqlx.Prepare
 
 Public Class Form7
 
@@ -35,7 +30,7 @@ Public Class Form7
 
         Call connect()
 
-        query = "select max(bill_id) from bill_data_details"
+        query = "select max(bill_id) from biling_details"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
         While READER.Read
@@ -73,39 +68,57 @@ Public Class Form7
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
         If QTY.Text <> "" Then
-            If Val(QTY.Text) = 0 Or Val(MRP.Text) = 0 Or Val(GST.Text) = 0 Or Val(DISCOUNT.Text) = 0 Then
+            If Val(QTY.Text) = 0 Then
                 MessageBox.Show("Value Can't be Zero")
             Else
-                Dim j As Double = 0
-                Dim PRO As ListViewItem
-                PRO = ListView1.Items.Add(P_NAME.Text.ToUpper)
-                PRO.SubItems.Add(CATEGORY.Text)
-                PRO.SubItems.Add(QTY.Text)
 
-                Dim amt As Double '= Val(MRP.Text) * Val(QTY.Text)
-                'amt = amt - (amt * Val((DISCOUNT.Text) / 100))
-                'amt = (amt + (amt * (Val(GST.Text) / 100)))
-                PRO.SubItems.Add(DISCOUNT.Text)
-                PRO.SubItems.Add(GST.Text)
-                PRO.SubItems.Add(Val(MRP.Text))
-                j = Val(PRO.SubItems(5).Text) - ((Val(PRO.SubItems(5).Text) * (Val(PRO.SubItems(3).Text) / 100)))
-                amt = j * Val(PRO.SubItems(2).Text)
-                PRO.SubItems.Add(amt)
+                Dim check As Boolean = False
+                Dim quantity As Integer = 1
+                Dim amt As Double
+                Dim dis As Double
+                Dim mrp_ As Double
+                Dim gst_ As Double
 
                 Call connect()
-                'ADDING PRODUCT INTO BILL DATA TABLE
-                query = "insert into bill_data values ( '" & BILL_NO.Text & "','" & P_ID.Text & "','" & P_NAME.Text & "','" & QTY.Text & "','" & MRP.Text & "'," & Val(DISCOUNT.Text) & "," & amt & "," & Val(GST.Text) & ")"
+                query = "select p_qty,p_amt,p_dis,p_gst,p_mrp from bill_data where bill_no = '" & BILL_NO.Text & "' and p_id = '" & P_ID.Text & "'"
                 CMD = New MySqlCommand(query, conn)
                 READER = CMD.ExecuteReader
 
-                'INCREMENT CUSTOMER ID
-                'AutoCustomerIncrementId()
+                While READER.Read
+                    check = True
+                    quantity = Val(READER(0))
+                    amt = Val(READER(1))
+                    dis = Val(READER(2))
+                    gst_ = Val(READER(3))
+                    mrp_ = Val(READER(4))
+                End While
                 conn.Close()
 
-                'CLEAR AFTER EACH PRODUCT ENTRY
-                ClearProducts()
+                If check Then
 
-                P_NAME.Focus()
+                    Dim newAmt As Double = (mrp_ * (100 - dis)) / 100
+                    newAmt = (Val(QTY.Text) * (newAmt * (100 + gst_)) / 100)
+
+                    Call connect()
+                    query = "update bill_data set p_qty = '" & quantity + Val(QTY.Text) & "', p_amt = '" & amt + newAmt & "' where bill_no = '" & BILL_NO.Text & "' and p_id = '" & P_ID.Text & "'"
+                    CMD = New MySqlCommand(query, conn)
+                    READER = CMD.ExecuteReader
+                    conn.Close()
+
+                Else
+                    Dim newAmt As Double = (Val(MRP.Text) * (100 - Val(DISCOUNT.Text))) / 100
+                    newAmt = (newAmt * (100 + Val(GST.Text))) / 100
+
+                    Call connect()
+                    query = "insert into bill_data values ( '" & BILL_NO.Text & "','" & P_ID.Text & "','" & P_NAME.Text & "','1','" & MRP.Text & "'," & Val(DISCOUNT.Text) & "," & newAmt & "," & Val(GST.Text) & ")"
+                    CMD = New MySqlCommand(query, conn)
+                    READER = CMD.ExecuteReader
+                    conn.Close()
+
+                End If
+
+                P_ID.Focus()
+                LoadData()
                 countdata()
 
             End If
@@ -113,6 +126,31 @@ Public Class Form7
             MessageBox.Show("Fill All Fields")
             QTY.Focus()
         End If
+
+    End Sub
+
+    Public Sub LoadData()
+
+        Call connect()
+        query = "select * from bill_data where bill_no = '" & BILL_NO.Text & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+
+        Dim PRO As ListViewItem
+        ListView1.Items.Clear()
+
+        While READER.Read
+            PRO = ListView1.Items.Add(READER.GetString("p_name"))
+            PRO.SubItems.Add(READER.GetString("p_qty"))
+
+            PRO.SubItems.Add(READER.GetString("p_dis"))
+            PRO.SubItems.Add(READER.GetString("p_gst"))
+            PRO.SubItems.Add(READER.GetString("p_mrp"))
+            PRO.SubItems.Add(READER.GetString("p_amt"))
+
+        End While
+
+        conn.Close()
 
     End Sub
 
@@ -143,12 +181,10 @@ Public Class Form7
         If ListView1.SelectedItems.Count > 0 Then
             P_NAME.Text = ListView1.SelectedItems(0).SubItems(0).Text
             QTY.Text = ListView1.SelectedItems(0).SubItems(2).Text
-            CATEGORY.Text = ListView1.SelectedItems(0).SubItems(1).Text
             MRP.Text = ListView1.SelectedItems(0).SubItems(5).Text
             GST.Text = ListView1.SelectedItems(0).SubItems(4).Text
             DISCOUNT.Text = ListView1.SelectedItems(0).SubItems(3).Text
         End If
-        MessageBox.Show("Something is Selected")
         MODIFY.Enabled = True
         DELETE.Enabled = True
     End Sub
@@ -156,7 +192,7 @@ Public Class Form7
     Private Sub MODIFY_Click(sender As Object, e As EventArgs) Handles MODIFY.Click
         Call connect()
 
-        query = "update super_market.bill_data_details set bill_id ='" & BILL_NO.Text & "',c_id='" & C_ID.Text & "',emp_id= '" & Label6.Text & "',p_name='" & P_NAME.Text & "',p_qty='" & QTY.Text & "',mrp='" & MRP.Text & "',p_gst=" & Val(GST.Text) & ",p_amt=" & Val(GST.Text) & ",p_dis=" & Val(DIS.Text) & " where p_name='" & P_NAME.Text & "'"
+        query = "update super_market.biling_details set bill_id ='" & BILL_NO.Text & "',c_id='" & C_ID.Text & "',emp_id= '" & Label6.Text & "',p_name='" & P_NAME.Text & "',p_qty='" & QTY.Text & "',mrp='" & MRP.Text & "',p_gst=" & Val(GST.Text) & ",p_amt=" & Val(GST.Text) & ",p_dis=" & Val(DIS.Text) & " where p_name='" & P_NAME.Text & "'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
         'Modify And Delete Buttons
@@ -175,7 +211,7 @@ Public Class Form7
 
     Private Sub DELETE_Click(sender As Object, e As EventArgs) Handles DELETE.Click
         Call connect()
-        query = "delete from super_market.bill_data_details where p_name= '" & P_NAME.Text & "'"
+        query = "delete from super_market.biling_details where p_name= '" & P_NAME.Text & "'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
@@ -202,7 +238,7 @@ Public Class Form7
 
         Call connect()
 
-        query = "insert into bill_data_details values ('" & BILL_NO.Text & "','" & C_ID.Text & "','" & emp & "','" & Label22.Text & "','" & Label26.Text & "','" & Label24.Text & "',current_date(), TIME_FORMAT(current_time(), '%h %i %s %p'))"
+        query = "insert into biling_details values ('" & BILL_NO.Text & "','" & C_ID.Text & "','" & emp & "','" & Label22.Text & "','" & Label26.Text & "','" & Label24.Text & "',current_date(), TIME_FORMAT(current_time(), '%h %i %s %p'))"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
@@ -210,60 +246,77 @@ Public Class Form7
 
     End Sub
 
-    'Public Sub AutoCustomerIncrementId()
-    '    Call connect()
-    '    query = "select max(customer_id) from customers"
-    '    CMD = New MySqlCommand(query, conn)
-    '    READER = CMD.ExecuteReader
-    '    While READER.Read
-    '        If READER(0).ToString = "" Then
-    '            C_ID.Text = 20251
-    '        Else
-    '            C_ID.Text = Val(READER(0) + 1)
-    '        End If
-    '    End While
-    '    conn.Close()
-    '    ListView1.Refresh()
-    'End Sub
-
     Private Sub P_ID_TextChanged(sender As Object, e As EventArgs) Handles P_ID.TextChanged
-        Call connect()
 
+        Call connect()
         query = "select * from products where product_id = " & Val(P_ID.Text) & ""
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
+        Dim count As Integer = 0
         While READER.Read
             P_NAME.Text = READER.GetString("product_name")
-            'MessageBox.Show(P_NAME.Text)
             CATEGORY.Text = READER.GetString("category_name")
             MRP.Text = READER.GetDouble("mrp")
             GST.Text = READER.GetDouble("gst")
             DISCOUNT.Text = READER.GetDouble("discount").ToString
+            QTY.Text = 1
+            count = count + 1
         End While
-
         conn.Close()
-    End Sub
 
-    'Private Sub P_NAME_TextChanged(sender As Object, e As EventArgs) Handles P_NAME.TextChanged
-    '
-    '    Call connect()
-    '
-    '    query = "select * from products where product_name = '" & P_NAME.Text & "'"
-    '    CMD = New MySqlCommand(query, conn)
-    '    READER = CMD.ExecuteReader
-    '
-    '    While READER.Read
-    '        P_ID.Text = READER.GetInt32("product_id")
-    '        CATEGORY.Text = READER.GetString("category_name")
-    '        MRP.Text = READER.GetDouble("mrp")
-    '        GST.Text = READER.GetDouble("gst")
-    '        DISCOUNT.Text = READER.GetDouble("discount").ToString
-    '    End While
-    '
-    '    conn.Close()
-    '
-    'End Sub
+        If count = 1 Then
+            Dim check As Boolean = False
+            Dim quantity As Integer = 1
+            Dim amt As Double
+            Dim dis As Double
+            Dim mrp_ As Double
+            Dim gst_ As Double
+
+            Call connect()
+            query = "select p_qty,p_amt,p_dis,p_gst,p_mrp from bill_data where bill_no = '" & BILL_NO.Text & "' and p_id = '" & P_ID.Text & "'"
+            CMD = New MySqlCommand(query, conn)
+            READER = CMD.ExecuteReader
+
+            While READER.Read
+                check = True
+                quantity = Val(READER(0))
+                amt = Val(READER(1))
+                dis = Val(READER(2))
+                gst_ = Val(READER(3))
+                mrp_ = Val(READER(4))
+            End While
+            conn.Close()
+
+            If check Then
+
+                Dim newAmt As Double = (mrp_ * (100 - dis)) / 100
+                newAmt = (newAmt * (100 + gst_)) / 100
+
+                Call connect()
+                query = "update bill_data set p_qty = '" & quantity + 1 & "', p_amt = '" & amt + newAmt & "' where bill_no = '" & BILL_NO.Text & "' and p_id = '" & P_ID.Text & "'"
+                CMD = New MySqlCommand(query, conn)
+                READER = CMD.ExecuteReader
+                conn.Close()
+
+            Else
+                Dim newAmt As Double = (Val(MRP.Text) * (100 - Val(DISCOUNT.Text))) / 100
+                newAmt = (newAmt * (100 + Val(GST.Text))) / 100
+
+                Call connect()
+                query = "insert into bill_data values ( '" & BILL_NO.Text & "','" & P_ID.Text & "','" & P_NAME.Text & "','1','" & MRP.Text & "'," & Val(DISCOUNT.Text) & "," & newAmt & "," & Val(GST.Text) & ")"
+                CMD = New MySqlCommand(query, conn)
+                READER = CMD.ExecuteReader
+                conn.Close()
+
+            End If
+
+            P_ID.Focus()
+            LoadData()
+
+        End If
+
+    End Sub
 
     Public Sub countdata()
         Label33.Text = ListView1.Items.Count
@@ -341,7 +394,7 @@ Public Class Form7
 
                     Call connect()
                     'ADDING PRODUCT INTO BILL DATA TABLE
-                    query = "insert into bill_data_details values ( '" & BILL_NO.Text & "','" & C_ID.Text & "','" & Label6.Text & "','" & P_NAME.Text & "','" & QTY.Text & "','" & MRP.Text & "'," & Val(GST.Text) & "," & Val(GST.Text) & "," & Val(DIS.Text) & ",curdate(),curdate())"
+                    query = "insert into biling_details values ( '" & BILL_NO.Text & "','" & C_ID.Text & "','" & Label6.Text & "','" & P_NAME.Text & "','" & QTY.Text & "','" & MRP.Text & "'," & Val(GST.Text) & "," & Val(GST.Text) & "," & Val(DIS.Text) & ",curdate(),curdate())"
                     CMD = New MySqlCommand(query, conn)
                     READER = CMD.ExecuteReader
 

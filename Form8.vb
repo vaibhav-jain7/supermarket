@@ -14,6 +14,7 @@ Public Class Form8
 
         'EMP_ID
         Label6.Text = emp
+        C_PH.Focus()
 
         'FORM CREATION DATE & TIME
         TODY_DATE.Text = Today
