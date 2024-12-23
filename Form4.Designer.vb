@@ -66,6 +66,7 @@ Partial Class Form4
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Name = "Form4"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form4"
         Me.ResumeLayout(False)
 

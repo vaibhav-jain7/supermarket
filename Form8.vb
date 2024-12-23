@@ -15,9 +15,6 @@ Public Class Form8
         C_PH.Top = 144
         C_PH.Left = 405
 
-        'INCREMENT CUSTOMER ID
-        AutoCustomerIncrementId()
-
         'EMP_ID
         Label6.Text = emp
         C_PH.Focus()
@@ -81,7 +78,9 @@ Public Class Form8
 
         If check = False Then
 
+            'INCREMENT CUSTOMER ID
             AutoCustomerIncrementId()
+
             Label8.Top = 155
             Label8.Left = 435
 
@@ -93,9 +92,12 @@ Public Class Form8
             Label9.Visible = True
             Label10.Visible = True
             Label4.Visible = True
-            C_EMAIL.Visible = True
+
             C_ID.Visible = True
             C_NAME.Visible = True
+            C_EMAIL.Visible = True
+
+            cust_id = C_ID.Text
 
             Button1.Visible = True
             Button3.Visible = False
@@ -104,14 +106,28 @@ Public Class Form8
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim check As Boolean = False
 
         Call connect()
-        'ADDING CUSTOMER INTO CUSTOMER TABLE
-        query = "insert into customers values ('" & C_ID.Text & "','" & C_NAME.Text & "','" & C_EMAIL.Text & "','" & C_PH.Text & "',current_date())"
+        query = "select * from customers where ph_no = '" & C_PH.Text & "'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
-        cust_id = Val(C_ID.Text)
+
+        While READER.Read
+            check = True
+        End While
         conn.Close()
+
+        If check <> True Then
+            Call connect()
+            'ADDING CUSTOMER INTO CUSTOMER TABLE
+            query = "insert into customers values ('" & C_ID.Text & "','" & C_NAME.Text & "','" & C_EMAIL.Text & "','" & C_PH.Text & "',current_date())"
+            CMD = New MySqlCommand(query, conn)
+            READER = CMD.ExecuteReader
+            cust_id = Val(C_ID.Text)
+            conn.Close()
+
+        End If
 
         Me.Hide()
         Form7.Show()

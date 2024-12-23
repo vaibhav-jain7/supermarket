@@ -101,6 +101,7 @@ Partial Class Form6
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Name = "Form6"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form6"
         Me.ResumeLayout(False)
         Me.PerformLayout()

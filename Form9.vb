@@ -7,12 +7,11 @@ Public Class Form9
     Dim query As String
 
     Private Sub Form9_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         Call connect()
         query = "select * from bill_data where bill_no = '" & CurrentBill & "'"
-        'query = "select * from bill_data where bill_no = '20250004'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
-        MessageBox.Show(CurrentBill)
 
         Dim PRO As ListViewItem
         ListView1.Items.Clear()

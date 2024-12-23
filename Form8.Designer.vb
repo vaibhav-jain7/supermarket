@@ -231,6 +231,7 @@ Partial Class Form8
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label4)
         Me.Name = "Form8"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form8"
         Me.ResumeLayout(False)
         Me.PerformLayout()
