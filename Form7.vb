@@ -25,7 +25,6 @@ Public Class Form7
         'LOAD CUSTOMER INFO
         LoadCustomer()
 
-
         Call connect()
         query = "select max(bill_id) from biling_details"
         CMD = New MySqlCommand(query, conn)
@@ -50,7 +49,6 @@ Public Class Form7
 
         While READER.Read
 
-            C_ID.Text = READER.GetString("customer_id")
             C_NAME.Text = READER.GetString("customer_name")
             C_EMAIL.Text = READER.GetString("email")
             C_PH.Text = READER.GetString("ph_no")
@@ -180,7 +178,9 @@ Public Class Form7
             GST.Text = ListView1.SelectedItems(0).SubItems(3).Text
             MRP.Text = ListView1.SelectedItems(0).SubItems(4).Text
         End If
+
         QTY.Focus()
+
         Button1.Enabled = False
         MODIFY.Enabled = True
         DELETE.Enabled = True
@@ -251,12 +251,12 @@ Public Class Form7
     Private Sub BILL_Click(sender As Object, e As EventArgs) Handles BILL.Click
 
         Call connect()
-
-        query = "insert into biling_details values ('" & BILL_NO.Text & "','" & C_ID.Text & "','" & emp & "','" & Label22.Text & "','" & Label26.Text & "','" & Label24.Text & "',current_date(), TIME_FORMAT(current_time(), '%h %i %s %p'))"
+        query = "insert into biling_details values ('" & BILL_NO.Text & "','" & cust_id & "','" & emp & "','" & Label22.Text & "','" & Label26.Text & "','" & Label24.Text & "',current_date(), TIME_FORMAT(current_time(), '%h %i %s %p'))"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
-
+        CurrentBill = BILL_NO.Text
         conn.Close()
+        Form9.Show()
 
     End Sub
 
@@ -365,12 +365,12 @@ Public Class Form7
         Next
 
         Label23.Text = QTY_CNT
-        Label24.Text = ITM_DIS.ToString()
-        Label22.Text = TOT_AMT
-        Label25.Text = "Rs. " & total_mrp
-        Label26.Text = ITM_GST
-        Label28.Text = "Rs. " & ITM_GST / 2
-        Label30.Text = "Rs. " & ITM_GST / 2
+        Label24.Text = Math.Round(ITM_DIS, 2)
+        Label22.Text = Math.Round(TOT_AMT, 2)
+        Label25.Text = "Rs. " & Math.Round(total_mrp, 2)
+        Label26.Text = Math.Round(ITM_GST, 2)
+        Label28.Text = "Rs. " & Math.Round(ITM_GST / 2, 2)
+        Label30.Text = "Rs. " & Math.Round(ITM_GST / 2, 2)
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick

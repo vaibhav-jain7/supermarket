@@ -7,6 +7,7 @@ Module Database_Connection
     Public admin As String
     Public emp As String
     Public cust_id As String
+    Public CurrentBill As String
 
     Public conn As MySqlConnection
     Public Sub connect()

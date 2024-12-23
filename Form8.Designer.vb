@@ -37,16 +37,15 @@ Partial Class Form8
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.EXISTS = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'C_PH
         '
         Me.C_PH.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.C_PH.Location = New System.Drawing.Point(607, 152)
+        Me.C_PH.Location = New System.Drawing.Point(605, 152)
         Me.C_PH.Name = "C_PH"
         Me.C_PH.Size = New System.Drawing.Size(208, 26)
         Me.C_PH.TabIndex = 64
@@ -58,6 +57,7 @@ Partial Class Form8
         Me.C_EMAIL.Name = "C_EMAIL"
         Me.C_EMAIL.Size = New System.Drawing.Size(208, 26)
         Me.C_EMAIL.TabIndex = 63
+        Me.C_EMAIL.Visible = False
         '
         'C_NAME
         '
@@ -66,6 +66,7 @@ Partial Class Form8
         Me.C_NAME.Name = "C_NAME"
         Me.C_NAME.Size = New System.Drawing.Size(208, 26)
         Me.C_NAME.TabIndex = 61
+        Me.C_NAME.Visible = False
         '
         'C_ID
         '
@@ -73,8 +74,10 @@ Partial Class Form8
         Me.C_ID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.C_ID.Location = New System.Drawing.Point(186, 114)
         Me.C_ID.Name = "C_ID"
+        Me.C_ID.ReadOnly = True
         Me.C_ID.Size = New System.Drawing.Size(208, 26)
         Me.C_ID.TabIndex = 60
+        Me.C_ID.Visible = False
         '
         'Label10
         '
@@ -85,6 +88,7 @@ Partial Class Form8
         Me.Label10.Size = New System.Drawing.Size(139, 24)
         Me.Label10.TabIndex = 59
         Me.Label10.Text = "CUSTOMER ID"
+        Me.Label10.Visible = False
         '
         'Label9
         '
@@ -95,12 +99,13 @@ Partial Class Form8
         Me.Label9.Size = New System.Drawing.Size(66, 24)
         Me.Label9.TabIndex = 58
         Me.Label9.Text = "EMAIL"
+        Me.Label9.Visible = False
         '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(435, 153)
+        Me.Label8.Location = New System.Drawing.Point(435, 155)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(117, 24)
         Me.Label8.TabIndex = 57
@@ -115,6 +120,7 @@ Partial Class Form8
         Me.Label4.Size = New System.Drawing.Size(66, 24)
         Me.Label4.TabIndex = 55
         Me.Label4.Text = "NAME"
+        Me.Label4.Visible = False
         '
         'Label27
         '
@@ -178,49 +184,38 @@ Partial Class Form8
         Me.Label3.TabIndex = 94
         Me.Label3.Text = "Time : "
         '
-        'Button1
-        '
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(151, 280)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(106, 35)
-        Me.Button1.TabIndex = 98
-        Me.Button1.Text = "NEW CUSTOMER"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(552, 280)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(106, 35)
-        Me.Button2.TabIndex = 99
-        Me.Button2.Text = "CANCEL"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'EXISTS
-        '
-        Me.EXISTS.Enabled = False
-        Me.EXISTS.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.EXISTS.Location = New System.Drawing.Point(349, 280)
-        Me.EXISTS.Name = "EXISTS"
-        Me.EXISTS.Size = New System.Drawing.Size(120, 35)
-        Me.EXISTS.TabIndex = 100
-        Me.EXISTS.Text = "EXISTS"
-        Me.EXISTS.UseVisualStyleBackColor = True
-        '
         'Timer1
         '
         Me.Timer1.Enabled = True
+        '
+        'Button3
+        '
+        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.Location = New System.Drawing.Point(367, 280)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(120, 35)
+        Me.Button3.TabIndex = 101
+        Me.Button3.Text = "OKAY"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(367, 271)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(120, 35)
+        Me.Button1.TabIndex = 102
+        Me.Button1.Text = "NEXT"
+        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'Form8
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(827, 327)
-        Me.Controls.Add(Me.EXISTS)
-        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.TIME)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
@@ -256,8 +251,7 @@ Partial Class Form8
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents EXISTS As Button
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button1 As Button
 End Class
