@@ -9,11 +9,15 @@ Public Class Form8
 
     Private Sub Form8_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        'INCREMENT CUSTOMER ID
-        AutoCustomerIncrementId()
+        Label8.Top = 144
+        Label8.Left = 233
+
+        C_PH.Top = 144
+        C_PH.Left = 405
 
         'EMP_ID
         Label6.Text = emp
+        C_PH.Focus()
 
         'FORM CREATION DATE & TIME
         TODY_DATE.Text = Today
@@ -34,29 +38,12 @@ Public Class Form8
         conn.Close()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-        Call connect()
-        'ADDING CUSTOMER INTO CUSTOMER TABLE
-        query = "insert into customers values ('" & C_ID.Text & "','" & C_NAME.Text & "','" & C_EMAIL.Text & "','" & C_PH.Text & "',' ',current_date())"
-        CMD = New MySqlCommand(query, conn)
-        READER = CMD.ExecuteReader
-        cust_id = Val(C_ID.Text)
-        conn.Close()
-        Me.Hide()
-        Form7.Show()
-
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        TIME.Text = TimeString
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        'INCREMENT CUSTOMER ID
-        AutoCustomerIncrementId()
-        C_NAME.Clear()
-        C_EMAIL.Clear()
-        C_PH.Clear()
-    End Sub
-
-    Private Sub C_PH_TextChanged(sender As Object, e As EventArgs) Handles C_PH.TextChanged
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim check As Boolean = False
 
         Call connect()
         query = "select * from customers where ph_no = '" & C_PH.Text & "'"
@@ -64,23 +51,86 @@ Public Class Form8
         READER = CMD.ExecuteReader
 
         While READER.Read
+            check = True
             C_ID.Text = READER.GetString("customer_id")
             C_NAME.Text = READER.GetString("customer_name")
             C_EMAIL.Text = READER.GetString("email")
             C_PH.Text = READER.GetString("ph_no")
-            cust_id = Val(READER.GetString("customer_id"))
-            EXISTS.Enabled = True
+            cust_id = READER.GetString("customer_id")
+
+            Label8.Top = 155
+            Label8.Left = 435
+
+            C_PH.Top = 152
+            C_PH.Left = 605
+
+            Label9.Visible = True
+            Label10.Visible = True
+            Label4.Visible = True
+            C_EMAIL.Visible = True
+            C_ID.Visible = True
+            C_NAME.Visible = True
+
+            Button1.Visible = True
+            Button3.Visible = False
         End While
         conn.Close()
 
+        If check = False Then
+
+            'INCREMENT CUSTOMER ID
+            AutoCustomerIncrementId()
+
+            Label8.Top = 155
+            Label8.Left = 435
+
+            C_PH.Top = 152
+            C_PH.Left = 605
+
+            C_NAME.Focus()
+
+            Label9.Visible = True
+            Label10.Visible = True
+            Label4.Visible = True
+
+            C_ID.Visible = True
+            C_NAME.Visible = True
+            C_EMAIL.Visible = True
+
+            cust_id = C_ID.Text
+
+            Button1.Visible = True
+            Button3.Visible = False
+        End If
+
     End Sub
 
-    Private Sub EXISTS_Click(sender As Object, e As EventArgs) Handles EXISTS.Click
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim check As Boolean = False
+
+        Call connect()
+        query = "select * from customers where ph_no = '" & C_PH.Text & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+
+        While READER.Read
+            check = True
+        End While
+        conn.Close()
+
+        If check <> True Then
+            Call connect()
+            'ADDING CUSTOMER INTO CUSTOMER TABLE
+            query = "insert into customers values ('" & C_ID.Text & "','" & C_NAME.Text & "','" & C_EMAIL.Text & "','" & C_PH.Text & "',current_date())"
+            CMD = New MySqlCommand(query, conn)
+            READER = CMD.ExecuteReader
+            cust_id = Val(C_ID.Text)
+            conn.Close()
+
+        End If
+
         Me.Hide()
         Form7.Show()
     End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        TIME.Text = TimeString
-    End Sub
 End Class

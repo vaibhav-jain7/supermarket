@@ -3,7 +3,6 @@
         User = "ADMIN"
         Me.Hide()
         Form3.Show()
-
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -16,7 +15,9 @@
         User = "EMPLOYEE"
         Me.Hide()
         Form3.Show()
-
     End Sub
 
+    Private Sub Form4_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
