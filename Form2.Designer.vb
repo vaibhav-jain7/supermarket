@@ -54,6 +54,7 @@ Partial Class Form2
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Label15 = New System.Windows.Forms.Label()
+        Me.Button5 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -374,11 +375,21 @@ Partial Class Form2
         Me.Label15.TabIndex = 32
         Me.Label15.Text = "Supermarket"
         '
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(1112, 26)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(101, 40)
+        Me.Button5.TabIndex = 35
+        Me.Button5.Text = "< BACK"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1249, 749)
+        Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
@@ -412,6 +423,7 @@ Partial Class Form2
         Me.Controls.Add(Me.E_ID)
         Me.Controls.Add(Me.DataGridView1)
         Me.Name = "Form2"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form2"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -451,4 +463,5 @@ Partial Class Form2
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents Label15 As Label
+    Friend WithEvents Button5 As Button
 End Class

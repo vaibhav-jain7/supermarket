@@ -27,6 +27,7 @@ Partial Class Form6
         Me.E_NAME = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -79,17 +80,28 @@ Partial Class Form6
         Me.Button2.Text = "Today's Sale"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(687, 12)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(101, 40)
+        Me.Button5.TabIndex = 36
+        Me.Button5.Text = "< BACK"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
         'Form6
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.E_NAME)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Name = "Form6"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form6"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -101,4 +113,5 @@ Partial Class Form6
     Friend WithEvents E_NAME As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents Button5 As Button
 End Class
