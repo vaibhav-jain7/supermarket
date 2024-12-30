@@ -52,11 +52,11 @@ Public Class Form8
 
         While READER.Read
             check = True
-            C_ID.Text = READER.GetString("customer_id")
+            C_ID.Text = READER.GetInt32("customer_id")
             C_NAME.Text = READER.GetString("customer_name")
             C_EMAIL.Text = READER.GetString("email")
             C_PH.Text = READER.GetString("ph_no")
-            cust_id = READER.GetString("customer_id")
+            cust_id = READER.GetInt32("customer_id")
 
             Label8.Top = 155
             Label8.Left = 435

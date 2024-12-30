@@ -26,7 +26,7 @@ Public Class Form7
         LoadCustomer()
 
         Call connect()
-        query = "select max(bill_id) from biling_details"
+        query = "select max(bill_id) from bill_data_details"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
         While READER.Read
@@ -251,7 +251,7 @@ Public Class Form7
     Private Sub BILL_Click(sender As Object, e As EventArgs) Handles BILL.Click
 
         Call connect()
-        query = "insert into biling_details values ('" & BILL_NO.Text & "','" & cust_id & "','" & emp & "','" & Label22.Text & "','" & Label26.Text & "','" & Label24.Text & "',current_date(), TIME_FORMAT(current_time(), '%h %i %s %p'))"
+        query = "insert into bill_data values ('" & BILL_NO.Text & "','" & cust_id & "','" & emp & "','" & Label22.Text & "','" & Label26.Text & "','" & Label24.Text & "',current_date(), TIME_FORMAT(current_time(), '%h %i %s %p'))"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
         CurrentBill = BILL_NO.Text
