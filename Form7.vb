@@ -26,7 +26,7 @@ Public Class Form7
         LoadCustomer()
 
         Call connect()
-        query = "select max(bill_id) from biling_details"
+        query = "select max(bill_id) from bill_data_details"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
         While READER.Read
@@ -251,7 +251,7 @@ Public Class Form7
     Private Sub BILL_Click(sender As Object, e As EventArgs) Handles BILL.Click
 
         Call connect()
-        query = "insert into biling_details values ('" & BILL_NO.Text & "','" & cust_id & "','" & emp & "','" & Label22.Text & "','" & Label26.Text & "','" & Label24.Text & "',current_date(), TIME_FORMAT(current_time(), '%h %i %s %p'))"
+        query = "insert into bill_data_details values ('" & BILL_NO.Text & "','" & cust_id & "','" & emp & "','" & Label22.Text & "','" & Label26.Text & "','" & Label24.Text & "',current_date())"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
         CurrentBill = BILL_NO.Text
@@ -305,7 +305,7 @@ Public Class Form7
             If check Then
 
                 Dim newAmt As Double = (mrp_ * (100 - dis)) / 100
-                newAmt = (newAmt * (100 + gst_)) / 100
+                'newAmt = (newAmt * (100 + gst_)) / 100
 
                 Call connect()
                 query = "update bill_data set p_qty = '" & quantity + 1 & "', p_amt = '" & amt + newAmt & "' where bill_no = '" & BILL_NO.Text & "' and p_id = '" & P_ID.Text & "'"
@@ -315,7 +315,7 @@ Public Class Form7
 
             Else
                 Dim newAmt As Double = (Val(MRP.Text) * (100 - Val(DISCOUNT.Text))) / 100
-                newAmt = (newAmt * (100 + Val(GST.Text))) / 100
+                'newAmt = (newAmt * (100 + Val(GST.Text))) / 100
 
                 Call connect()
                 query = "insert into bill_data values ( '" & BILL_NO.Text & "','" & P_ID.Text & "','" & P_NAME.Text & "','1','" & MRP.Text & "'," & Val(DISCOUNT.Text) & "," & newAmt & "," & Val(GST.Text) & ")"
@@ -356,8 +356,9 @@ Public Class Form7
             ITM_DIS = ITM_DIS + tot_dis
 
             'GST CALCULATION START
-            j = (Val(itm.SubItems(4).Text) - (Val(itm.SubItems(4).Text) * (Val(itm.SubItems(2).Text) / 100))) * Val(itm.SubItems(3).Text) / 100
-            ITM_GST = ITM_GST + (j * (Val(itm.SubItems(1).Text)))
+            'j = (Val(itm.SubItems(4).Text) - (Val(itm.SubItems(4).Text) * (Val(itm.SubItems(2).Text) / 100))) * Val(itm.SubItems(3).Text) / 100
+            j = (Val(itm.SubItems(4).Text) - (Val(itm.SubItems(4).Text) * (Val(itm.SubItems(2).Text) / 100)))
+            ITM_GST = ITM_GST + ((j * (Val(itm.SubItems(3).Text) / 100)) * Val(itm.SubItems(1).Text))
 
             total_mrp += Val(itm.SubItems(4).Text) * Val(itm.SubItems(1).Text)
             TOT_AMT = (TOT_AMT + Val(itm.SubItems(5).Text))
