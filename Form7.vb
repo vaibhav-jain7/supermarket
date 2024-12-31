@@ -1,3 +1,4 @@
+Imports Google.Protobuf.WellKnownTypes
 Imports MySql.Data.MySqlClient
 
 Public Class Form7
@@ -9,6 +10,25 @@ Public Class Form7
 
     'GLOBAL VARIABLES 
     Dim ITM_CNT, QTY_CNT, TOT_AMT, ITM_DIS, ITM_SGST, ITM_CGST, ITM_GST As Double
+
+    'DRAFT BILL NO.
+    Dim Draft_id As Integer
+
+
+    Public Sub MaxDraftId()
+        Call connect()
+        query = "select max(bill_no) from draft_bill"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+        While READER.Read
+            If READER(0).ToString = "" Then
+                Draft_id = 20250001
+            Else
+                Draft_id = Val(READER(0) + 1)
+            End If
+        End While
+        conn.Close()
+    End Sub
 
     Private Sub Form7_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -147,7 +167,7 @@ Public Class Form7
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        Call connect()
+
         Dim i As Integer
         Dim itm As ListViewItem
         TOT_AMT = 0
@@ -157,12 +177,27 @@ Public Class Form7
             total_mrp += Val(itm.SubItems(4).Text) * Val(itm.SubItems(1).Text)
             TOT_AMT = (TOT_AMT + Val(itm.SubItems(5).Text))
         Next
-        query = "insert into draft_bill values ('" & BILL_NO.Text & "','" & P_NAME.Text & "','" & QTY.Text & "','" & DISCOUNT.Text & "','" & GST.Text & "','" & MRP.Text & "','" & total_mrp & "')"
+
+        Call connect()
+        query = "insert into draft_bill (draft_id, p_id, p_name, p_qty, p_mrp, p_dis, p_amt, p_gst) " &
+                      "select '" & Draft_id & "' as draft_id, p_id, p_name, p_qty, p_mrp, p_dis, p_amt, p_gst " &
+                      "from bill_data where bill_no = '" & BILL_NO.Text & "'"
+
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
-        CurrentBill = BILL_NO.Text
         conn.Close()
-        Form8.Show()
+
+        Call connect()
+        query = "insert into draft_bill_details values ('" & Draft_id & "','" & C_NAME.Text & "','" & C_EMAIL.Text & "','" & C_PH.Text & "','" & emp & "')"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+        conn.Close()
+
+
+
+        ClearProducts()
+        ListView1.Items.Clear()
+
     End Sub
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
