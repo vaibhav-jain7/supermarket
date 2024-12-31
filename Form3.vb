@@ -29,8 +29,10 @@ Public Class Form3
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         TextBox1.Text = ""
         TextBox2.Text = ""
-        Me.Hide()
-        Form4.Show()
+
+        Dim form4 As New Form4()
+        form4.Show()
+        Me.Close()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -60,8 +62,9 @@ Public Class Form3
                 TextBox2.Text = ""
                 TextBox1.Focus()
             ElseIf i = 1 Then
-                Me.Hide()
-                Form5.Show()
+                Dim form5 As New Form5()
+                form5.Show()
+                Me.Close()
             End If
 
         ElseIf User = "MANAGER" Then
@@ -89,8 +92,9 @@ Public Class Form3
             If i = 0 Then
                 MessageBox.Show("Invalid Employee Credentials")
             ElseIf i = 1 Then
-                Me.Hide()
-                Form6.Show()
+                Dim form6 As New Form6()
+                form6.Show()
+                Me.Close()
             End If
 
         End If

@@ -9,7 +9,7 @@ Public Class Form9
     Private Sub Form9_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Call connect()
-        query = "select * from bill_data where bill_no = '" & CurrentBill & "'"
+        query = "select * from bill_data where bill_id = '" & CurrentBill & "'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
@@ -68,8 +68,9 @@ Public Class Form9
     End Sub
 
     Private Sub ADD_Click(sender As Object, e As EventArgs) Handles ADD.Click
-        Me.Hide()
-        Form7.Show()
+        Dim form7 As New Form7()
+        form7.Show()
+        Me.Close()
     End Sub
 
 End Class
