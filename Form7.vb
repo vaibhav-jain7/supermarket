@@ -282,6 +282,7 @@ Public Class Form7
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
+
         Dim count As Integer = 0
         While READER.Read
             P_NAME.Text = READER.GetString("product_name")
