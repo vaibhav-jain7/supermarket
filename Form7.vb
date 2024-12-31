@@ -147,7 +147,22 @@ Public Class Form7
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        MessageBox.Show("Under Develop.")
+        Call connect()
+        Dim i As Integer
+        Dim itm As ListViewItem
+        TOT_AMT = 0
+        Dim total_mrp As Double = 0
+        For i = 0 To ListView1.Items.Count - 1
+            itm = ListView1.Items(i)
+            total_mrp += Val(itm.SubItems(4).Text) * Val(itm.SubItems(1).Text)
+            TOT_AMT = (TOT_AMT + Val(itm.SubItems(5).Text))
+        Next
+        query = "insert into draft_bill values ('" & BILL_NO.Text & "','" & P_NAME.Text & "','" & QTY.Text & "','" & DISCOUNT.Text & "','" & GST.Text & "','" & MRP.Text & "','" & total_mrp & "')"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+        CurrentBill = BILL_NO.Text
+        conn.Close()
+        Form8.Show()
     End Sub
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
