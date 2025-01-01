@@ -5,11 +5,15 @@ Public Class Form9
     Dim CMD As MySqlCommand
     Dim READER As MySqlDataReader
     Dim query As String
+    Dim cust_id As String
+    Dim sale As String
 
     Private Sub Form9_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        'PRODUCT DETAILS
         Call connect()
-        query = "select * from bill_data where bill_id = '" & CurrentBill & "'"
+        'query = "select * from bill_data where bill_id = '" & CurrentBill & "'"
+        query = "select * from bill_data where bill_id = '20250001'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
@@ -26,70 +30,137 @@ Public Class Form9
         End While
         conn.Close()
 
-        Countdata()
+        'PRODUCT AMT DETAILS
+        Call connect()
+        'query = "select * from bill_data where bill_id = '" & CurrentBill & "'"
+        query = "select * from bill_data_details where bill_id = '20250001'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+
+        While READER.Read
+            cust_id = READER.GetString("c_id")
+            DIS.Text = READER.GetInt32("dis")
+            GST.Text = READER.GetInt32("gst")
+            FINALAMT.Text = READER.GetInt32("tot_amt")
+            TOTALAMT.Text = READER.GetInt32("tot_amt")
+        End While
+        conn.Close()
+
+        'CUSTOMER DEATILS
+        Call connect()
+        query = "select * from customers where customer_id = '" & cust_id & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+
+        While READER.Read
+            TextBox1.Text = READER.GetString("customer_name")
+            TextBox2.Text = READER.GetString("email")
+            TextBox3.Text = READER.GetString("ph_no")
+        End While
+        conn.Close()
 
     End Sub
 
-    Public Sub Countdata()
-
-        Dim i As Integer
-        Dim itm As ListViewItem
-        Dim QTY_CNT As Double = 0.00
-        Dim ITM_DIS As Double = 0.00
-        Dim TOT_AMT As Double = 0.00
-        Dim ITM_CGST As Double = 0.00
-        Dim ITM_SGST As Double = 0.00
-        Dim ITM_GST As Double = 0.00
-
-        Dim total_mrp As Double = 0
-        Dim j As Double = 0
-
-
-        For i = 0 To ListView1.Items.Count - 1
-            itm = ListView1.Items(i)
-            QTY_CNT = QTY_CNT + Val(itm.SubItems(1).Text)
-
-            Dim tot_dis As Double = (Val(itm.SubItems(4).Text) * (Val(itm.SubItems(2).Text) / 100)) * Val(itm.SubItems(1).Text)
-            ITM_DIS = ITM_DIS + tot_dis
-
-            'GST CALCULATION START
-            j = (Val(itm.SubItems(4).Text) - (Val(itm.SubItems(4).Text) * (Val(itm.SubItems(2).Text) / 100))) * Val(itm.SubItems(3).Text) / 100
-            ITM_GST = ITM_GST + (j * (Val(itm.SubItems(1).Text)))
-
-            total_mrp += Val(itm.SubItems(4).Text) * Val(itm.SubItems(1).Text)
-            TOT_AMT = (TOT_AMT + Val(itm.SubItems(5).Text))
-
-        Next
-
-        MRP.Text = Math.Round(TOT_AMT, 2)
-        DIS.Text = "- " & Math.Round(ITM_DIS, 2)
-        GST.Text = "+ " & Math.Round(ITM_GST, 2)
-        FINALAMT.Text = Math.Round(total_mrp, 2)
+    Public Sub MaxSaleID()
+        Call connect()
+        query = "select max(sale_id) from sales"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+        While READER.Read
+            If READER(0).ToString = "" Then
+                sale = 21001
+            Else
+                sale = Val(READER(0) + 1)
+            End If
+        End While
+        conn.Close()
     End Sub
 
-    Private Sub ADD_Click(sender As Object, e As EventArgs) Handles ADD.Click
+    Private Sub ADD_Click(sender As Object, e As EventArgs)
         Dim form7 As New Form7()
         form7.Show()
         Me.Close()
     End Sub
 
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+    Private Sub CASHBYCUSTOMER_TextChanged(sender As Object, e As EventArgs) Handles CASHBYCUSTOMER.TextChanged
+        CHANGEAMT.Text = Val(FINALAMT.Text) - Val(CASHBYCUSTOMER.Text)
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If (PAYMENTMODE.Text = "CASH") Then
+            MaxSaleID()
+            Call connect()
+            query = "insert into sales (sale_id,bill_id ,cust_id,emp_id ,tot_amt, payment) values ('" & Val(sale) & "','20250001', '" & cust_id & "', '" & emp & "','" & FINALAMT.Text & "', 'CASH')"
+            CMD = New MySqlCommand(query, conn)
+            READER = CMD.ExecuteReader
+            conn.Close()
+
+            PAYMENTMODE.Enabled = False
+            CASHBYCUSTOMER.Enabled = False
+            CHANGEAMT.Enabled = False
+            TOTALAMT.Enabled = False
+
+        ElseIf (PAYMENTMODE.Text = "UPI") Then
+            MaxSaleID()
+            Call connect()
+            query = "insert into sales (sale_id,bill_id ,cust_id,emp_id ,tot_amt, payment) values ('" & Val(sale) & "','20250001', '" & cust_id & "', '" & emp & "','" & FINALAMT.Text & "', 'UPI')"
+            CMD = New MySqlCommand(query, conn)
+            READER = CMD.ExecuteReader
+            conn.Close()
+            TOTALAMT.Enabled = False
+
+        ElseIf (PAYMENTMODE.Text = "CARD") Then
+            MaxSaleID()
+            Call connect()
+            query = "insert into sales (sale_id,bill_id ,cust_id,emp_id ,tot_amt, payment) values ('" & Val(sale) & "','20250001', '" & cust_id & "', '" & emp & "','" & FINALAMT.Text & "', 'CARD')"
+            CMD = New MySqlCommand(query, conn)
+            READER = CMD.ExecuteReader
+            conn.Close()
+            TOTALAMT.Enabled = False
+
+        End If
+
+        MessageBox.Show("Payment Done...", "Payment", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+
 
     End Sub
 
-    Private Sub Label8_Click(sender As Object, e As EventArgs) Handles Label8.Click
+    Private Sub PAYMENTMODE_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PAYMENTMODE.SelectedIndexChanged
+        If (PAYMENTMODE.Text = "CASH") Then
+            PictureBox1.Visible = False
+            PIN.Visible = False
+            PINNO.Visible = False
+            CARDNO.Visible = False
+            CARDNUMBER.Visible = False
 
-    End Sub
+            Label11.Visible = True
+            Label13.Visible = True
+            CASHBYCUSTOMER.Visible = True
+            CHANGEAMT.Visible = True
+        ElseIf (PAYMENTMODE.Text = "UPI") Then
+            PictureBox1.Visible = True
 
-    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles TextBox2.TextChanged
+            PIN.Visible = False
+            PINNO.Visible = False
+            CARDNO.Visible = False
+            CARDNUMBER.Visible = False
+            Label11.Visible = False
+            Label13.Visible = False
+            CASHBYCUSTOMER.Visible = False
+            CHANGEAMT.Visible = False
+        ElseIf (PAYMENTMODE.Text = "CARD") Then
+            PictureBox1.Visible = False
+            CASHBYCUSTOMER.Visible = False
+            CHANGEAMT.Visible = False
+            Label11.Visible = False
+            Label13.Visible = False
 
-    End Sub
+            PIN.Visible = True
+            PINNO.Visible = True
+            CARDNO.Visible = True
+            CARDNUMBER.Visible = True
 
-    Private Sub Label9_Click(sender As Object, e As EventArgs) Handles Label9.Click
-
-    End Sub
-
-    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
-
+        End If
     End Sub
 End Class
