@@ -22,6 +22,8 @@ Partial Class Form9
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form9))
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -42,7 +44,6 @@ Partial Class Form9
         Me.PIN = New System.Windows.Forms.Label()
         Me.CARDNUMBER = New System.Windows.Forms.TextBox()
         Me.CARDNO = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.CHANGEAMT = New System.Windows.Forms.TextBox()
@@ -60,12 +61,16 @@ Partial Class Form9
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
+        Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
+        Me.PPD = New System.Windows.Forms.PrintPreviewDialog()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -271,17 +276,6 @@ Partial Class Form9
         Me.CARDNO.TabIndex = 122
         Me.CARDNO.Text = "CARD NUMBER"
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.supermarket.My.Resources.Resources.orcode
-        Me.PictureBox1.Location = New System.Drawing.Point(39, 398)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(262, 175)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 121
-        Me.PictureBox1.TabStop = False
-        Me.PictureBox1.Visible = False
-        '
         'Label18
         '
         Me.Label18.BackColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -450,6 +444,17 @@ Partial Class Form9
         Me.Label8.TabIndex = 108
         Me.Label8.Text = "EMAIL"
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.supermarket.My.Resources.Resources.orcode
+        Me.PictureBox1.Location = New System.Drawing.Point(39, 398)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(262, 175)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 121
+        Me.PictureBox1.TabStop = False
+        Me.PictureBox1.Visible = False
+        '
         'Label3
         '
         Me.Label3.AutoSize = True
@@ -510,6 +515,22 @@ Partial Class Form9
         Me.Label16.Size = New System.Drawing.Size(63, 22)
         Me.Label16.TabIndex = 117
         Me.Label16.Text = "GST :"
+        '
+        'PrintDoc
+        '
+        '
+        'PPD
+        '
+        Me.PPD.AutoScrollMargin = New System.Drawing.Size(0, 0)
+        Me.PPD.AutoScrollMinSize = New System.Drawing.Size(0, 0)
+        Me.PPD.ClientSize = New System.Drawing.Size(400, 300)
+        Me.PPD.Enabled = True
+        Me.PPD.Icon = CType(resources.GetObject("PPD.Icon"), System.Drawing.Icon)
+        Me.PPD.Name = "PPD"
+        Me.PPD.Visible = False
+        '
+        'Timer1
+        '
         '
         'Form9
         '
@@ -583,4 +604,7 @@ Partial Class Form9
     Friend WithEvents PIN As Label
     Friend WithEvents CARDNUMBER As TextBox
     Friend WithEvents CARDNO As Label
+    Friend WithEvents PrintDoc As Printing.PrintDocument
+    Friend WithEvents PPD As PrintPreviewDialog
+    Friend WithEvents Timer1 As Timer
 End Class
