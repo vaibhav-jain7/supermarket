@@ -10,6 +10,8 @@ Public Class Form9
     Dim cust_id As String
     Dim sale As String
     Dim time As String
+    Dim E_Name As String = "NAME SIRNAME"
+
 
 
     Private Sub Form9_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -17,8 +19,8 @@ Public Class Form9
 
         'PRODUCT DETAILS
         Call connect()
-        'query = "select * from bill_data where bill_id = '" & CurrentBill & "'"
-        query = "select * from bill_data where bill_id = '20250001'"
+        query = "select * from bill_data where bill_id = '" & CurrentBill & "'"
+        'query = "select * from bill_data where bill_id = '20250001'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
@@ -37,8 +39,8 @@ Public Class Form9
 
         'PRODUCT AMT DETAILS
         Call connect()
-        'query = "select * from bill_data where bill_id = '" & CurrentBill & "'"
-        query = "select * from bill_data_details where bill_id = '20250001'"
+        query = "select * from bill_data_details where bill_id = '" & CurrentBill & "'"
+        'query = "select * from bill_data_details where bill_id = '20250001'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
@@ -54,6 +56,7 @@ Public Class Form9
         'CUSTOMER DEATILS
         Call connect()
         query = "select * from customers where customer_id = '" & cust_id & "'"
+        'query = "select * from customers where customer_id = '20255'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
@@ -121,11 +124,26 @@ Public Class Form9
 
         MessageBox.Show("Payment Done...", "Payment", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-        PrintDoc.DefaultPageSettings.PaperSize = New PaperSize("MySize", 800, ListView1.Items.Count * 100)
-        'PPD.PrintPreviewControl.Zoom = 0.5
-        PPD.Document = PrintDoc
-        PPD.ShowDialog()
+        Dim itemHeight As Integer = 20
+        Dim itemCount As Integer = ListView1.Items.Count
+        Dim columnCount As Integer = ListView1.Columns.Count
 
+        Dim totalHeight As Integer = itemHeight * itemCount + 150
+
+        Dim columnWidth As Integer = 100
+        Dim totalWidth As Integer = columnWidth * columnCount
+
+        Call connect()
+        query = "select emp_name from employee where emp_id = '" & emp & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+        While READER.Read
+            E_Name = READER(0)
+        End While
+
+        PD.DefaultPageSettings.PaperSize = New PaperSize("EZ BILL", totalWidth, totalHeight)
+        PPD.Document = PD
+        PPD.ShowDialog()
 
 
     End Sub
@@ -173,38 +191,17 @@ Public Class Form9
         Me.Close()
     End Sub
 
-    Private Sub PrintDoc_PrintPage(sender As Object, e As PrintPageEventArgs) Handles PrintDoc.PrintPage
+    Private Sub PrintDoc_PrintPage(sender As Object, e As PrintPageEventArgs) Handles PD.PrintPage
 
-        'Dim f8 As New Font("Arial", 15, FontStyle.Bold)
-        'Dim f8b As New Font("Verdana", 12, FontStyle.Bold)
-
-        'Dim left As New StringFormat
-        'Dim center As New StringFormat
-        'Dim right As New StringFormat
-
-        'left.Alignment = StringAlignment.Near
-        'center.Alignment = StringAlignment.Center
-        'right.Alignment = StringAlignment.Far
-
-        'Dim Rect1 As New Rectangle(5, 5, 600, 25)
-        'e.Graphics.DrawString("EZ MARKET", f8, Brushes.Black, Rect1, center)
-
-        'Dim Rect2 As New Rectangle(5, 30, 600, 25)
-        'e.Graphics.DrawString("Dezyne E'cole College, Ajmer", f8b, Brushes.Black, Rect2, center)
-
-        'Dim Rect3 As New Rectangle(5, 55, 600, 25)
-        'e.Graphics.DrawString("Telephone: +91 9999999999", f8b, Brushes.Black, Rect3, center)
-
-        Dim f8 As New Font("Calibri", 8, FontStyle.Regular)
-        Dim f10 As New Font("Calibri", 10, FontStyle.Regular)
+        Dim f8 As New Font("Calibri", 12, FontStyle.Regular)
+        Dim f10 As New Font("Calibri", 16, FontStyle.Regular)
         Dim f10b As New Font("Calibri", 10, FontStyle.Bold)
-        Dim f14 As New Font("Calibri", 14, FontStyle.Bold)
+        Dim f14 As New Font("Calibri", 13, FontStyle.Bold)
 
-        Dim leftmargin As Integer = PrintDoc.DefaultPageSettings.Margins.Left
-        Dim centermargin As Integer = PrintDoc.DefaultPageSettings.PaperSize.Width / 2
-        Dim rightmargin As Integer = PrintDoc.DefaultPageSettings.PaperSize.Width
+        Dim leftmargin As Integer = PD.DefaultPageSettings.Margins.Left
+        Dim centermargin As Integer = PD.DefaultPageSettings.PaperSize.Width / 2
+        Dim rightmargin As Integer = PD.DefaultPageSettings.PaperSize.Width
 
-        'font alignment
         Dim right As New StringFormat
         Dim center As New StringFormat
 
@@ -212,69 +209,53 @@ Public Class Form9
         center.Alignment = StringAlignment.Center
 
         Dim line As String
-        line = "****************************************************************"
+        line = " ********************************************************************** "
 
-        'range from top
-        'logo
-        'Dim logoImage As Image = My.Resources.ResourceManager.GetObject("logo")
-        'e.Graphics.DrawImage(logoImage, CInt((e.PageBounds.Width - 150) / 2), 5, 150, 35)
+        ' Store details
+        e.Graphics.DrawString("EZ STORE", f10, Brushes.Black, centermargin, 40, center)
+        e.Graphics.DrawString("Tel +91-5544557788", f10, Brushes.Black, centermargin, 58, center)
 
-        'e.Graphics.DrawImage(logoImage, 0, 250, 150, 50)
-        'e.Graphics.DrawImage(logoImage, CInt((e.PageBounds.Width - logoImage.Width) / 2), CInt((e.PageBounds.Height - logoImage.Height) / 2), logoImage.Width, logoImage.Height)
+        e.Graphics.DrawString("Invoice ID: EZ" & CurrentBill & "", f8, Brushes.Black, 0, 75)
 
-        'e.Graphics.DrawString("Store :", f14, Brushes.Black, centermargin, 5, center)
-        e.Graphics.DrawString("EZ MARKET", f10, Brushes.Black, centermargin, 40, center)
-        e.Graphics.DrawString("Tel +91 9999999999", f10, Brushes.Black, centermargin, 55, center)
+        e.Graphics.DrawString("Cashier: " & E_Name & "", f8, Brushes.Black, 0, 88)
 
-        e.Graphics.DrawString("Invoice ID", f8, Brushes.Black, 0, 75)
-        e.Graphics.DrawString(":", f8, Brushes.Black, 50, 75)
-        e.Graphics.DrawString(CurrentBill, f8, Brushes.Black, 70, 75)
+        e.Graphics.DrawString("TIME: " & DateString & " | " & TimeString & "", f8, Brushes.Black, 0, 101)
 
-        e.Graphics.DrawString("Cashier", f8, Brushes.Black, 0, 85)
-        e.Graphics.DrawString(":", f8, Brushes.Black, 50, 85)
-        e.Graphics.DrawString("Steve Jobs", f8, Brushes.Black, 70, 85)
+        Dim pageWidth As Integer = e.PageBounds.Width
 
-        e.Graphics.DrawString("" & DateString & " | " & time & "", f8, Brushes.Black, 0, 95)
-        'DetailHeader
-        e.Graphics.DrawString("Qty", f8, Brushes.Black, 0, 110)
-        e.Graphics.DrawString("Item", f8, Brushes.Black, 25, 110)
-        e.Graphics.DrawString("Price", f8, Brushes.Black, 180, 110, right)
-        e.Graphics.DrawString("Total", f8, Brushes.Black, rightmargin, 110, right)
-        '
-        e.Graphics.DrawString(line, f8, Brushes.Black, 0, 120)
+        Dim nameColumnWidth As Integer = CInt(pageWidth * 0.25)
 
-        Dim height As Integer 'DGV Position
-        'Dim i As Long
-        'DataGridView1.AllowUserToAddRows = False
-        ''If DataGridView1.CurrentCell.Value Is Nothing Then
-        ''    Exit Sub
-        ''Else
-        'For row As Integer = 0 To ListView1.Items.Count - 1
-        '    height += 15
-        '    e.Graphics.DrawString(ListView1..Rows(row).Cells(1).Value.ToString, f8, Brushes.Black, 0, 115 + height)
-        '    e.Graphics.DrawString(DataGridView1.Rows(row).Cells(0).Value.ToString, f8, Brushes.Black, 25, 115 + height)
-        '    i = DataGridView1.Rows(row).Cells(2).Value
-        '    DataGridView1.Rows(row).Cells(2).Value = Format(i, "##,##0")
-        '    e.Graphics.DrawString(DataGridView1.Rows(row).Cells(2).Value.ToString, f8, Brushes.Black, 180, 115 + height, right)
+        Dim qtyColumnX As Integer = nameColumnWidth
+        Dim discountColumnX As Integer = qtyColumnX + 50
+        Dim gstColumnX As Integer = discountColumnX + 100
+        Dim mrpColumnX As Integer = gstColumnX + 100
+        Dim totalColumnX As Integer = mrpColumnX + 100
 
-        '    'totalprice
-        '    Dim totalprice As Long
-        '    totalprice = Val(DataGridView1.Rows(row).Cells(1).Value * DataGridView1.Rows(row).Cells(2).Value)
-        '    e.Graphics.DrawString(totalprice.ToString("##,##0"), f8, Brushes.Black, rightmargin, 115 + height, right)
-        '    '
 
-        'Next
-        'End If
+        e.Graphics.DrawString("Name", f14, Brushes.Black, 0, 120)
+        e.Graphics.DrawString("Qty", f14, Brushes.Black, qtyColumnX, 120)
+        e.Graphics.DrawString("Discount", f14, Brushes.Black, discountColumnX, 120)
+        e.Graphics.DrawString("GST", f14, Brushes.Black, gstColumnX, 120)
+        e.Graphics.DrawString("MRP", f14, Brushes.Black, mrpColumnX, 120)
+        e.Graphics.DrawString("TOTAL", f14, Brushes.Black, totalColumnX, 120)
+        e.Graphics.DrawString(line, f8, Brushes.Black, 0, 136)
 
-        Dim height2 As Integer
-        height2 = 145 + height
+        Dim totalprice As Long
 
-        e.Graphics.DrawString(line, f8, Brushes.Black, 0, height2)
-        e.Graphics.DrawString("Total: " & TOTALAMT.Text & "", f10b, Brushes.Black, rightmargin, 10 + height2, right)
-        'e.Graphics.DrawString(t_qty, f10b, Brushes.Black, 0, 10 + height2)
+        Dim height As Integer = 0
+        For Each item As ListViewItem In ListView1.Items
+            height += 15
+            e.Graphics.DrawString(item.SubItems(0).Text, f8, Brushes.Black, 0, 130 + height)
+            e.Graphics.DrawString(item.SubItems(1).Text, f8, Brushes.Black, qtyColumnX, 130 + height)
+            e.Graphics.DrawString(item.SubItems(2).Text, f8, Brushes.Black, discountColumnX, 130 + height)
+            e.Graphics.DrawString(item.SubItems(3).Text, f8, Brushes.Black, gstColumnX, 130 + height)
+            e.Graphics.DrawString(item.SubItems(4).Text, f8, Brushes.Black, mrpColumnX, 130 + height)
+            e.Graphics.DrawString(item.SubItems(5).Text, f8, Brushes.Black, totalColumnX, 130 + height)
 
-        e.Graphics.DrawString("~ Thanks for shopping ~", f10, Brushes.Black, centermargin, 70 + height2, center)
-        e.Graphics.DrawString("~ Nosware Store ~", f10, Brushes.Black, centermargin, 85 + height2, center)
+            totalprice = totalprice + Val(item.SubItems(5).Text)
+        Next
+        e.Graphics.DrawString(line, f8, Brushes.Black, 0, 148 + height)
+        e.Graphics.DrawString("TOTAL - Rs. " & totalprice & "", f8, Brushes.Black, totalColumnX - 40, 165 + height)
 
 
     End Sub

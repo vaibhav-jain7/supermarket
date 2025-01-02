@@ -68,7 +68,7 @@ Partial Class Form9
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
-        Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
+        Me.PD = New System.Drawing.Printing.PrintDocument()
         Me.PPD = New System.Windows.Forms.PrintPreviewDialog()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1.SuspendLayout()
@@ -516,7 +516,7 @@ Partial Class Form9
         Me.Label16.TabIndex = 117
         Me.Label16.Text = "GST :"
         '
-        'PrintDoc
+        'PD
         '
         '
         'PPD
@@ -604,7 +604,7 @@ Partial Class Form9
     Friend WithEvents PIN As Label
     Friend WithEvents CARDNUMBER As TextBox
     Friend WithEvents CARDNO As Label
-    Friend WithEvents PrintDoc As Printing.PrintDocument
+    Friend WithEvents PD As Printing.PrintDocument
     Friend WithEvents PPD As PrintPreviewDialog
     Friend WithEvents Timer1 As Timer
 End Class

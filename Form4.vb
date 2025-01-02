@@ -5,7 +5,7 @@
         Form3.Show()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs) 
         User = "MANAGER"
         Me.Hide()
         Form3.Show()

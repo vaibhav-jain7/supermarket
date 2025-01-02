@@ -391,7 +391,7 @@ Public Class Form7
     Private Sub BILL_Click(sender As Object, e As EventArgs) Handles BILL.Click
 
         Call connect()
-        query = "insert into bill_data_details values ('" & BILL_NO.Text & "','" & cust_id & "','" & emp & "','" & Label22.Text & "','" & Label26.Text & "','" & Label24.Text & "',current_date())"
+        query = "insert into bill_data_details values ('" & BILL_NO.Text & "','" & cust_id & "','" & emp & "','" & Label26.Text & "','" & Label24.Text & "','" & Label22.Text & "',current_date())"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
         CurrentBill = BILL_NO.Text
