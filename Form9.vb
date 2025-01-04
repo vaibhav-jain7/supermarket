@@ -56,7 +56,7 @@ Public Class Form9
         'CUSTOMER DEATILS
         Call connect()
         query = "select * from customers where customer_id = '" & cust_id & "'"
-        'query = "select * from customers where customer_id = '20255'"
+        'query = "select * from customers where customer_id = '20251'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
@@ -128,7 +128,7 @@ Public Class Form9
         Dim itemCount As Integer = ListView1.Items.Count
         Dim columnCount As Integer = ListView1.Columns.Count
 
-        Dim totalHeight As Integer = itemHeight * itemCount + 150
+        Dim totalHeight As Integer = (itemHeight * itemCount + 150) * 2
 
         Dim columnWidth As Integer = 100
         Dim totalWidth As Integer = columnWidth * columnCount
@@ -208,55 +208,92 @@ Public Class Form9
         right.Alignment = StringAlignment.Far
         center.Alignment = StringAlignment.Center
 
-        Dim line As String
-        line = " ********************************************************************** "
+        Dim line As String = " ********************************************************************** "
 
         ' Store details
-        e.Graphics.DrawString("EZ STORE", f10, Brushes.Black, centermargin, 40, center)
-        e.Graphics.DrawString("Tel +91-5544557788", f10, Brushes.Black, centermargin, 58, center)
+        e.Graphics.DrawString("EZ STORE", f10, Brushes.Black, centermargin, 36, center)
+        e.Graphics.DrawString("Tel +91-5544557788", f10, Brushes.Black, centermargin, 55, center)
 
         e.Graphics.DrawString("Invoice ID: EZ" & CurrentBill & "", f8, Brushes.Black, 0, 75)
+        e.Graphics.DrawString("Cashier: " & E_Name & "", f8, Brushes.Black, 0, 90)
+        e.Graphics.DrawString("TIME: " & DateString & " | " & TimeString & "", f8, Brushes.Black, 0, 105)
 
-        e.Graphics.DrawString("Cashier: " & E_Name & "", f8, Brushes.Black, 0, 88)
-
-        e.Graphics.DrawString("TIME: " & DateString & " | " & TimeString & "", f8, Brushes.Black, 0, 101)
-
+        ' --- Calculate column positions ---
         Dim pageWidth As Integer = e.PageBounds.Width
-
-        Dim nameColumnWidth As Integer = CInt(pageWidth * 0.25)
-
+        Dim nameColumnWidth As Integer = CInt(pageWidth * 0.5) ' 50% width for Name column 
         Dim qtyColumnX As Integer = nameColumnWidth
         Dim discountColumnX As Integer = qtyColumnX + 50
-        Dim gstColumnX As Integer = discountColumnX + 100
-        Dim mrpColumnX As Integer = gstColumnX + 100
-        Dim totalColumnX As Integer = mrpColumnX + 100
+        Dim totalColumnX As Integer = discountColumnX + 100 ' Total column after Discount
 
+        ' --- Draw headers ---
+        e.Graphics.DrawString("Name", f14, Brushes.Black, 0, 125)
+        e.Graphics.DrawString("Qty", f14, Brushes.Black, qtyColumnX, 125)
+        e.Graphics.DrawString("Discount", f14, Brushes.Black, discountColumnX, 125)
+        e.Graphics.DrawString("TOTAL", f14, Brushes.Black, totalColumnX, 125)
+        e.Graphics.DrawString(line, f8, Brushes.Black, 0, 145)
 
-        e.Graphics.DrawString("Name", f14, Brushes.Black, 0, 120)
-        e.Graphics.DrawString("Qty", f14, Brushes.Black, qtyColumnX, 120)
-        e.Graphics.DrawString("Discount", f14, Brushes.Black, discountColumnX, 120)
-        e.Graphics.DrawString("GST", f14, Brushes.Black, gstColumnX, 120)
-        e.Graphics.DrawString("MRP", f14, Brushes.Black, mrpColumnX, 120)
-        e.Graphics.DrawString("TOTAL", f14, Brushes.Black, totalColumnX, 120)
-        e.Graphics.DrawString(line, f8, Brushes.Black, 0, 136)
-
-        Dim totalprice As Long
-
+        ' --- Variables for calculations ---
+        Dim totalprice As Decimal = 0
+        Dim totalGST As Decimal = 0
         Dim height As Integer = 0
+
+        ' --- Listview Items ---
         For Each item As ListViewItem In ListView1.Items
             height += 15
-            e.Graphics.DrawString(item.SubItems(0).Text, f8, Brushes.Black, 0, 130 + height)
-            e.Graphics.DrawString(item.SubItems(1).Text, f8, Brushes.Black, qtyColumnX, 130 + height)
-            e.Graphics.DrawString(item.SubItems(2).Text, f8, Brushes.Black, discountColumnX, 130 + height)
-            e.Graphics.DrawString(item.SubItems(3).Text, f8, Brushes.Black, gstColumnX, 130 + height)
-            e.Graphics.DrawString(item.SubItems(4).Text, f8, Brushes.Black, mrpColumnX, 130 + height)
-            e.Graphics.DrawString(item.SubItems(5).Text, f8, Brushes.Black, totalColumnX, 130 + height)
 
-            totalprice = totalprice + Val(item.SubItems(5).Text)
+            Dim discountVal As Double = 0
+            ' --- Draw item details ---
+            e.Graphics.DrawString(item.SubItems(0).Text, f8, Brushes.Black, 0, 140 + height)
+            e.Graphics.DrawString(item.SubItems(1).Text, f8, Brushes.Black, qtyColumnX, 140 + height)
+            discountVal = (((Val(item.SubItems(4).Text) * Val(item.SubItems(2).Text)) / 100) * Val(item.SubItems(1).Text))
+            e.Graphics.DrawString(Math.Round(discountVal, 2), f8, Brushes.Black, discountColumnX, 140 + height)
+            e.Graphics.DrawString(item.SubItems(5).Text, f8, Brushes.Black, totalColumnX, 140 + height)
+
+            ' --- Calculate totals ---
+            totalprice += Decimal.Parse(item.SubItems(5).Text)
         Next
-        e.Graphics.DrawString(line, f8, Brushes.Black, 0, 148 + height)
-        e.Graphics.DrawString("TOTAL - Rs. " & totalprice & "", f8, Brushes.Black, totalColumnX - 40, 165 + height)
 
+        ' --- Draw line above totals ---
+        e.Graphics.DrawString(line, f8, Brushes.Black, 0, 155 + height)
+
+        ' --- Display total amount ---
+        e.Graphics.DrawString("TOTAL : Rs. " & totalprice.ToString("F2") & "", f8, Brushes.Black, discountColumnX + 20, 165 + height)
+
+        ' --- GST Table ---
+        Dim gstTableStartY As Integer = 180 + height ' Adjust vertical position as needed
+        e.Graphics.DrawString("-------------------- GST Details --------------------", f10b, Brushes.Black, centermargin - 148, gstTableStartY + 10)
+        'e.Graphics.DrawString("--------------------", f8, Brushes.Black, 0, gstTableStartY + 15)
+
+        e.Graphics.DrawString("Name", f14, Brushes.Black, 0, gstTableStartY + 30)
+        e.Graphics.DrawString("Qty", f14, Brushes.Black, qtyColumnX, gstTableStartY + 30)
+        e.Graphics.DrawString("GST", f14, Brushes.Black, discountColumnX, gstTableStartY + 30)
+        e.Graphics.DrawString("TOTAL", f14, Brushes.Black, totalColumnX, gstTableStartY + 30)
+        e.Graphics.DrawString(line, f8, Brushes.Black, 0, gstTableStartY + 50)
+
+
+        '... Add logic to display GST details for each product ...
+        ' ... Example
+        For Each item As ListViewItem In ListView1.Items
+            gstTableStartY += 15
+            Dim GSTval As Double = 0
+            ' --- Draw item details ---
+            e.Graphics.DrawString(item.SubItems(0).Text, f8, Brushes.Black, 0, 45 + gstTableStartY)
+            e.Graphics.DrawString(item.SubItems(1).Text, f8, Brushes.Black, qtyColumnX, 45 + gstTableStartY)
+            GSTval = (Val(item.SubItems(4).Text) * (Val(item.SubItems(3).Text))) / 100
+            e.Graphics.DrawString(Math.Round(GSTval, 2), f8, Brushes.Black, discountColumnX, 45 + gstTableStartY)
+            GSTval = (GSTval * Val(item.SubItems(1).Text))
+            e.Graphics.DrawString(Math.Round(GSTval, 2), f8, Brushes.Black, totalColumnX, 45 + gstTableStartY)
+            totalGST += GSTval
+        Next
+
+        ' --- Draw line above totals ---
+        e.Graphics.DrawString(line, f8, Brushes.Black, 0, 65 + gstTableStartY)
+
+        ' --- Display Total GST ---
+        e.Graphics.DrawString("Total GST: " & totalGST.ToString("F2"), f8, Brushes.Black, discountColumnX + 27, gstTableStartY + 80) ' Adjust vertical position as needed
+
+        ' --- Thank You message ---
+        e.Graphics.DrawString("Thank you for shopping with us!", f8, Brushes.Black, centermargin, gstTableStartY + 120, center)
 
     End Sub
 

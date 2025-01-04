@@ -38,7 +38,6 @@ Public Class Form7
             conn.Close()
 
             LoadPendingDraft(Draft_id)
-            MessageBox.Show("Loading Pending Bill")
 
         Else
             'LOAD CUSTOMER INFO
@@ -57,7 +56,6 @@ Public Class Form7
             End While
             conn.Close()
 
-            MessageBox.Show("Loading New Bill")
         End If
     End Sub
 
@@ -300,11 +298,6 @@ Public Class Form7
 
     End Sub
 
-
-    Private Sub Button5_Click(sender As Object, e As EventArgs)
-        MessageBox.Show("Under Develop.")
-
-    End Sub
 
     Public Sub ClearProducts()
         P_ID.Clear()
