@@ -14,10 +14,57 @@ Public Class Form7
     'DRAFT BILL NO.
     Dim Draft_id As Integer
 
+    Private Sub Form7_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        'EMP_ID
+        Label6.Text = emp
+
+        'FORM CREATION DATE & TIME
+        TODY_DATE.Text = Today
+
+        'DISABLE MODIFY AND DELETE OPTION
+        MODIFY.Enabled = False
+        DELETE.Enabled = False
+
+        If PendingBill And CurrentBillState = False Then
+
+            Call connect()
+            query = "select min(draft_id) from draft_bill_details"
+            CMD = New MySqlCommand(query, conn)
+            READER = CMD.ExecuteReader
+            While READER.Read
+                Draft_id = READER(0)
+            End While
+            conn.Close()
+
+            LoadPendingDraft(Draft_id)
+            MessageBox.Show("Loading Pending Bill")
+
+        Else
+            'LOAD CUSTOMER INFO
+            LoadCustomer()
+
+            MaxBillingID()
+
+            'LOAD DRAFT CUSTOMERS
+            Call connect()
+            query = "Select c_name,c_phone from draft_bill_details where emp_id = '" & emp & "'"
+            CMD = New MySqlCommand(query, conn)
+            READER = CMD.ExecuteReader
+            While READER.Read
+                Dim value As String = READER(0) + "  " + READER(1)
+                ComboBox1.Items.Add(value)
+            End While
+            conn.Close()
+
+            MessageBox.Show("Loading New Bill")
+        End If
+    End Sub
+
 
     Public Sub MaxDraftId()
         Call connect()
-        query = "select max(draft_id) from draft_bill"
+        query = "Select max(draft_id) from draft_bill"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
         While READER.Read
@@ -29,9 +76,10 @@ Public Class Form7
         End While
         conn.Close()
     End Sub
+
     Public Sub MaxBillingID()
         Call connect()
-        query = "select max(bill_id) from bill_data_details"
+        query = "Select max(bill_id) from bill_data_details"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
         While READER.Read
@@ -45,32 +93,65 @@ Public Class Form7
         CurrentBill = BILL_NO.Text
     End Sub
 
-    Private Sub Form7_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub LoadPendingDraft(draftId)
 
-        'EMP_ID
-        Label6.Text = emp
-
-        'FORM CREATION DATE & TIME
-        TODY_DATE.Text = Today
-
-        'DISABLE MODIFY AND DELETE OPTION
-        MODIFY.Enabled = False
-        DELETE.Enabled = False
-
-        'LOAD CUSTOMER INFO
-        LoadCustomer()
-
-        MaxBillingID()
-
-        'LOAD DRAFT CUSTOMERS
         Call connect()
-        query = "select c_name,c_phone from draft_bill_details"
+        query = "Select * from draft_bill_details where draft_id = '" & draftId & "'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
+
         While READER.Read
-            Dim value As String = READER(0) + "  " + READER(1)
-            ComboBox1.Items.Add(value)
+            C_NAME.Text = READER.GetString("c_name")
+            C_EMAIL.Text = READER.GetString("c_email")
+            C_PH.Text = READER.GetString("c_phone")
+            cust_id = READER.GetString("cust_id")
         End While
+        conn.Close()
+
+        '
+        Call connect()
+        query = "select * from draft_bill where draft_id = '" & draftId & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+
+        Dim PRO As ListViewItem
+        ListView1.Items.Clear()
+
+        While READER.Read
+            PRO = ListView1.Items.Add(READER.GetString("p_name"))
+            PRO.SubItems.Add(READER.GetString("p_qty"))
+            PRO.SubItems.Add(READER.GetString("p_dis"))
+            PRO.SubItems.Add(READER.GetString("p_gst"))
+            PRO.SubItems.Add(READER.GetString("p_mrp"))
+            PRO.SubItems.Add(READER.GetString("p_amt"))
+        End While
+        conn.Close()
+
+        MaxBillingID()
+        Countdata()
+
+        Call connect()
+        query = "insert into bill_data (bill_id, p_id, p_name, p_qty, p_mrp, p_dis, p_amt, p_gst) " &
+                      "select '" & BILL_NO.Text & "' as bill_id, p_id, p_name, p_qty, p_mrp, p_dis, p_amt, p_gst " &
+                      "from draft_bill where draft_id = '" & draftId & "'"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+        conn.Close()
+
+        Call connect()
+        query = "insert into bill_data_details values ('" & BILL_NO.Text & "', '" & cust_id & "', '" & emp & "','" & ITM_GST & "','" & ITM_DIS & "','" & TOT_AMT & "',curdate())"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+        conn.Close()
+
+        'Delete From Original Table
+        Call connect()
+        query = "START TRANSACTION;" &
+                            "DELETE FROM draft_bill WHERE draft_id = '" & draftId & "';" &
+                            "DELETE FROM draft_bill_details WHERE draft_id = '" & draftId & "';" &
+                            "COMMIT;"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
         conn.Close()
 
     End Sub
@@ -182,6 +263,9 @@ Public Class Form7
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        PendingBill = True
+        CurrentBillState = False
+
         '
         MaxDraftId()
 
@@ -195,7 +279,7 @@ Public Class Form7
 
 
         Call connect()
-        query = "insert into draft_bill_details values ('" & Draft_id & "','" & C_NAME.Text & "','" & C_EMAIL.Text & "','" & C_PH.Text & "','" & emp & "','" & cust_id & "')"
+        query = "insert into draft_bill_details values ('" & Draft_id & "','" & C_NAME.Text & "','" & C_EMAIL.Text & "','" & C_PH.Text & "','" & emp & "','" & cust_id & "',True)"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
         conn.Close()
@@ -217,7 +301,7 @@ Public Class Form7
     End Sub
 
 
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+    Private Sub Button5_Click(sender As Object, e As EventArgs)
         MessageBox.Show("Under Develop.")
 
     End Sub
@@ -384,8 +468,6 @@ Public Class Form7
 
         LoadDraftData(number)
 
-
-
     End Sub
 
     Private Sub BILL_Click(sender As Object, e As EventArgs) Handles BILL.Click
@@ -399,6 +481,7 @@ Public Class Form7
 
         Dim form9 As New Form9()
         form9.Show()
+        Me.Close()
 
     End Sub
 
@@ -408,7 +491,6 @@ Public Class Form7
         query = "select * from products where product_id = " & Val(P_ID.Text) & ""
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
-
 
         Dim count As Integer = 0
         While READER.Read

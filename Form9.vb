@@ -141,10 +141,10 @@ Public Class Form9
             E_Name = READER(0)
         End While
 
+
         PD.DefaultPageSettings.PaperSize = New PaperSize("EZ BILL", totalWidth, totalHeight)
         PPD.Document = PD
         PPD.ShowDialog()
-
 
     End Sub
 
@@ -262,5 +262,32 @@ Public Class Form9
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         time = TimeString
+    End Sub
+
+    Private Sub PPD_Closed(sender As Object, e As EventArgs) Handles PPD.Closed
+
+        Call connect()
+        query = "select min(draft_id) from draft_bill"
+        CMD = New MySqlCommand(query, conn)
+        READER = CMD.ExecuteReader
+        While READER.Read
+            If READER(0).ToString = "" Then
+                CurrentBillState = True
+                PendingBill = False
+            Else
+                CurrentBillState = False
+                PendingBill = True
+            End If
+        End While
+        conn.Close()
+
+        If PendingBill And CurrentBillState = False Then
+            Dim form7 As New Form7()
+            form7.Show()
+        Else
+            Dim form8 As New Form8()
+            form8.Show()
+        End If
+        Me.Close()
     End Sub
 End Class

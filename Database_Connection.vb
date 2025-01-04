@@ -9,6 +9,9 @@ Module Database_Connection
     Public cust_id As String
     Public CurrentBill As String
 
+    Public PendingBill As Boolean = False
+    Public CurrentBillState As Boolean = True
+
     Public conn As MySqlConnection
     Public Sub connect()
         conn = New MySqlConnection

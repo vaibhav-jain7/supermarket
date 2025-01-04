@@ -19,11 +19,13 @@ Public Class Form5
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Form1.Show()
+        Dim form1 As New Form1()
+        form1.Show()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Form2.Show()
+        Dim form2 As New Form2()
+        form2.Show()
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -41,8 +43,9 @@ Public Class Form5
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         User = ""
-        Me.Hide()
-        Form4.Show()
+        Dim form4 As New Form4()
+        form4.Show()
+        Me.Close()
 
     End Sub
 End Class

@@ -8,6 +8,7 @@ Public Class Form8
     Dim query As String
 
     Private Sub Form8_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        CurrentBillState = True
 
         Label8.Top = 144
         Label8.Left = 233
@@ -129,8 +130,14 @@ Public Class Form8
 
         End If
 
-        Me.Hide()
-        Form7.Show()
+        Dim form7 As New Form7()
+        form7.Show()
+        Me.Close()
     End Sub
 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim form6 As New Form6()
+        form6.Show()
+        Me.Close()
+    End Sub
 End Class
