@@ -40,6 +40,7 @@ Partial Class Form8
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'C_PH
@@ -191,7 +192,7 @@ Partial Class Form8
         'Button3
         '
         Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.Location = New System.Drawing.Point(367, 280)
+        Me.Button3.Location = New System.Drawing.Point(353, 280)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(120, 35)
         Me.Button3.TabIndex = 101
@@ -201,7 +202,7 @@ Partial Class Form8
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(367, 271)
+        Me.Button1.Location = New System.Drawing.Point(353, 271)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(120, 35)
         Me.Button1.TabIndex = 102
@@ -209,11 +210,22 @@ Partial Class Form8
         Me.Button1.UseVisualStyleBackColor = True
         Me.Button1.Visible = False
         '
+        'Button2
+        '
+        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Location = New System.Drawing.Point(12, 279)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(54, 35)
+        Me.Button2.TabIndex = 103
+        Me.Button2.Text = "<"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'Form8
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(827, 327)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.TIME)
@@ -255,4 +267,5 @@ Partial Class Form8
     Friend WithEvents Timer1 As Timer
     Friend WithEvents Button3 As Button
     Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
 End Class

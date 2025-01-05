@@ -36,11 +36,11 @@ Partial Class Form5
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(348, 52)
+        Me.Label1.Location = New System.Drawing.Point(298, 52)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(250, 31)
+        Me.Label1.Size = New System.Drawing.Size(337, 31)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Administrator Panel"
+        Me.Label1.Text = "ADMINISTRATOR PANEL"
         '
         'Button1
         '
@@ -86,7 +86,7 @@ Partial Class Form5
         '
         Me.AD_NAME.AutoSize = True
         Me.AD_NAME.Font = New System.Drawing.Font("Calibri", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AD_NAME.Location = New System.Drawing.Point(120, 113)
+        Me.AD_NAME.Location = New System.Drawing.Point(110, 113)
         Me.AD_NAME.Name = "AD_NAME"
         Me.AD_NAME.Size = New System.Drawing.Size(124, 26)
         Me.AD_NAME.TabIndex = 6
