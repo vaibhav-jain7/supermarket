@@ -92,7 +92,7 @@ Public Class Form9
         If (PAYMENTMODE.Text = "CASH") Then
             MaxSaleID()
             Call connect()
-            query = "insert into sales (sale_id,bill_id ,cust_id,emp_id ,tot_amt, payment) values ('" & Val(sale) & "','20250001', '" & cust_id & "', '" & emp & "','" & FINALAMT.Text & "', 'CASH')"
+            query = "insert into sales (sale_id,bill_id ,cust_id,emp_id ,tot_amt, payment,sales_date) values ('" & Val(sale) & "','20250001', '" & cust_id & "', '" & emp & "','" & FINALAMT.Text & "', 'CASH',current_date())"
             CMD = New MySqlCommand(query, conn)
             READER = CMD.ExecuteReader
             conn.Close()
