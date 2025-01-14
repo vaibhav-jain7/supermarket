@@ -17,4 +17,9 @@ Public Class Form11
         DataGridView1.DataSource = dt
         conn.Close()
     End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Me.Hide()
+        Form5.Show()
+    End Sub
 End Class

@@ -16,7 +16,8 @@ Public Class Form12
         conn.Close()
     End Sub
 
-    Private Sub Form12_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Me.Hide()
+        Form6.Show()
     End Sub
 End Class

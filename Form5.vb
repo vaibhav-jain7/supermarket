@@ -34,7 +34,8 @@ Public Class Form5
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        MessageBox.Show("Under Development")
+        Form13.Show()
+        Me.Hide()
 
     End Sub
 
