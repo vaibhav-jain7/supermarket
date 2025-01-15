@@ -13,4 +13,7 @@
         Me.Hide()
     End Sub
 
+    Private Sub Form4_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ax.URL = "C:\Users\hp\Downloads\welcome-64347 (mp3cut.net).mp3"
+    End Sub
 End Class
