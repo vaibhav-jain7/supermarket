@@ -217,7 +217,7 @@ Partial Class Form8
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(54, 35)
         Me.Button2.TabIndex = 103
-        Me.Button2.Text = "<"
+        Me.Button2.Text = "←"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Form8

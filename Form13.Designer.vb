@@ -25,6 +25,9 @@ Partial Class Form13
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Button5 = New System.Windows.Forms.Button()
+        Me.C_PH = New System.Windows.Forms.TextBox()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -41,7 +44,7 @@ Partial Class Form13
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Calibri", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label11.Location = New System.Drawing.Point(429, 60)
+        Me.Label11.Location = New System.Drawing.Point(425, 30)
         Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
         Me.Label11.Padding = New System.Windows.Forms.Padding(5)
@@ -60,11 +63,42 @@ Partial Class Form13
         Me.Button5.Text = "< BACK"
         Me.Button5.UseVisualStyleBackColor = True
         '
+        'C_PH
+        '
+        Me.C_PH.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.C_PH.Location = New System.Drawing.Point(443, 131)
+        Me.C_PH.Name = "C_PH"
+        Me.C_PH.Size = New System.Drawing.Size(208, 26)
+        Me.C_PH.TabIndex = 66
+        '
+        'Button2
+        '
+        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Location = New System.Drawing.Point(750, 131)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(78, 27)
+        Me.Button2.TabIndex = 67
+        Me.Button2.Text = "Search"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(237, 131)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(155, 25)
+        Me.Label1.TabIndex = 68
+        Me.Label1.Text = "Phone Number"
+        '
         'Form13
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1046, 505)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.C_PH)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.DataGridView1)
@@ -79,4 +113,7 @@ Partial Class Form13
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents Label11 As Label
     Friend WithEvents Button5 As Button
+    Friend WithEvents C_PH As TextBox
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Label1 As Label
 End Class

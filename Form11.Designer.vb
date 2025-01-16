@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form11
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form11
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -43,7 +43,7 @@ Partial Class Form11
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(708, 57)
+        Me.Button1.Location = New System.Drawing.Point(670, 57)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(78, 27)
         Me.Button1.TabIndex = 2
@@ -73,9 +73,9 @@ Partial Class Form11
         Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button5.Location = New System.Drawing.Point(12, 12)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(101, 40)
+        Me.Button5.Size = New System.Drawing.Size(50, 33)
         Me.Button5.TabIndex = 35
-        Me.Button5.Text = "< BACK"
+        Me.Button5.Text = "←"
         Me.Button5.UseVisualStyleBackColor = True
         '
         'Form11
