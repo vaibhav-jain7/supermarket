@@ -22,69 +22,215 @@ Partial Class Form12
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.components = New System.ComponentModel.Container()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TIME = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.TODY_DATE = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.ListView1 = New System.Windows.Forms.ListView()
+        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.SuspendLayout()
-        '
-        'DateTimePicker1
-        '
-        Me.DateTimePicker1.CalendarFont = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateTimePicker1.CustomFormat = "MM/dd/yyyy"
-        Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker1.Location = New System.Drawing.Point(385, 100)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(200, 20)
-        Me.DateTimePicker1.TabIndex = 1
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(32, 152)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(970, 323)
-        Me.DataGridView1.TabIndex = 2
         '
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(698, 98)
+        Me.Button1.Location = New System.Drawing.Point(12, 12)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(78, 27)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "Search"
+        Me.Button1.Size = New System.Drawing.Size(50, 33)
+        Me.Button1.TabIndex = 37
+        Me.Button1.Text = "←"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'Button5
+        'TIME
         '
-        Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button5.Location = New System.Drawing.Point(12, 12)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(101, 40)
-        Me.Button5.TabIndex = 35
-        Me.Button5.Text = "< BACK"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.TIME.AutoSize = True
+        Me.TIME.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TIME.Location = New System.Drawing.Point(934, 30)
+        Me.TIME.Name = "TIME"
+        Me.TIME.Size = New System.Drawing.Size(60, 20)
+        Me.TIME.TabIndex = 95
+        Me.TIME.Text = "label33"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.Label3.Location = New System.Drawing.Point(869, 30)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(55, 20)
+        Me.Label3.TabIndex = 94
+        Me.Label3.Text = "TIME :"
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label27.Location = New System.Drawing.Point(869, 6)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(60, 20)
+        Me.Label27.TabIndex = 97
+        Me.Label27.Text = "DATE :"
+        '
+        'TODY_DATE
+        '
+        Me.TODY_DATE.AutoSize = True
+        Me.TODY_DATE.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.TODY_DATE.Font = New System.Drawing.Font("Calibri", 12.0!)
+        Me.TODY_DATE.Location = New System.Drawing.Point(934, 6)
+        Me.TODY_DATE.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.TODY_DATE.Name = "TODY_DATE"
+        Me.TODY_DATE.Size = New System.Drawing.Size(42, 21)
+        Me.TODY_DATE.TabIndex = 96
+        Me.TODY_DATE.Text = "Date"
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Calibri", 27.75!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Label11.Location = New System.Drawing.Point(390, -7)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Padding = New System.Windows.Forms.Padding(5)
+        Me.Label11.Size = New System.Drawing.Size(235, 55)
+        Me.Label11.TabIndex = 99
+        Me.Label11.Text = "TODAY'S SALE"
+        Me.Label11.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'Button2
+        '
+        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Location = New System.Drawing.Point(908, 150)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(98, 32)
+        Me.Button2.TabIndex = 103
+        Me.Button2.Text = "CLEAR"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(205, 121)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(211, 29)
+        Me.TextBox1.TabIndex = 102
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(2, 123)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(175, 25)
+        Me.Label1.TabIndex = 101
+        Me.Label1.Text = "CUSTOMER NO."
+        '
+        'Button3
+        '
+        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.Location = New System.Drawing.Point(908, 115)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(98, 32)
+        Me.Button3.TabIndex = 100
+        Me.Button3.Text = "SEARCH"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'ListView1
+        '
+        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.ColumnHeader6})
+        Me.ListView1.HideSelection = False
+        Me.ListView1.Location = New System.Drawing.Point(-1, 186)
+        Me.ListView1.Name = "ListView1"
+        Me.ListView1.Size = New System.Drawing.Size(1016, 334)
+        Me.ListView1.TabIndex = 104
+        Me.ListView1.UseCompatibleStateImageBehavior = False
+        Me.ListView1.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader1
+        '
+        Me.ColumnHeader1.Text = "BILL ID"
+        Me.ColumnHeader1.Width = 100
+        '
+        'ColumnHeader2
+        '
+        Me.ColumnHeader2.Text = "CUSTOMER NAME"
+        Me.ColumnHeader2.Width = 262
+        '
+        'ColumnHeader3
+        '
+        Me.ColumnHeader3.Text = "CASHEIR NAME"
+        Me.ColumnHeader3.Width = 169
+        '
+        'ColumnHeader4
+        '
+        Me.ColumnHeader4.Text = "AMOUNT"
+        Me.ColumnHeader4.Width = 169
+        '
+        'ColumnHeader5
+        '
+        Me.ColumnHeader5.Text = "PAY METHOD"
+        Me.ColumnHeader5.Width = 169
+        '
+        'ColumnHeader6
+        '
+        Me.ColumnHeader6.Text = "DATE"
+        Me.ColumnHeader6.Width = 138
         '
         'Form12
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1014, 487)
-        Me.Controls.Add(Me.Button5)
+        Me.ClientSize = New System.Drawing.Size(1014, 523)
+        Me.Controls.Add(Me.ListView1)
+        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.Label27)
+        Me.Controls.Add(Me.TODY_DATE)
+        Me.Controls.Add(Me.TIME)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.DataGridView1)
-        Me.Controls.Add(Me.DateTimePicker1)
         Me.Name = "Form12"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form12"
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents DateTimePicker1 As DateTimePicker
-    Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents Button1 As Button
-    Friend WithEvents Button5 As Button
+    Friend WithEvents TIME As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label27 As Label
+    Friend WithEvents TODY_DATE As Label
+    Friend WithEvents Timer1 As Timer
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Button2 As Button
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Button3 As Button
+    Friend WithEvents ListView1 As ListView
+    Friend WithEvents ColumnHeader1 As ColumnHeader
+    Friend WithEvents ColumnHeader2 As ColumnHeader
+    Friend WithEvents ColumnHeader3 As ColumnHeader
+    Friend WithEvents ColumnHeader4 As ColumnHeader
+    Friend WithEvents ColumnHeader5 As ColumnHeader
+    Friend WithEvents ColumnHeader6 As ColumnHeader
 End Class
