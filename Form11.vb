@@ -45,7 +45,7 @@ Public Class Form11
         For i = 0 To CustomersID.Count - 1
 
             Call connect()
-            query = "select customer_name from customers where customer_id = " & CustomersID.ElementAt(0) & ""
+            query = "select customer_name from customers where customer_id = " & CustomersID.ElementAt(i) & ""
             CMD = New MySqlCommand(query, conn)
             READER = CMD.ExecuteReader
             While READER.Read
@@ -69,7 +69,7 @@ Public Class Form11
 
         For i = 0 To EMP_ID.Count - 1
             Call connect()
-            query = "select emp_name from employee where emp_id = " & EMP_ID.ElementAt(0) & ""
+            query = "select emp_name from employee where emp_id = " & EMP_ID.ElementAt(i) & ""
             CMD = New MySqlCommand(query, conn)
             READER = CMD.ExecuteReader
             While READER.Read
@@ -134,7 +134,7 @@ Public Class Form11
 
 
             Call connect()
-            query = "Select cust_id,emp_id from sales where sales_date between @date1 and @date2"
+            query = "Select cust_id from sales where sales_date between @date1 and @date2"
             CMD = New MySqlCommand(query, conn)
             CMD.Parameters.Add("date1", MySqlDbType.Date).Value = DateTimePicker1.Value
             CMD.Parameters.Add("date2", MySqlDbType.Date).Value = DateTimePicker2.Value
@@ -144,11 +144,23 @@ Public Class Form11
 
             While READER.Read
                 CustomersID(i) = READER(0)
-                EMP_ID(i) = READER(1)
                 i += 1
             End While
             conn.Close()
 
+            Call connect()
+            query = "Select emp_id from sales where sales_date between @date1 and @date2"
+            CMD = New MySqlCommand(query, conn)
+            CMD.Parameters.Add("date1", MySqlDbType.Date).Value = DateTimePicker1.Value
+            CMD.Parameters.Add("date2", MySqlDbType.Date).Value = DateTimePicker2.Value
+            READER = CMD.ExecuteReader
+
+            i = 0
+            While READER.Read
+                EMP_ID(i) = READER(1)
+                i += 1
+            End While
+            conn.Close()
 
             For i = 0 To CustomersID.Count - 1
                 Call connect()
@@ -185,6 +197,7 @@ Public Class Form11
             Dim LIST As New ListViewItem
             ListView1.Items.Clear()
             i = 0
+
             While READER.Read
                 LIST = ListView1.Items.Add(READER.GetString("bill_id"))
                 LIST.SubItems.Add(CustomersName.ElementAt(i))
@@ -212,7 +225,6 @@ Public Class Form11
             While READER.Read
                 c_id = READER.GetString("customer_id")
                 CustomersName(i) = READER.GetString("customer_name")
-                MessageBox.Show(READER.GetString("customer_name"))
             End While
             conn.Close()
 
@@ -231,8 +243,6 @@ Public Class Form11
             End While
             conn.Close()
 
-            MessageBox.Show(count)
-
             Dim EMP_ID(count) As Integer
             Dim EMP_NAME(count) As String
 
@@ -249,7 +259,6 @@ Public Class Form11
 
             While READER.Read
                 EMP_ID(i) = READER(0)
-                MessageBox.Show(READER(0))
                 i += 1
             End While
             conn.Close()

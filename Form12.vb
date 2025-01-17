@@ -54,7 +54,7 @@ Public Class Form12
 
         'EMP DETAILS
         Call connect()
-        query = "select emp_name from employee"
+        query = "select emp_name from employee where emp_id = " & emp & ""
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
@@ -120,7 +120,7 @@ Public Class Form12
         End While
         conn.Close()
 
-        If count = 0 = "" Then
+        If count = 0 Then
             ListView1.Items.Clear()
             MsgBox("Sales Didn't Exists")
             Exit Sub
