@@ -775,6 +775,7 @@ Partial Class Form7
         Me.Controls.Add(Me.Label36)
         Me.Name = "Form7"
         Me.Padding = New System.Windows.Forms.Padding(10)
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form7"
         Me.ResumeLayout(False)
         Me.PerformLayout()

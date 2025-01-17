@@ -104,7 +104,7 @@ Partial Class Form5
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(805, 34)
+        Me.Button5.Location = New System.Drawing.Point(820, 12)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(101, 40)
         Me.Button5.TabIndex = 35
@@ -115,7 +115,7 @@ Partial Class Form5
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(933, 535)
+        Me.ClientSize = New System.Drawing.Size(933, 438)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.AD_NAME)
         Me.Controls.Add(Me.Label2)
