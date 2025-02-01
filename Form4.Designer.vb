@@ -22,16 +22,13 @@ Partial Class Form4
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form4))
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.ax = New AxWMPLib.AxWindowsMediaPlayer()
         Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ax, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button1
@@ -83,21 +80,11 @@ Partial Class Form4
         Me.PictureBox1.TabIndex = 6
         Me.PictureBox1.TabStop = False
         '
-        'ax
-        '
-        Me.ax.Enabled = True
-        Me.ax.Location = New System.Drawing.Point(438, 200)
-        Me.ax.Name = "ax"
-        Me.ax.OcxState = CType(resources.GetObject("ax.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.ax.Size = New System.Drawing.Size(41, 30)
-        Me.ax.TabIndex = 7
-        Me.ax.Visible = False
-        '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(136, 86)
+        Me.Label3.Location = New System.Drawing.Point(54, 86)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(264, 37)
         Me.Label3.TabIndex = 8
@@ -109,7 +96,6 @@ Partial Class Form4
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(866, 505)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.ax)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -119,7 +105,6 @@ Partial Class Form4
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form4"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ax, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -130,6 +115,5 @@ Partial Class Form4
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents ax As AxWMPLib.AxWindowsMediaPlayer
     Friend WithEvents Label3 As Label
 End Class

@@ -25,9 +25,11 @@ Partial Class Form6
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.E_NAME = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -60,26 +62,6 @@ Partial Class Form6
         Me.E_NAME.TabIndex = 3
         Me.E_NAME.Text = "Emp_name"
         '
-        'Button1
-        '
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(131, 210)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(184, 63)
-        Me.Button1.TabIndex = 4
-        Me.Button1.Text = "Bill Generation"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(485, 210)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(184, 63)
-        Me.Button2.TabIndex = 5
-        Me.Button2.Text = "Today's Sale"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
         'Button5
         '
         Me.Button5.Location = New System.Drawing.Point(687, 12)
@@ -89,11 +71,56 @@ Partial Class Form6
         Me.Button5.Text = "< BACK"
         Me.Button5.UseVisualStyleBackColor = True
         '
+        'Button2
+        '
+        Me.Button2.BackgroundImage = Global.supermarket.My.Resources.Resources.Today_s_Sales
+        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Location = New System.Drawing.Point(505, 157)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(204, 188)
+        Me.Button2.TabIndex = 5
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Button1.BackgroundImage = Global.supermarket.My.Resources.Resources.Bill
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(174, 157)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(204, 188)
+        Me.Button1.TabIndex = 4
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(171, 370)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(207, 33)
+        Me.Label3.TabIndex = 37
+        Me.Label3.Text = "Bill Generation"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(511, 370)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(198, 33)
+        Me.Label4.TabIndex = 38
+        Me.Label4.Text = "Today's Sales"
+        '
         'Form6
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
@@ -114,4 +141,6 @@ Partial Class Form6
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button5 As Button
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label4 As Label
 End Class

@@ -10,10 +10,12 @@ Public Class Form3
 
         If User = "ADMIN" Then
             Label1.Text = "ADMINISTRATOR LOGIN"
+            CheckBox4.Visible = False
         ElseIf User = "MANAGER" Then
             Label1.Text = "MANAGER LOGIN"
         ElseIf User = "EMPLOYEE" Then
             Label1.Text = "EMPLOYEE LOGIN"
+            CheckBox2.Visible = False
         End If
 
         TextBox1.Text = ""
@@ -100,5 +102,17 @@ Public Class Form3
         End If
         conn.Close()
 
+    End Sub
+
+    Private Sub Label4_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub CheckBox3_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox3.CheckedChanged
+        If CheckBox3.Checked = True Then
+            TextBox2.UseSystemPasswordChar = True
+        Else
+            TextBox2.UseSystemPasswordChar = False
+        End If
     End Sub
 End Class
