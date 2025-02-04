@@ -464,17 +464,21 @@ Public Class Form7
     End Sub
 
     Private Sub BILL_Click(sender As Object, e As EventArgs) Handles BILL.Click
+        If ListView1.Items.Count = 0 Then
+            MsgBox("Fill product")
+        Else
+            Call connect()
+            query = "insert into bill_data_details values ('" & BILL_NO.Text & "','" & cust_id & "','" & emp & "','" & Label26.Text & "','" & Label24.Text & "','" & Label22.Text & "',current_date())"
+            CMD = New MySqlCommand(query, conn)
+            READER = CMD.ExecuteReader
+            CurrentBill = BILL_NO.Text
+            conn.Close()
 
-        Call connect()
-        query = "insert into bill_data_details values ('" & BILL_NO.Text & "','" & cust_id & "','" & emp & "','" & Label26.Text & "','" & Label24.Text & "','" & Label22.Text & "',current_date())"
-        CMD = New MySqlCommand(query, conn)
-        READER = CMD.ExecuteReader
-        CurrentBill = BILL_NO.Text
-        conn.Close()
+            Dim form9 As New Form9()
+            form9.Show()
+            Me.Close()
 
-        Dim form9 As New Form9()
-        form9.Show()
-        Me.Close()
+        End If
 
     End Sub
 

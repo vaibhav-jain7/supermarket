@@ -39,6 +39,7 @@ Partial Class Form11
         Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'DateTimePicker1
@@ -184,11 +185,23 @@ Partial Class Form11
         Me.Button2.Text = "CLEAR"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Red
+        Me.Label4.Location = New System.Drawing.Point(894, 54)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(113, 25)
+        Me.Label4.TabIndex = 76
+        Me.Label4.Text = "NO SALES"
+        '
         'Form11
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1019, 503)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.ListView1)
         Me.Controls.Add(Me.Label11)
@@ -225,4 +238,5 @@ Partial Class Form11
     Friend WithEvents ColumnHeader5 As ColumnHeader
     Friend WithEvents ColumnHeader6 As ColumnHeader
     Friend WithEvents Button2 As Button
+    Friend WithEvents Label4 As Label
 End Class

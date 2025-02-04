@@ -7,6 +7,7 @@ Public Class Form11
 
     Public Sub AllSales()
 
+        Label4.Visible = False
         Dim count As Integer = 0
 
         Call connect()
@@ -18,6 +19,11 @@ Public Class Form11
             count = count + 1
         End While
         conn.Close()
+
+        If count = 0 Then
+            Label4.Visible = True
+            Exit Sub
+        End If
 
 
         Dim CustomersID(count) As Integer
@@ -74,7 +80,7 @@ Public Class Form11
             READER = CMD.ExecuteReader
             While READER.Read
                 EMP_NAME(i) = READER(0)
-                i += 1
+                'i += 1
             End While
             conn.Close()
         Next
@@ -120,7 +126,7 @@ Public Class Form11
             End While
             conn.Close()
 
-            If count = 0 = "" Then
+            If count = 0 Then
                 ListView1.Items.Clear()
                 MsgBox("Sales Didn't Exists")
                 Exit Sub
@@ -296,6 +302,9 @@ Public Class Form11
                 i = i + 1
             End While
             conn.Close()
+
+            'Else
+
         End If
 
     End Sub
@@ -308,5 +317,6 @@ Public Class Form11
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         AllSales()
+        TextBox1.Text = ""
     End Sub
 End Class

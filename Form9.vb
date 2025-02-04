@@ -1,4 +1,5 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports Org.BouncyCastle.Crypto.Agreement
 Imports System.Drawing.Printing
 
 Public Class Form9
@@ -90,17 +91,56 @@ Public Class Form9
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If (PAYMENTMODE.Text = "CASH") Then
-            MaxSaleID()
-            Call connect()
-            query = "insert into sales (sale_id,bill_id ,cust_id,emp_id ,tot_amt, payment,sales_date) values ('" & Val(sale) & "'," & CurrentBill & ", '" & cust_id & "', '" & emp & "','" & FINALAMT.Text & "', 'CASH',curdate())"
-            CMD = New MySqlCommand(query, conn)
-            READER = CMD.ExecuteReader
-            conn.Close()
+            If Val(TOTALAMT.Text) > Val(CASHBYCUSTOMER.Text) Then
+                MsgBox("Wrong Input")
+                CASHBYCUSTOMER.Text = ""
+                CHANGEAMT.Text = ""
+            Else
 
-            PAYMENTMODE.Enabled = False
-            CASHBYCUSTOMER.Enabled = False
-            CHANGEAMT.Enabled = False
-            TOTALAMT.Enabled = False
+                If CASHBYCUSTOMER.Text <> "" Then
+                    MaxSaleID()
+                    Call connect()
+                    query = "insert into sales (sale_id,bill_id ,cust_id,emp_id ,tot_amt, payment,sales_date) values ('" & Val(sale) & "'," & CurrentBill & ", '" & cust_id & "', '" & emp & "','" & FINALAMT.Text & "', 'CASH',curdate())"
+                    CMD = New MySqlCommand(query, conn)
+                    READER = CMD.ExecuteReader
+                    conn.Close()
+
+                    PAYMENTMODE.Enabled = False
+                    CASHBYCUSTOMER.Enabled = False
+                    CHANGEAMT.Enabled = False
+                    TOTALAMT.Enabled = False
+
+                    'query = "update super_market.products set stock_qty='" & ListView1.SubItems(1).Text & "' where product_id='" & P_ID.Text & "'"
+                    'CMD = New MySqlCommand(query, conn)
+                    'READER = CMD.ExecuteReader
+
+                    MessageBox.Show("Payment Done...", "Payment", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                    Dim itemHeight As Integer = 20
+                    Dim itemCount As Integer = ListView1.Items.Count
+                    Dim columnCount As Integer = ListView1.Columns.Count
+
+                    Dim totalHeight As Integer = (itemHeight * itemCount + 150) * 2
+
+                    Dim columnWidth As Integer = 100
+                    Dim totalWidth As Integer = columnWidth * columnCount
+
+                    Call connect()
+                    query = "select emp_name from employee where emp_id = '" & emp & "'"
+                    CMD = New MySqlCommand(query, conn)
+                    READER = CMD.ExecuteReader
+                    While READER.Read
+                        E_Name = READER(0)
+                    End While
+
+
+                    PD.DefaultPageSettings.PaperSize = New PaperSize("EZ BILL", totalWidth, totalHeight)
+                    PPD.Document = PD
+                    PPD.ShowDialog()
+                Else
+                    MsgBox("FILL AMOUNT")
+                End If
+            End If
 
         ElseIf (PAYMENTMODE.Text = "UPI") Then
             MaxSaleID()
@@ -110,41 +150,90 @@ Public Class Form9
             READER = CMD.ExecuteReader
             conn.Close()
             TOTALAMT.Enabled = False
+            MessageBox.Show("Payment Done...", "Payment", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-        ElseIf (PAYMENTMODE.Text = "CARD") Then
-            MaxSaleID()
+            Dim itemHeight As Integer = 20
+            Dim itemCount As Integer = ListView1.Items.Count
+            Dim columnCount As Integer = ListView1.Columns.Count
+
+            Dim totalHeight As Integer = (itemHeight * itemCount + 150) * 2
+
+            Dim columnWidth As Integer = 100
+            Dim totalWidth As Integer = columnWidth * columnCount
+
             Call connect()
-            query = "insert into sales (sale_id,bill_id ,cust_id,emp_id ,tot_amt, payment,sales_date) values ('" & Val(sale) & "'," & CurrentBill & ", '" & cust_id & "', '" & emp & "','" & FINALAMT.Text & "', 'CARD',curdate())"
+            query = "select emp_name from employee where emp_id = '" & emp & "'"
             CMD = New MySqlCommand(query, conn)
             READER = CMD.ExecuteReader
-            conn.Close()
-            TOTALAMT.Enabled = False
+            While READER.Read
+                E_Name = READER(0)
+            End While
 
+
+            PD.DefaultPageSettings.PaperSize = New PaperSize("EZ BILL", totalWidth, totalHeight)
+            PPD.Document = PD
+            PPD.ShowDialog()
+
+        ElseIf (PAYMENTMODE.Text = "CARD") Then
+            If (CARDNUMBER.Text = "" & Val(PINNO.Text) = 0) Then
+                MsgBox("FILL CARD NUMBER")
+            Else
+                MaxSaleID()
+                Call connect()
+                query = "insert into sales (sale_id,bill_id ,cust_id,emp_id ,tot_amt, payment,sales_date) values ('" & Val(sale) & "'," & CurrentBill & ", '" & cust_id & "', '" & emp & "','" & FINALAMT.Text & "', 'CARD',curdate())"
+                CMD = New MySqlCommand(query, conn)
+                READER = CMD.ExecuteReader
+                conn.Close()
+                TOTALAMT.Enabled = False
+                MessageBox.Show("Payment Done...", "Payment", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                Dim itemHeight As Integer = 20
+                Dim itemCount As Integer = ListView1.Items.Count
+                Dim columnCount As Integer = ListView1.Columns.Count
+
+                Dim totalHeight As Integer = (itemHeight * itemCount + 150) * 2
+
+                Dim columnWidth As Integer = 100
+                Dim totalWidth As Integer = columnWidth * columnCount
+
+                Call connect()
+                query = "select emp_name from employee where emp_id = '" & emp & "'"
+                CMD = New MySqlCommand(query, conn)
+                READER = CMD.ExecuteReader
+                While READER.Read
+                    E_Name = READER(0)
+                End While
+
+
+                PD.DefaultPageSettings.PaperSize = New PaperSize("EZ BILL", totalWidth, totalHeight)
+                PPD.Document = PD
+                PPD.ShowDialog()
+            End If
         End If
 
-        MessageBox.Show("Payment Done...", "Payment", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'MessageBox.Show("Payment Done...", "Payment", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-        Dim itemHeight As Integer = 20
-        Dim itemCount As Integer = ListView1.Items.Count
-        Dim columnCount As Integer = ListView1.Columns.Count
+        'Dim itemHeight As Integer = 20
+        'Dim itemCount As Integer = ListView1.Items.Count
+        'Dim columnCount As Integer = ListView1.Columns.Count
 
-        Dim totalHeight As Integer = (itemHeight * itemCount + 150) * 2
+        'Dim totalHeight As Integer = (itemHeight * itemCount + 150) * 2
 
-        Dim columnWidth As Integer = 100
-        Dim totalWidth As Integer = columnWidth * columnCount
+        'Dim columnWidth As Integer = 100
+        'Dim totalWidth As Integer = columnWidth * columnCount
 
-        Call connect()
-        query = "select emp_name from employee where emp_id = '" & emp & "'"
-        CMD = New MySqlCommand(query, conn)
-        READER = CMD.ExecuteReader
-        While READER.Read
-            E_Name = READER(0)
-        End While
+        'Call connect()
+        'query = "select emp_name from employee where emp_id = '" & emp & "'"
+        'CMD = New MySqlCommand(query, conn)
+        'READER = CMD.ExecuteReader
+        'While READER.Read
+        '    E_Name = READER(0)
+        'End While
 
 
-        PD.DefaultPageSettings.PaperSize = New PaperSize("EZ BILL", totalWidth, totalHeight)
-        PPD.Document = PD
-        PPD.ShowDialog()
+        'PD.DefaultPageSettings.PaperSize = New PaperSize("EZ BILL", totalWidth, totalHeight)
+        'PPD.Document = PD
+        'PPD.ShowDialog()
 
     End Sub
 

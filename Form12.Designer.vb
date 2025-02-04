@@ -41,6 +41,8 @@ Partial Class Form12
         Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Button1
@@ -192,11 +194,35 @@ Partial Class Form12
         Me.ColumnHeader6.Text = "DATE"
         Me.ColumnHeader6.Width = 138
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
+        Me.Label4.Location = New System.Drawing.Point(781, 150)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(113, 25)
+        Me.Label4.TabIndex = 105
+        Me.Label4.Text = "NO SALES"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Black
+        Me.Label2.Location = New System.Drawing.Point(618, 150)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(150, 25)
+        Me.Label2.TabIndex = 106
+        Me.Label2.Text = "TOTAL SALES"
+        '
         'Form12
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1014, 523)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.ListView1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.TextBox1)
@@ -233,4 +259,6 @@ Partial Class Form12
     Friend WithEvents ColumnHeader4 As ColumnHeader
     Friend WithEvents ColumnHeader5 As ColumnHeader
     Friend WithEvents ColumnHeader6 As ColumnHeader
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label2 As Label
 End Class

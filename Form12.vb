@@ -67,6 +67,8 @@ Public Class Form12
         query = "select * from sales where sales_date = curdate()"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
+
+        Dim totoalAmt As Integer = 0
         Dim LIST As New ListViewItem
         ListView1.Items.Clear()
         i = 0
@@ -75,12 +77,14 @@ Public Class Form12
             LIST.SubItems.Add(CustomersName.ElementAt(i))
             LIST.SubItems.Add(EMP_NAME)
             LIST.SubItems.Add(READER.GetString("tot_amt"))
+            totoalAmt = totoalAmt + Val(READER.GetString("tot_amt"))
+
             LIST.SubItems.Add(READER.GetString("payment"))
             LIST.SubItems.Add(READER.GetDateTime("sales_date"))
             i = i + 1
         End While
         conn.Close()
-
+        Label4.Text = "Rs. " & totoalAmt
     End Sub
 
 
@@ -145,7 +149,7 @@ Public Class Form12
         query = "Select * from sales where cust_id = " & CustomersID & " and sales_date = curdate() and emp_id = " & emp & ""
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
-
+        Dim totoalAmt As Integer = 0
         Dim LIST As New ListViewItem
         ListView1.Items.Clear()
         While READER.Read
@@ -153,11 +157,12 @@ Public Class Form12
             LIST.SubItems.Add(CustomersName)
             LIST.SubItems.Add(EMP_NAME)
             LIST.SubItems.Add(READER.GetString("tot_amt"))
+            totoalAmt = totoalAmt + Val(READER.GetString("tot_amt"))
             LIST.SubItems.Add(READER.GetString("payment"))
             LIST.SubItems.Add(READER.GetDateTime("sales_date"))
         End While
         conn.Close()
-
+        Label4.Text = "Rs. " & totoalAmt
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click

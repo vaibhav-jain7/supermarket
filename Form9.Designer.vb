@@ -321,7 +321,7 @@ Partial Class Form9
         Me.TOTALAMT.Location = New System.Drawing.Point(48, 608)
         Me.TOTALAMT.Name = "TOTALAMT"
         Me.TOTALAMT.ReadOnly = True
-        Me.TOTALAMT.Size = New System.Drawing.Size(259, 26)
+        Me.TOTALAMT.Size = New System.Drawing.Size(253, 26)
         Me.TOTALAMT.TabIndex = 118
         '
         'Label12
@@ -536,7 +536,7 @@ Partial Class Form9
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(991, 806)
+        Me.ClientSize = New System.Drawing.Size(991, 749)
         Me.Controls.Add(Me.GST)
         Me.Controls.Add(Me.DIS)
         Me.Controls.Add(Me.Label2)
