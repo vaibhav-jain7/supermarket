@@ -8,7 +8,7 @@ Public Class Form8
     Dim query As String
 
     Private Sub Form8_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CurrentBillState = True
+        'CurrentBillState = True
 
         Label8.Top = 144
         Label8.Left = 233

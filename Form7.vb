@@ -16,8 +16,14 @@ Public Class Form7
 
     Private Sub Form7_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        'EMP_ID
-        Label6.Text = emp
+        If User = "ADMIN" Then
+            Label5.Visible = False
+            Label6.Text = "ADMIN"
+            emp = "2024005"
+        Else
+            'EMP_ID
+            Label6.Text = emp
+        End If
 
         'FORM CREATION DATE & TIME
         TODY_DATE.Text = Today
@@ -26,22 +32,22 @@ Public Class Form7
         MODIFY.Enabled = False
         DELETE.Enabled = False
 
-        If PendingBill And CurrentBillState = False Then
+        'If PendingBill And CurrentBillState = False Then
 
-            Call connect()
-            query = "select min(draft_id) from draft_bill_details"
-            CMD = New MySqlCommand(query, conn)
-            READER = CMD.ExecuteReader
-            While READER.Read
-                Draft_id = READER(0)
-            End While
-            conn.Close()
+        '    Call connect()
+        '    query = "select min(draft_id) from draft_bill_details"
+        '    CMD = New MySqlCommand(query, conn)
+        '    READER = CMD.ExecuteReader
+        '    While READER.Read
+        '        Draft_id = READER(0)
+        '    End While
+        '    conn.Close()
 
-            LoadPendingDraft(Draft_id)
+        'LoadPendingDraft(Draft_id)
 
-        Else
-            'LOAD CUSTOMER INFO
-            LoadCustomer()
+        'Else
+        'LOAD CUSTOMER INFO
+        LoadCustomer()
 
             MaxBillingID()
 
@@ -56,7 +62,7 @@ Public Class Form7
             End While
             conn.Close()
 
-        End If
+        'End If
     End Sub
 
 
@@ -261,8 +267,8 @@ Public Class Form7
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        PendingBill = True
-        CurrentBillState = False
+        'PendingBill = True
+        'CurrentBillState = False
 
         '
         MaxDraftId()
@@ -392,7 +398,7 @@ Public Class Form7
 
         Dim draftId As String
         Call connect()
-        query = "select * from draft_bill_details"
+        query = "select * from draft_bill_details where c_phone = '" & number & "'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
@@ -455,10 +461,42 @@ Public Class Form7
 
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+
+        'MaxDraftId()
+
+        'Call connect()
+        'query = "insert into draft_bill (draft_id, p_id, p_name, p_qty, p_mrp, p_dis, p_amt, p_gst) " &
+        '              "select '" & Draft_id & "' as draft_id, p_id, p_name, p_qty, p_mrp, p_dis, p_amt, p_gst " &
+        '              "from bill_data where bill_id = '" & BILL_NO.Text & "'"
+        'CMD = New MySqlCommand(query, conn)
+        'READER = CMD.ExecuteReader
+        'conn.Close()
+
+
+        'Call connect()
+        'query = "insert into draft_bill_details values ('" & Draft_id & "','" & C_NAME.Text & "','" & C_EMAIL.Text & "','" & C_PH.Text & "','" & emp & "','" & cust_id & "',True)"
+        'CMD = New MySqlCommand(query, conn)
+        'READER = CMD.ExecuteReader
+        'conn.Close()
+
+        ''Delete From Original Table
+        'Call connect()
+        'query = "START TRANSACTION;" &
+        '                    "DELETE FROM bill_data WHERE bill_id = '" & BILL_NO.Text & "';" &
+        '                    "DELETE FROM bill_data_details WHERE bill_id = '" & BILL_NO.Text & "';" &
+        '                    "COMMIT;"
+        'CMD = New MySqlCommand(query, conn)
+        'READER = CMD.ExecuteReader
+        'conn.Close()
+
+        'Dim form8 As New Form7()
+        'form8.Show()
+        'Me.Close()
+
+
         Dim text As String = ComboBox1.Text
         Dim words As String() = text.Split(" "c)
         Dim number = words(words.Length - 1)
-
         LoadDraftData(number)
 
     End Sub
@@ -483,6 +521,14 @@ Public Class Form7
     End Sub
 
     Private Sub P_ID_TextChanged(sender As Object, e As EventArgs) Handles P_ID.TextChanged
+        Dim len As Integer = (P_ID.Text).Length
+        If Not len = 0 Then
+            Dim value = (P_ID.Text).ElementAt(len - 1)
+            If IsNumeric(value) = False Then
+                MessageBox.Show("InValid Character")
+                Return
+            End If
+        End If
 
         Call connect()
         query = "select * from products where product_id = " & Val(P_ID.Text) & ""
