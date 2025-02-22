@@ -128,7 +128,7 @@ Partial Class Form9
         Me.DIS.AutoSize = True
         Me.DIS.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.DIS.ForeColor = System.Drawing.Color.Lime
-        Me.DIS.Location = New System.Drawing.Point(379, 774)
+        Me.DIS.Location = New System.Drawing.Point(379, 763)
         Me.DIS.Name = "DIS"
         Me.DIS.Size = New System.Drawing.Size(18, 20)
         Me.DIS.TabIndex = 106
@@ -138,7 +138,7 @@ Partial Class Form9
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label2.Location = New System.Drawing.Point(351, 774)
+        Me.Label2.Location = New System.Drawing.Point(351, 763)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(37, 20)
         Me.Label2.TabIndex = 107
@@ -149,7 +149,7 @@ Partial Class Form9
         Me.GST.AutoSize = True
         Me.GST.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.GST.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.GST.Location = New System.Drawing.Point(573, 774)
+        Me.GST.Location = New System.Drawing.Point(573, 763)
         Me.GST.Name = "GST"
         Me.GST.Size = New System.Drawing.Size(18, 20)
         Me.GST.TabIndex = 108
@@ -159,7 +159,7 @@ Partial Class Form9
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label4.Location = New System.Drawing.Point(544, 774)
+        Me.Label4.Location = New System.Drawing.Point(544, 763)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(37, 20)
         Me.Label4.TabIndex = 109
@@ -170,7 +170,7 @@ Partial Class Form9
         Me.FINALAMT.AutoSize = True
         Me.FINALAMT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.FINALAMT.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.FINALAMT.Location = New System.Drawing.Point(131, 774)
+        Me.FINALAMT.Location = New System.Drawing.Point(131, 763)
         Me.FINALAMT.Name = "FINALAMT"
         Me.FINALAMT.Size = New System.Drawing.Size(18, 20)
         Me.FINALAMT.TabIndex = 110
@@ -181,9 +181,9 @@ Partial Class Form9
         Me.Button2.BackColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button2.Location = New System.Drawing.Point(939, 754)
+        Me.Button2.Location = New System.Drawing.Point(950, 746)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(40, 43)
+        Me.Button2.Size = New System.Drawing.Size(36, 37)
         Me.Button2.TabIndex = 112
         Me.Button2.Text = "<-"
         Me.Button2.UseVisualStyleBackColor = False
@@ -478,7 +478,7 @@ Partial Class Form9
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.SystemColors.InfoText
-        Me.Label14.Location = New System.Drawing.Point(19, 772)
+        Me.Label14.Location = New System.Drawing.Point(19, 761)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(87, 22)
         Me.Label14.TabIndex = 114
@@ -488,7 +488,7 @@ Partial Class Form9
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label15.Location = New System.Drawing.Point(99, 774)
+        Me.Label15.Location = New System.Drawing.Point(99, 763)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(37, 20)
         Me.Label15.TabIndex = 115
@@ -499,7 +499,7 @@ Partial Class Form9
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.SystemColors.InfoText
-        Me.Label6.Location = New System.Drawing.Point(234, 772)
+        Me.Label6.Location = New System.Drawing.Point(234, 761)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(124, 22)
         Me.Label6.TabIndex = 116
@@ -510,7 +510,7 @@ Partial Class Form9
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.ForeColor = System.Drawing.SystemColors.InfoText
-        Me.Label16.Location = New System.Drawing.Point(482, 772)
+        Me.Label16.Location = New System.Drawing.Point(482, 761)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(63, 22)
         Me.Label16.TabIndex = 117
@@ -536,7 +536,7 @@ Partial Class Form9
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(991, 749)
+        Me.ClientSize = New System.Drawing.Size(991, 788)
         Me.Controls.Add(Me.GST)
         Me.Controls.Add(Me.DIS)
         Me.Controls.Add(Me.Label2)

@@ -10,12 +10,10 @@ Public Class Form3
 
         If User = "ADMIN" Then
             Label1.Text = "ADMINISTRATOR LOGIN"
-            CheckBox4.Visible = False
         ElseIf User = "MANAGER" Then
             Label1.Text = "MANAGER LOGIN"
         ElseIf User = "EMPLOYEE" Then
             Label1.Text = "EMPLOYEE LOGIN"
-            CheckBox2.Visible = False
         End If
 
         TextBox1.Text = ""

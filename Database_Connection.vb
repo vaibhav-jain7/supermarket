@@ -8,14 +8,15 @@ Module Database_Connection
     Public emp As String
     Public cust_id As String
     Public CurrentBill As String
+    Public DraftBill As String
 
-    Public PendingBill As Boolean = False
-    Public CurrentBillState As Boolean = True
+    'Public PendingBill As Boolean = False
+    'Public CurrentBillState As Boolean = True
 
     Public conn As MySqlConnection
     Public Sub connect()
         conn = New MySqlConnection
-        conn.ConnectionString = "server=localhost;user=root;password='qwerty123';database=super_market"
+        conn.ConnectionString = "server=localhost;user=root;password='1234';database=super_market"
         conn.Open()
         If conn.State <> ConnectionState.Open Then
             MessageBox.Show("No Connection")

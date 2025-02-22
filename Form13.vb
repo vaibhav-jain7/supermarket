@@ -1,4 +1,5 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports Google.Protobuf.WellKnownTypes
+Imports MySql.Data.MySqlClient
 Public Class Form13
 
     Dim CMD As MySqlCommand
@@ -37,8 +38,20 @@ Public Class Form13
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
+        Dim len As Integer = (C_PH.Text).Length
+        Dim value As Integer
+        If Not len = 0 Then
+            value = Val((C_PH.Text).ElementAt(len - 1))
+            If IsNumeric(value) = False Then
+                MessageBox.Show("InValid Character")
+                Return
+            End If
+        Else
+            Return
+        End If
+
         Call connect()
-        query = "select * from customers where ph_no = " & C_PH.Text & ""
+        query = "select * from customers where ph_no = '" & C_PH.Text & "'"
         CMD = New MySqlCommand(query, conn)
         READER = CMD.ExecuteReader
 
@@ -58,6 +71,7 @@ Public Class Form13
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        C_PH.Clear()
         AllCustomers()
     End Sub
 End Class
